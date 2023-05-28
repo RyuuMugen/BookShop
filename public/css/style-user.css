@@ -1,0 +1,53 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+
+}
+.limit_text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+ }
+.sign-up{
+    width: 600px;
+    height: auto;
+    border: double 1px black;
+    margin: 8% auto;
+    
+}
+.sign-up .email{
+    width: 90%;
+    border:none;
+    border-bottom: 1px rgb(0, 140, 145) solid;
+    padding: 5px 6px;
+}
+.sign-up .email:focus{
+    outline: none;
+}
+.sign-up .sign a:focus{
+    box-shadow: none;
+}
+.signup:hover{
+    color: white!important;
+}
+.sign-up .fb{
+    margin-top: 1rem;
+    background: rgb(58, 58, 58);
+    color: white;
+    font-weight: 200;
+}
+.sign-up .sign:hover{
+    border-radius: 0;
+    border-bottom: 1.5px rgb(2, 149, 185) solid;
+}
+.sign-up .sign{
+    border-radius: 0;
+    border-bottom: 1.5px rgba(0, 0, 255, 0) solid;
+}
+.require-login{
+    display: none;
+    text-align: left;
+    margin: 10px 5%;
+    
+}

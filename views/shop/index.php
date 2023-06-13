@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/stylecard.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,5 +72,34 @@
 </body>
 <script src="<?= URL ?>/public/js/control.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+                config: {
+                    toolbar: {
+                        items: [
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'link',
+                            'bulletedList',
+                            'numberedList',
+                            'blockQuote'
+                        ]
+                    }
+                },
+                placeholder: 'Write comment here...',
+                wordCount: {
+                    onUpdate: ( stats ) => {
+                        console.log( 'Characters: ', stats.characters );
+                        console.log( 'Words: ', stats.words );
+                    }
+                }
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 </html>

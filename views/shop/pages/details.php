@@ -1,5 +1,6 @@
 <?php
 $product = $data["details"];
+$comments = $data["comment"];
 ?>
 <div class="container p-0 chitietsanpham">
     <h3>Sản phẩm/<?= $product["product_name"] ?></h3>
@@ -75,6 +76,42 @@ $product = $data["details"];
             </div>
         </div>
     </div>
+    <div class="container3 ">
+        <form action="<?= URL ?>index.php/home/postComment/<?= $product["id"] ?>" method="post">
+            <h4 for="comment">Bình luận:</h4>
+            <div style="display: flex; align-items: center;">
+                <textarea class="form-control" id="editor" name="comment"></textarea>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                <input type="submit" value="Gửi bình luận" style="margin-left: 10px;">
+                <?php else: ?>
+                <p>Vui lòng đăng nhập để bình luận.</p>
+                <?php endif; ?>
+            </div>
+        </form>
+
+        <?php $displayedComments = 5; ?>
+
+        <div id="commentContainer">
+            <?php foreach ($comments as $index => $comment) : ?>
+            <?php if ($index < $displayedComments) : ?>
+            <div class="comment">
+                <img class='proo card-img-top' style='width: 32px; height: 32px; border-radius:16px;'
+                    src='<?= URL ?>public/img/avatar/<?= $comment['avatar']?>' alt='<?= $comment['avatar']?>'>
+                <b class="comment-author"><?php echo $comment['name']; ?>:</b></br>
+                <span class="comment-content"><?php echo $comment['content']; ?></span>
+            </div>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Hiển thị nút "Xem thêm" nếu còn bình luận để hiển thị -->
+        <?php if (count($comments) > $displayedComments) : ?>
+        <button id="loadMoreBtn" onclick="loadMoreComments()">Xem thêm</button>
+        <?php endif; ?>
+    </div>
+
+
+
 
     <script>
     $(document).ready(function() {
@@ -87,4 +124,32 @@ $product = $data["details"];
             mainImage.attr('alt', thumbnailId);
         });
     });
+    var displayedComments = <?php echo $displayedComments; ?>;
+    var totalComments = <?php echo count($comments); ?>;
+    var comments = <?php echo json_encode($comments); ?>;
+
+    function loadMoreComments() {
+        var commentContainer = document.getElementById('commentContainer');
+        var loadMoreBtn = document.getElementById('loadMoreBtn');
+
+        for (var i = displayedComments; i < displayedComments + 5; i++) {
+            if (i >= totalComments) {
+                loadMoreBtn.style.display = 'none';
+                break;
+            }
+
+            var commentElement = document.createElement('div');
+            commentElement.className = 'comment';
+            commentElement.innerHTML = `
+            <img class='proo card-img-top' style='width: 32px; height: 32px; border-radius:16px;'
+                                            src='<?= URL ?>public/img/avatar/${comments[i].avatar}'
+                                            alt='${comments[i].name}'>
+        <b class="comment-author">${comments[i].name}:</b></br>
+        <span class="comment-content">${comments[i].content}</span>
+      `;
+            commentContainer.appendChild(commentElement);
+        }
+
+        displayedComments += 5;
+    }
     </script>

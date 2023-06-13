@@ -25,6 +25,7 @@ class Home_Model extends Model{
 		$result = $this->getAll($sql);
 		return $result;
 	}
+	
 	public function getNewsList(){
 		$sql = "SELECT * FROM news Where status=0 AND trash=0 ORDER BY created_at DESC LIMIT 6 ";
 		$result = $this->getAll($sql);
@@ -48,8 +49,14 @@ class Home_Model extends Model{
 	}
 	public function getDetails($id)
 	{
-		$sql = "SELECT * FROM products Where id=$id LIMIT 5";
+		$sql = "SELECT * FROM products Where id=$id";
 		$result = $this->getOne($sql);
+		return $result;
+	}
+	public function getComment($id)
+	{
+		$sql = "SELECT comment.*, users.name,users.avatar FROM comment INNER JOIN users ON comment.user_id = users.id WHERE comment.book_id = $id;";
+		$result = $this->getAll($sql);
 		return $result;
 	}
 	public function getCover($id)
@@ -76,7 +83,95 @@ class Home_Model extends Model{
 		$result = $this->getOne($sql);
 		return $result;
 	}
-	
+	public function getRecommend()
+	{
+		$userId = $_SESSION['user_id'];
+		$sql= "SELECT DISTINCT p.*
+				FROM orders o
+				JOIN order_details od ON o.id = od.order_id
+				JOIN products p ON od.product_id = p.id
+				JOIN category c ON p.category_id = c.id
+				WHERE o.customer_id = $userId
+				AND p.category_id IN (
+					SELECT DISTINCT p.category_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				AND p.id NOT IN (
+					SELECT DISTINCT p.id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				UNION
+				SELECT DISTINCT p.*
+				FROM products p
+				JOIN category c ON p.category_id = c.id
+				WHERE p.category_id IN (
+					SELECT DISTINCT p.category_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				AND p.id NOT IN (
+					SELECT DISTINCT p.id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				) LIMIT 8;
+				";
+		$result = $this->getAll($sql);
+		return $result;
+	}
+	public function countRecommend($limit,$page){
+		$userId = $_SESSION['user_id'];
+		$sql = "SELECT DISTINCT p.*
+				FROM orders o
+				JOIN order_details od ON o.id = od.order_id
+				JOIN products p ON od.product_id = p.id
+				JOIN category c ON p.category_id = c.id
+				WHERE o.customer_id = $userId
+				AND p.category_id IN (
+					SELECT DISTINCT p.category_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				AND p.id NOT IN (
+					SELECT DISTINCT p.id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				UNION
+				SELECT DISTINCT p.*
+				FROM products p
+				JOIN category c ON p.category_id = c.id
+				WHERE p.category_id IN (
+					SELECT DISTINCT p.category_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				AND p.id NOT IN (
+					SELECT DISTINCT p.id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				) LIMIT ".($page-1)*$limit. ",".$limit;
+		$result = $this->getAll($sql);
+		return $result;
+	}
+
 
 	public function getProductbyCategory($id)
 	{
@@ -109,6 +204,15 @@ class Home_Model extends Model{
 		$this->addRecord("users",$user);
 
 	}
+	public function addComent($id)
+	{
+		$comment = array(
+			'content' => $_POST['comment'],
+			'book_id' => $id,
+			'user_id' => $_SESSION['user_id']
+		);
+		$this->addRecord("comment",$comment);
+	}
 	public function doUpdateUser($id)
 	{
 		$user = array(
@@ -121,11 +225,16 @@ class Home_Model extends Model{
 	public function doLogin()
 	{
 		$u = $_POST['email'];
-		$pw =md5($_POST['password']);
-		$sql = "SELECT * FROM users WHERE  email = '$u' AND password = '".$pw."'";
-		$result = $this->getOne($sql);
-		return $result;
+		if (!filter_var($u, FILTER_VALIDATE_EMAIL)) {
+			echo "Địa chỉ email không hợp lệ";
+		} else {
+			$pw = md5($_POST['password']);
+			$sql = "SELECT * FROM users WHERE email = '$u' AND password = '".$pw."'";
+			$result = $this->getOne($sql);
+			return $result;
+		}
 	}
+	
 	public function doOrder()
 	{
 		$order = array(
@@ -135,6 +244,8 @@ class Home_Model extends Model{
 			'address'=>$_POST['address'],
 			'total'=>$_SESSION['total'],
 			'note'=>$_POST['note'],
+			'method'=>$_POST['sexampleRadios'],
+			'payment' => $_POST['payment']
 		);
 		$this->addRecord("orders",$order);
 

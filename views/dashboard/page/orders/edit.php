@@ -4,16 +4,16 @@ $p = $data['edit'];
 <form action="<?= URL ?>index.php/admin/posteditorder/<?= $p['id'] ?>" enctype="multipart/form-data" method="post">
   <div class="form-group">
     <label>Khách hàng</label>
-    <input type="text" value="<?= $p['name'] ?>" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
+    <input type="text" value="<?= $p['name'] ?>"  disabled name="name" class="form-control" placeholder="Nhập tên sản phẩm">
   </div>
 
   <div class="form-group">
     <label>Số điện thoại</label>
-    <input type="text" value="<?= $p['phone'] ?>" name="phone" class="form-control" placeholder="Nhập tên sản phẩm">
+    <input type="text" value="<?= $p['phone'] ?>" disabled name="phone" class="form-control" placeholder="Nhập tên sản phẩm">
   </div>
   <div class="form-group">
-    <label>Địa chỉ</label>
-    <input type="text" value="<?= $p['address'] ?>" name="address" class="form-control" placeholder="Nhập tên sản phẩm">
+    <label>Địa chỉ</label> 
+    <input type="text" value="<?= $p['address'] ?>" disabled name="address" class="form-control" placeholder="Nhập tên sản phẩm">
   </div>
   <div class="form-group">
     <label>Ghi Chú</label>

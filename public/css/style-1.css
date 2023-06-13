@@ -652,7 +652,20 @@ body{
     padding: 20px 20px 20px 20px;
     border-radius: 10px; 
 }
-
+.container3{
+	background-color: rgb(247, 244, 244);
+    padding: 20px 20px 20px 20px ;
+    border-radius: 10px; 
+    margin-top: 20px;
+    width: 100%;
+}
+.comment{
+    background-color: rgb(228, 227, 227);
+    padding: 20px 20px 20px 20px ;
+    border-radius: 10px; 
+    margin-top: 20px;
+    width: 90%;
+}
 .card-title2{
     width: 100%; 
     overflow: hidden;

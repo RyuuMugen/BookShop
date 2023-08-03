@@ -7,6 +7,7 @@ class Home extends Controller
 	{
 		parent::__construct();
 		$this->p = new Paginator();
+		$this->p2 = new Paginator();
 		
 	}
 	public function index()
@@ -354,14 +355,27 @@ class Home extends Controller
 		$config = array(
 			'base_url' => URL . "index.php/home/recommend/",
 			'total_rows' => $n,
-			'per_page' => 16,
+			'per_page' => 8,
 			'cur_page' => $page
 		);
 		$this->p->init($config);
 		$data["recommend"] = $this->model->countRecommend($config['per_page'], $page);
+		$data['authors'] = $this->model->getAuthor();
+		$data['author'] = $this->model->getRecommendAuthor($data['authors']);
+		$n2 = count($data['author']);
+		$config2 = array(
+			'base_url' => URL . "index.php/home/recommend/",
+			'total_rows' => $n2,
+			'per_page' => 8,
+			'cur_page' => $page
+		);
+		$this->p2->init($config2);
+		$data["recommendauthor"] = $this->model->countRecommendAuthor($data['authors'],$config2['per_page'], $page);
+		
 		$data['page'] = "shop/pages/recommend";
 		$data["category"] = $this->model->getCategory();
 		$data['paginator'] = $this->p->createLinks();
+		$data['paginator2'] = $this->p2->createLinks();
 		$this->load->view("shop/index", $data);
 	}
 	public function search($search,$page)
@@ -381,6 +395,7 @@ class Home extends Controller
 		$data["category"] = $this->model->getCategory();
 		$data['page'] = "shop/pages/search";
 		$data['paginator'] = $this->p->createLinks();
+		
 		$this->load->view("shop/index", $data);
 	}
 }

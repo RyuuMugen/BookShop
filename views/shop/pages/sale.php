@@ -26,3 +26,4 @@
         </div>
         <?= $data['paginator'] ?>
     </div>
+    

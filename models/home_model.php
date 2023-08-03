@@ -123,7 +123,7 @@ class Home_Model extends Model{
 					JOIN order_details od ON o.id = od.order_id
 					JOIN products p ON od.product_id = p.id
 					WHERE o.customer_id = $userId
-				) LIMIT 8;
+				);
 				";
 		$result = $this->getAll($sql);
 		return $result;
@@ -172,7 +172,58 @@ class Home_Model extends Model{
 		return $result;
 	}
 
+	public function getAuthor()
+	{
+		$userId = $_SESSION['user_id'];
+		$sql = "SELECT p.author, COUNT(p.author) AS author_count
+				FROM orders o
+				JOIN order_details od ON o.id = od.order_id
+				JOIN products p ON od.product_id = p.id
+				WHERE o.customer_id = $userId
+				GROUP BY p.author;
+				";
+		$result = $this->getAll($sql);
 
+		$maxCount = 0;
+		$maxAuthor = null;
+
+		foreach ($result as $author) {
+			$count = $author['author_count'];
+			if ($count > $maxCount) {
+				$maxCount = $count;
+				$maxAuthor = $author;
+			}
+		}
+		return $maxAuthor['author'];
+	}
+	public function getRecommendAuthor($author)
+	{
+		$userId = $_SESSION['user_id'];
+		$sql = "SELECT DISTINCT p.*
+				FROM products p
+				WHERE p.author = '$author' AND p.id NOT IN (
+					SELECT DISTINCT od.product_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					WHERE o.customer_id = $userId
+				);";
+		$result = $this->getAll($sql);
+		return $result;
+	}
+	public function countRecommendAuthor($author,$limit,$page)
+	{
+		$userId = $_SESSION['user_id'];
+		$sql = "SELECT DISTINCT p.*
+				FROM products p
+				WHERE p.author = '$author' AND p.id NOT IN (
+					SELECT DISTINCT od.product_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					WHERE o.customer_id = $userId
+				) LIMIT ".($page-1)*$limit. ",".$limit;
+		$result = $this->getAll($sql);
+		return $result;
+	}
 	public function getProductbyCategory($id)
 	{
 		$sql = "SELECT * FROM products Where trash=0 and status=0 and category_id=$id";

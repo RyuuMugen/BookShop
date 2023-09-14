@@ -60,6 +60,11 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/orders/edit";
 		$this->load->view("dashboard/index", $data);
 	}
+	function deleteOrder($id)
+	{
+		$this->model->deleteOrder($id);
+		header('Location:' . URL . 'index.php/admin/orderList/1');
+	}
 	function posteditorder($id)
 	{
 		$this->model->orderEdit($id);

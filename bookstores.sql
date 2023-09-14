@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 16, 2023 lúc 06:58 PM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 7.3.30
+-- Thời gian đã tạo: Th9 14, 2023 lúc 01:18 PM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,16 +35,16 @@ CREATE TABLE `banner` (
   `status` tinyint(1) NOT NULL,
   `trash` tinyint(1) NOT NULL,
   `title` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `banner`
 --
 
 INSERT INTO `banner` (`id`, `image`, `date_start`, `date_end`, `status`, `trash`, `title`) VALUES
-(5, 'banner1.jpg', '2023-05-04', '2023-05-18', 0, 0, 'scdscds'),
-(10, 'banner2.jpg', '2023-05-09', '2023-05-19', 0, 0, 'new'),
-(11, 'banner3.jpg', '2023-05-15', '2023-06-11', 0, 0, 'new');
+(5, 'banner1.jpg', '2023-05-04', '2026-07-18', 0, 0, 'scdscds'),
+(10, 'banner2.jpg', '2023-05-09', '2025-07-19', 0, 0, 'new'),
+(11, 'banner3.jpg', '2023-05-15', '2023-06-30', 0, 0, 'new');
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ CREATE TABLE `book_info` (
   `types` varchar(10) NOT NULL,
   `pages` int(10) NOT NULL,
   `trash` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `book_info`
@@ -94,7 +94,7 @@ CREATE TABLE `category` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `trash` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `category`
@@ -125,7 +125,22 @@ CREATE TABLE `comment` (
   `book_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `content` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `comment`
+--
+
+INSERT INTO `comment` (`id`, `book_id`, `user_id`, `content`) VALUES
+(7, 57, 1, 'ádasd'),
+(8, 57, 1, 'ss'),
+(9, 57, 1, 'sấd'),
+(10, 57, 1, 'sadasdas'),
+(11, 57, 1, 's'),
+(12, 57, 1, 'd'),
+(13, 57, 16, 'sss'),
+(14, 57, 1, '<ul><li><i><strong>aaasdaaasdu</strong></i></li></ul>'),
+(21, 57, 1, '<h2><strong>sssss</strong></h2>');
 
 -- --------------------------------------------------------
 
@@ -142,7 +157,7 @@ CREATE TABLE `news` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `trash` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `news`
@@ -175,25 +190,32 @@ CREATE TABLE `orders` (
   `total` int(11) NOT NULL,
   `note` text DEFAULT NULL,
   `order_date` datetime DEFAULT current_timestamp(),
-  `delivered` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `delivered` tinyint(1) DEFAULT 0,
+  `method` tinyint(1) NOT NULL,
+  `payment` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`id`, `customer_id`, `name`, `phone`, `address`, `total`, `note`, `order_date`, `delivered`) VALUES
-(48, 2, 'User', 12332, 'e', 871000, '11', '2022-05-07 16:49:33', 2),
-(50, 11, 'Đường Ngọc Hà', 122939341, 'Bắc Giang', 246000, 'Thêm hai quả đấm', '2022-05-07 22:16:40', 0),
-(54, 10, 'Nguyễn Văn An', 0, '', 123000, '', '2022-05-26 14:03:54', 0),
-(61, 11, 'Đường Ngọc Hà', 122939341, 'Bắc Giang', 123000, '11', '2022-05-28 17:16:10', 1),
-(62, 11, 'Đường Ngọc Hà', 12332, 'test', 240000, 'sss', '2022-05-28 17:17:21', 1),
-(63, 1, 'Phạm Toàn Thắng', 12332, 'Bắc Giang', 60000, '', '2022-05-29 16:47:09', 2),
-(64, 1, 'Phạm Toàn Thắng', 122939341, 'Bắc Giang', 400000, '', '2022-05-31 14:14:29', 2),
-(65, 14, 'Nguyễn Văn A', 122939341, 'Quảng Ninh', 348000, '', '2022-06-01 09:29:47', 0),
-(66, 1, 'Phạm Toàn Thắng', 122939341, 'Bắc Giang', 116000, '', '2022-06-01 09:31:59', 0),
-(67, 1, 'Phạm Toàn Thắng', 769234431, 'd', 100000, 'sách', '2023-05-05 13:05:27', 0),
-(69, 1, 'Phạm Toàn Thắng', 769234431, 'd', 100000, 'sách', '2023-05-05 20:01:52', 0);
+INSERT INTO `orders` (`id`, `customer_id`, `name`, `phone`, `address`, `total`, `note`, `order_date`, `delivered`, `method`, `payment`) VALUES
+(48, 2, 'User', 12332, 'e', 871000, '11', '2022-05-07 16:49:33', 2, 0, 0),
+(63, 1, 'Phạm Toàn Thắng', 12332, 'Bắc Giang', 60000, '', '2022-05-29 16:47:09', 2, 0, 0),
+(64, 1, 'Phạm Toàn Thắng', 122939341, 'Bắc Giang', 400000, '', '2022-05-31 14:14:29', 2, 0, 0),
+(65, 14, 'Nguyễn Văn A', 122939341, 'Quảng Ninh', 348000, '', '2022-06-01 09:29:47', 0, 0, 0),
+(70, 1, 'Phạm Toàn Thắng', 769234431, 'quảng ninh', 150000, 'sách', '2023-05-23 15:49:47', 0, 0, 0),
+(73, 16, 'Long', 0, 'á', 20000, 'á', '2023-06-13 12:03:21', 1, 0, 0),
+(74, 16, 'Long', 769234431, 'quảng ninh', 37000, 'sách', '2023-06-13 12:10:50', 0, 0, 0),
+(75, 16, 'Long', 769234431, 'quảng ninh', 20000, 'sách', '2023-06-13 12:17:02', 0, 0, 0),
+(76, 12, 'Vĩnh Long', 769234431, 'd', 150000, 'sách', '2023-06-13 13:23:03', 0, 0, 0),
+(77, 12, 'Vĩnh Long', 769234431, 'quảng ninh', 108000, 'á', '2023-06-13 13:33:17', 0, 0, 0),
+(78, 12, 'Vĩnh Long', 769234431, 'quảng ninh', 112000, 'sách', '2023-06-13 15:51:06', 0, 1, 0),
+(79, 12, 'Vĩnh Long', 769234431, 'quảng ninh', 200000, 'sách', '2023-06-13 15:55:31', 0, 2, 0),
+(80, 1, 'Phạm Toàn Thắng', 769234431, 'quảng ninh', 108000, 'sách', '2023-06-13 16:05:09', 0, 0, 0),
+(81, 1, 'Phạm Toàn Thắng', 769234431, 'quảng ninh', 112000, 'sách', '2023-06-13 16:26:21', 0, 1, 0),
+(89, 1, 'Phạm Toàn Thắng', 11111, 'aa11', 112000, 'ssss', '2023-09-11 14:59:48', 0, 0, 1),
+(103, 1, 'Phạm Toàn Thắng', 11111, '2222', 262000, 'tes', '2023-09-14 16:06:02', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -208,7 +230,7 @@ CREATE TABLE `order_details` (
   `qty` int(11) NOT NULL,
   `product_price` int(11) NOT NULL,
   `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_details`
@@ -221,16 +243,23 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `qty`, `product_pri
 (39, 48, 27, 1, 123000, 123000),
 (40, 48, 26, 1, 152000, 152000),
 (41, 48, 25, 1, 112000, 112000),
-(44, 50, 27, 2, 123000, 246000),
-(48, 54, 27, 1, 123000, 123000),
-(57, 61, 27, 1, 123000, 123000),
-(58, 62, 28, 2, 120000, 240000),
 (59, 63, 45, 1, 60000, 60000),
 (60, 64, 49, 1, 400000, 400000),
 (61, 65, 50, 3, 116000, 348000),
-(62, 66, 50, 1, 116000, 116000),
-(63, 67, 17, 1, 100000, 100000),
-(64, 69, 17, 1, 100000, 100000);
+(65, 70, 57, 1, 150000, 150000),
+(67, 73, 31, 1, 20000, 20000),
+(68, 74, 33, 1, 20000, 20000),
+(69, 74, 35, 1, 17000, 17000),
+(70, 75, 31, 1, 20000, 20000),
+(71, 76, 57, 1, 150000, 150000),
+(72, 77, 56, 1, 108000, 108000),
+(73, 78, 25, 1, 112000, 112000),
+(74, 79, 46, 1, 200000, 200000),
+(75, 80, 56, 1, 108000, 108000),
+(76, 81, 25, 1, 112000, 112000),
+(84, 89, 25, 1, 112000, 112000),
+(104, 103, 25, 1, 112000, 112000),
+(105, 103, 57, 1, 150000, 150000);
 
 -- --------------------------------------------------------
 
@@ -253,7 +282,7 @@ CREATE TABLE `products` (
   `created_at` datetime DEFAULT current_timestamp(),
   `trash` tinyint(1) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `products`
@@ -261,24 +290,24 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `product_name`, `publisher`, `author`, `category_id`, `sale`, `image`, `quantity`, `price`, `saleprice`, `product_detail`, `created_at`, `trash`, `status`) VALUES
 (17, 'OVERLORD - Tập 1 - The Undead King', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'u2-adb94b86-5d78-4921-ad8e-87a8d811a7a2.jpg', 93, 100000, 0, '<p>Chuyện xảy ra vào năm 2138, thời đại công nghệ thực tế ảo phát triển đến đỉnh cao, giúp người chơi game trải nghiệm thế giới ảo theo một cách chân thực nhất. Trong số game ấy có một trò đỉnh cao. Trong trò ấy có một guild đỉnh cao. Trong guild ấy có một thủ lĩnh gắn bó đỉnh cao. Đồng đội dần dần rời</p>', '2023-05-05 05:04:05', 0, 0),
-(18, 'OVERLORD - Tập 2 - The Dark Warrior', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, '705.jpg', 100, 108000, 0, '<p>Vào ngày hoạt động cuối cùng của game YGGDRASIL, do hiện tượng bí ẩn nào đó, một người chơi là Momonga trong tạo hình nhân vật bộ xương tự nhiên bị dịch chuyển tới một thế giới xa lạ. Đã tám ngày trôi qua. Suốt tám ngày này, Momonga, giờ đổi tên thành Ainz, đã thăm thú toàn bộ lăng mộ Nazarick, xem xét tình hình các thuộc hạ của mình. Sau khi xác nhận rằng nơi đây chẳng khác mấy so với thế giới game, Ainz quyết định đã đến lúc tiến hành bước tiếp theo, là mở rộng phạm vi khám phá và chinh phục. Dẫn theo một hầu gái hộ vệ, anh tìm đến thành phố trong vai trò người chuyên diệt quái, mà người ta vẫn gọi là “mạo hiểm giả”. Không biết chữ, không có tiền, tìm việc làm, cẩn trọng thăm dò môi trường mới, gặp gỡ nhiều nhân vật thuộc nhiều thành phần, đi săn một sinh vật pháp thuật hùng mạnh, và đáng kể nhất là bắt đầu công khai bộc lộ tài năng… Ainz cứ thế đặt chân vào một chuyến phiêu lưu mới.&nbsp;</p>', '2022-05-29 10:30:47', 0, 0),
-(19, 'OVERLORD - Tập 3 - The Bloody Valkyrie', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1294.jpg', 100, 110700, 0, '<p>Giới thiệu sách: OVERLORD - Tập 3: Valkyrie Khát Máu Mở đầu cho một hành trình huy hoàng, thông thường sẽ có hai phong cách. Một, nhân vật chính là người bình thường, không biết gì cả, lơ ngơ đơn thuần rơi vào một thế giới xa lạ, đi đâu cũng đụng kẻ mạnh và va vấp với muôn vàn thử thách, vừa run sợ vừa dũng cảm tiến bước và trưởng thành. Hai, nhân vật chính là kẻ mạnh có một không hai trên đời, xuất phát từ vạch đích, không bao giờ phải phấn đấu vì vừa hiện ra đã mạnh sẵn rồi, chỉ có đi gặt hái thất bại và sinh mạng của đối thủ mà thôi. Nếu như có ai đó, đem cả hai phong cách này hòa làm một thì sao? Thì sẽ có câu chuyện như OVERLORD vậy… Sau khi game anh từng chơi bỗng biến thành một thế giới khác, Suzuki Satoru hay Momonga hay Ainz Ooal Gown cùng các bề tôi ở Nazarick bắt đầu con đường vừa dò tìm vừa chinh phục không gian vừa quen vừa lạ này. Kế hoạch đang tiến triển vô cùng thuận lợi thì một yếu tố cản trở xuất hiện: Shalltear Bloodfallen, hộ vệ tầng hùng mạnh hàng đầu Nazarick nổi loạn, phản bội, chống chúa tể. Thách thức dành cho Ainz lần này chỉ được làm có một lần, yêu cầu là phải toàn thắng, tiêu diệt được Shalltear, khẳng định tư chất và bản lĩnh lãnh đạo của mình. Nhưng cô gái cũng lại là đứa con tinh thần của đồng đội cũ, là sợi dây duy nhất gắn kết anh với những yêu thương hoài niệm, giữ cô lại cũng là minh chứng anh đủ sức bảo vệ toàn vẹn Nazarick. Ainz phải làm thế nào đây? Tập 3, “Valkyrie khát máu”, bởi vì pha trộn những trăn trở rất người như thế, thành ra vừa dữ dằn, lại vừa ấm áp…</p>', '2022-05-29 10:30:55', 0, 0),
+(18, 'OVERLORD - Tập 2 - The Dark Warrior', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, '705.jpg', 99, 108000, 0, '<p>Vào ngày hoạt động cuối cùng của game YGGDRASIL, do hiện tượng bí ẩn nào đó, một người chơi là Momonga trong tạo hình nhân vật bộ xương tự nhiên bị dịch chuyển tới một thế giới xa lạ. Đã tám ngày trôi qua. Suốt tám ngày này, Momonga, giờ đổi tên thành Ainz, đã thăm thú toàn bộ lăng mộ Nazarick, xem xét tình hình các thuộc hạ của mình. Sau khi xác nhận rằng nơi đây chẳng khác mấy so với thế giới game, Ainz quyết định đã đến lúc tiến hành bước tiếp theo, là mở rộng phạm vi khám phá và chinh phục. Dẫn theo một hầu gái hộ vệ, anh tìm đến thành phố trong vai trò người chuyên diệt quái, mà người ta vẫn gọi là “mạo hiểm giả”. Không biết chữ, không có tiền, tìm việc làm, cẩn trọng thăm dò môi trường mới, gặp gỡ nhiều nhân vật thuộc nhiều thành phần, đi săn một sinh vật pháp thuật hùng mạnh, và đáng kể nhất là bắt đầu công khai bộc lộ tài năng… Ainz cứ thế đặt chân vào một chuyến phiêu lưu mới.&nbsp;</p>', '2022-05-29 10:30:47', 0, 0),
+(19, 'OVERLORD - Tập 3 - The Bloody Valkyrie', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1294.jpg', 99, 110700, 0, '<p>Giới thiệu sách: OVERLORD - Tập 3: Valkyrie Khát Máu Mở đầu cho một hành trình huy hoàng, thông thường sẽ có hai phong cách. Một, nhân vật chính là người bình thường, không biết gì cả, lơ ngơ đơn thuần rơi vào một thế giới xa lạ, đi đâu cũng đụng kẻ mạnh và va vấp với muôn vàn thử thách, vừa run sợ vừa dũng cảm tiến bước và trưởng thành. Hai, nhân vật chính là kẻ mạnh có một không hai trên đời, xuất phát từ vạch đích, không bao giờ phải phấn đấu vì vừa hiện ra đã mạnh sẵn rồi, chỉ có đi gặt hái thất bại và sinh mạng của đối thủ mà thôi. Nếu như có ai đó, đem cả hai phong cách này hòa làm một thì sao? Thì sẽ có câu chuyện như OVERLORD vậy… Sau khi game anh từng chơi bỗng biến thành một thế giới khác, Suzuki Satoru hay Momonga hay Ainz Ooal Gown cùng các bề tôi ở Nazarick bắt đầu con đường vừa dò tìm vừa chinh phục không gian vừa quen vừa lạ này. Kế hoạch đang tiến triển vô cùng thuận lợi thì một yếu tố cản trở xuất hiện: Shalltear Bloodfallen, hộ vệ tầng hùng mạnh hàng đầu Nazarick nổi loạn, phản bội, chống chúa tể. Thách thức dành cho Ainz lần này chỉ được làm có một lần, yêu cầu là phải toàn thắng, tiêu diệt được Shalltear, khẳng định tư chất và bản lĩnh lãnh đạo của mình. Nhưng cô gái cũng lại là đứa con tinh thần của đồng đội cũ, là sợi dây duy nhất gắn kết anh với những yêu thương hoài niệm, giữ cô lại cũng là minh chứng anh đủ sức bảo vệ toàn vẹn Nazarick. Ainz phải làm thế nào đây? Tập 3, “Valkyrie khát máu”, bởi vì pha trộn những trăn trở rất người như thế, thành ra vừa dữ dằn, lại vừa ấm áp…</p>', '2022-05-29 10:30:55', 0, 0),
 (20, 'OVERLORD - Tập 4 - The Lizard Man Heroes', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '707.jpg', 50, 117000, 10, '<p>OVERLORD - Tập 4: Lizarmand Anh Dũng</p>', '2022-05-07 08:38:34', 0, 0),
-(21, 'OVERLORD - Tập 5 - The Men in the Kingdom 1', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '707 (1).jpg', 50, 152000, 14, '<p>OVERLORD - Tập 5: Những Anh Hùng Vương Quốc</p>', '2022-05-07 08:38:41', 0, 0),
+(21, 'OVERLORD - Tập 5 - The Men in the Kingdom 1', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '707 (1).jpg', 49, 152000, 14, '<p>OVERLORD - Tập 5: Những Anh Hùng Vương Quốc</p>', '2022-05-07 08:38:41', 0, 0),
 (22, 'OVERLORD - Tập 6 - The Men in the Kingdom 2', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '708.jpg', 50, 150000, 20, '<p>OVERLORD - Tập 6 - The Men in the Kingdom 2</p>', '2022-05-07 08:18:32', 0, 0),
-(23, 'OVERLORD - Tập 7 - The Invaders of the Large tomb', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '705_cb=20150928200622.jpg', 10, 100000, 15, '<p>OVERLORD - Tập 7 - The Invaders of the Large tomb</p>', '2022-05-07 08:19:58', 0, 0),
+(23, 'OVERLORD - Tập 7 - The Invaders of the Large tomb', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '705_cb=20150928200622.jpg', 9, 100000, 15, '<p>OVERLORD - Tập 7 - The Invaders of the Large tomb</p>', '2022-05-07 08:19:58', 0, 0),
 (24, 'OVERLORD - Tập 8 - The Two Leaders', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, 'book_1299.jpg', 6, 152000, 24, '<p>OVERLORD - Tập 8 - The Two Leaders</p>', '2022-05-07 08:40:15', 0, 0),
-(25, 'OVERLORD - Tập 9 - The Magic Caster of Destroy', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, 'book_1300.jpg', 49, 112000, 15, '<p>OVERLORD - Tập 9 - The Magic Caster of Destroy</p>', '2022-05-07 08:42:19', 0, 0),
+(25, 'OVERLORD - Tập 9 - The Magic Caster of Destroy', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1300.jpg', 31, 112000, 15, '<p>OVERLORD - Tập 9 - The Magic Caster of Destroy</p>', '2023-06-13 06:12:53', 0, 0),
 (26, 'OVERLORD - Tập 10 - The Ruler of Conspiracy', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1301.jpg', 99, 152000, 0, '<p>OVERLORD - Tập 10 - The Ruler of Conspiracy</p>', '2022-05-07 08:44:02', 0, 0),
 (27, 'OVERLORD - Tập 11 - The Craftsman of Dwarf', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'e11.png', 88, 123000, 0, '<p>OVERLORD - Tập 11 - The Craftsman of Dwarf</p>', '2022-05-07 16:37:37', 0, 0),
 (28, 'OVERLORD - Tập 12: The Pladin of the Holy kingdom', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'ep12.png', 2, 120000, 0, '<p>OVERLORD - Tập 12: The Pladin of the Holy kingdom</p>', '2022-05-07 16:26:15', 0, 0),
 (29, 'OVERLORD - Tập 13 The Pladin of the Holy Kingdom', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'ep13.jpg', 3, 124000, 0, '<p>OVERLORD - Tập 13 The Pladin of the Holy Kingdom</p>', '2022-05-07 16:23:25', 0, 0),
 (30, 'OVERLORD - Tập 14 - The witch of the Falling kingdom', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, 'ep14.png', 7, 120000, 20, '<p>OVERLORD - Tập 14 - The witch of the Falling kingdom</p>', '2022-05-07 16:21:28', 0, 0),
-(31, 'Học Viện Siêu Anh Hùng – Tập 1', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH1.jpg', 100, 20000, 0, '<p>Một ngày nọ, cơ thể con người bắt đầu hình thành một thứ siêu năng lực được gọi là “kosei”, từ đó xã hội bắt đầu tràn ngập những người sở hữu siêu năng lực. Tuy nhiên sự “phi thường” ấy đồng thời cũng khiến tỉ lệ tội phạm tăng cao, dẫn đến tình trạng mà đến chính phủ cũng không thể xử lí. Nhân cơ hội đó, một vài cá nhân đã bắt đầu ra tay chống lại cái ác! Những siêu anh hùng này về sau được dân chúng công nhận và chính thức bước vào hoạt động nhằm bảo vệ hòa bình thế giới hệt như trong truyện tranh! Đây là câu chuyện về cậu bé “vô năng” Midoriya Izuku, luôn đem lòng ngưỡng mộ các siêu anh hùng tình cờ gặp được siêu anh hùng All Might đứng đầu tất cả, từ đó hành trình trở thành siêu anh hùng vĩ đại nhất của cậu cũng bắt đầu!!</p><p>My Hero Academia - Học viện siêu anh hùng, một \"tân binh\" đến từ Shonen Jump, bộ truyện được kì vọng sẽ tiếp bước các đàn anh Naruto và One Piece, đã bán ra hơn 10 triệu bản tại Nhật chắc chắn sẽ làm mùa hè 2018 của bạn thêm phần hứng khởi!!</p><p>Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</p>', '2022-05-28 16:30:20', 0, 0),
+(31, 'Học Viện Siêu Anh Hùng – Tập 1', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH1.jpg', 97, 20000, 0, '<p>Một ngày nọ, cơ thể con người bắt đầu hình thành một thứ siêu năng lực được gọi là “kosei”, từ đó xã hội bắt đầu tràn ngập những người sở hữu siêu năng lực. Tuy nhiên sự “phi thường” ấy đồng thời cũng khiến tỉ lệ tội phạm tăng cao, dẫn đến tình trạng mà đến chính phủ cũng không thể xử lí. Nhân cơ hội đó, một vài cá nhân đã bắt đầu ra tay chống lại cái ác! Những siêu anh hùng này về sau được dân chúng công nhận và chính thức bước vào hoạt động nhằm bảo vệ hòa bình thế giới hệt như trong truyện tranh! Đây là câu chuyện về cậu bé “vô năng” Midoriya Izuku, luôn đem lòng ngưỡng mộ các siêu anh hùng tình cờ gặp được siêu anh hùng All Might đứng đầu tất cả, từ đó hành trình trở thành siêu anh hùng vĩ đại nhất của cậu cũng bắt đầu!!</p><p>My Hero Academia - Học viện siêu anh hùng, một \"tân binh\" đến từ Shonen Jump, bộ truyện được kì vọng sẽ tiếp bước các đàn anh Naruto và One Piece, đã bán ra hơn 10 triệu bản tại Nhật chắc chắn sẽ làm mùa hè 2018 của bạn thêm phần hứng khởi!!</p><p>Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</p>', '2022-05-28 16:30:20', 0, 0),
 (32, 'Học Viện Siêu Anh Hùng – Tập 2', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH2.jpg', 100, 17000, 0, '<p>GIỚI THIỆU TÁC PHẨM&nbsp;</p><p>Một ngày nọ, cơ thể con người bắt đầu hình thành một thứ siêu năng lực được gọi là “kosei”, từ đó xã hội bắt đầu tràn ngập những người sở hữu siêu năng lực. Tuy nhiên sự “phi thường” ấy đồng thời cũng khiến tỉ lệ tội phạm tăng cao, dẫn đến tình trạng mà đến chính phủ cũng không thể xử lí. Nhân cơ hội đó, một vài cá nhân đã bắt đầu ra tay chống lại cái ác! Những siêu anh hùng này về sau được dân chúng công nhận và chính thức bước vào hoạt động nhằm bảo vệ hòa bình thế giới hệt như trong truyện tranh! Đây là câu chuyện về cậu bé “vô năng” Midoriya Izuku, luôn đem lòng ngưỡng mộ các siêu anh hùng tình cờ gặp được siêu anh hùng All Might đứng đầu tất cả, từ đó hành trình trở thành siêu anh hùng vĩ đại nhất của cậu cũng bắt đầu!! My Hero Academia - Học viện siêu anh hùng, một \"tân binh\" đến từ Shonen Jump, bộ truyện được kì vọng sẽ tiếp bước các đàn anh Naruto và One Piece, đã bán ra hơn 10 triệu bản tại Nhật chắc chắn sẽ làm mùa hè 2020 của bạn thêm phần hứng khởi!!</p>', '2022-05-28 16:57:25', 0, 0),
-(33, 'Học Viện Siêu Anh Hùng – Tập 3', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH3.jpg', 100, 20000, 0, '<p><strong>Học Viện Siêu Anh Hùng - Tập 3</strong></p><p>Một ngày nọ, cơ thể con người bắt đầu hình thành một thứ siêu năng lực được gọi là “kosei”, từ đó xã hội bắt đầu tràn ngập những người sở hữu siêu năng lực. Tuy nhiên sự “phi thường” ấy đồng thời cũng khiến tỉ lệ tội phạm tăng cao, dẫn đến tình trạng mà đến chính phủ cũng không thể xử lí. Nhân cơ hội đó, một vài cá nhân đã bắt đầu ra tay chống lại cái ác! Những siêu anh hùng này về sau được dân chúng công nhận và chính thức bước vào hoạt động nhằm bảo vệ hòa bình thế giới hệt như trong truyện tranh! Đây là câu chuyện về cậu bé “vô năng” Midoriya Izuku, luôn đem lòng ngưỡng mộ các siêu anh hùng tình cờ gặp được siêu anh hùng All Might đứng đầu tất cả, từ đó hành trình trở thành siêu anh hùng vĩ đại nhất của cậu cũng bắt đầu!!</p><p>My Hero Academia - Học viện siêu anh hùng, một \"tân binh\" đến từ Shonen Jump, bộ truyện được kì vọng sẽ tiếp bước các đàn anh Naruto và One Piece, đã bán ra hơn 10 triệu bản tại Nhật chắc chắn sẽ làm mùa hè 2018 của bạn thêm phần hứng khởi!!</p><p>Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</p>', '2022-05-28 16:58:15', 0, 0),
+(33, 'Học Viện Siêu Anh Hùng – Tập 3', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH3.jpg', 99, 20000, 0, '<p><strong>Học Viện Siêu Anh Hùng - Tập 3</strong></p><p>Một ngày nọ, cơ thể con người bắt đầu hình thành một thứ siêu năng lực được gọi là “kosei”, từ đó xã hội bắt đầu tràn ngập những người sở hữu siêu năng lực. Tuy nhiên sự “phi thường” ấy đồng thời cũng khiến tỉ lệ tội phạm tăng cao, dẫn đến tình trạng mà đến chính phủ cũng không thể xử lí. Nhân cơ hội đó, một vài cá nhân đã bắt đầu ra tay chống lại cái ác! Những siêu anh hùng này về sau được dân chúng công nhận và chính thức bước vào hoạt động nhằm bảo vệ hòa bình thế giới hệt như trong truyện tranh! Đây là câu chuyện về cậu bé “vô năng” Midoriya Izuku, luôn đem lòng ngưỡng mộ các siêu anh hùng tình cờ gặp được siêu anh hùng All Might đứng đầu tất cả, từ đó hành trình trở thành siêu anh hùng vĩ đại nhất của cậu cũng bắt đầu!!</p><p>My Hero Academia - Học viện siêu anh hùng, một \"tân binh\" đến từ Shonen Jump, bộ truyện được kì vọng sẽ tiếp bước các đàn anh Naruto và One Piece, đã bán ra hơn 10 triệu bản tại Nhật chắc chắn sẽ làm mùa hè 2018 của bạn thêm phần hứng khởi!!</p><p>Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</p>', '2022-05-28 16:58:15', 0, 0),
 (34, 'Học Viện Siêu Anh Hùng – Tập 4', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH4.jpg', 50, 20000, 0, '<p>Sau khi về nhất trong cuộc đua vượt chướng ngại vật, Deku đã gặp rắc rối to trong trận kị mã chiến. Nhưng cũng nhờ đó mà cả bọn giành được sự chú ý, nếu là Deku thì nhất định sẽ không sao đâu! Mình cũng không thể thua được! Ba mẹ ơi, hãy cùng dõi theo con nhé ! “Plus Ultra”!!</p>', '2022-05-28 17:15:40', 0, 0),
-(35, 'Học Viện Siêu Anh Hùng – Tập 5', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH5.jpg', 50, 17000, 0, '<p>ĐẦUTRẬN CUỐI CÙNG trong VÒNG ĐẤU CHÍNH THỨC!! Trước một đối thủ siêu đáng gờm như Bakugo, Uraraka vẫn giữ tinh thần hăng hái. Cả hai bên đều dốc hết sức mình vào cuộc so tài. Mọi người vừa là bạn , vừa là ĐỐI THỦ ! Mình cũng phải đấu một trận không hổ thẹn để trở thành siêu anh hùng giống như anh hai mới được!</p>', '2022-05-28 17:17:10', 0, 0),
+(35, 'Học Viện Siêu Anh Hùng – Tập 5', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH5.jpg', 49, 17000, 0, '<p>ĐẦUTRẬN CUỐI CÙNG trong VÒNG ĐẤU CHÍNH THỨC!! Trước một đối thủ siêu đáng gờm như Bakugo, Uraraka vẫn giữ tinh thần hăng hái. Cả hai bên đều dốc hết sức mình vào cuộc so tài. Mọi người vừa là bạn , vừa là ĐỐI THỦ ! Mình cũng phải đấu một trận không hổ thẹn để trở thành siêu anh hùng giống như anh hai mới được!</p>', '2022-05-28 17:17:10', 0, 0),
 (36, 'Học Viện Siêu Anh Hùng – Tập 6', 'NXB Kim Đồng', ' Kohei Horikoshi', 15, 0, 'AH6.jpg', 50, 20000, 0, '<p>Sau hội thao, chúng tôi biết tin anh của Ida bị Villain tấn công. Bình thường Ida luôn tỏ ra mạnh mẽ, nhưng lần này thì... Vài ngày sau, đến lượt chúng tôi được thực tập ở chỗ của các siêu anh hùng chuyên nghiệp. Con đường tôi muốn đi... Để thay đổi bản thân, tôi quyết định sẽ không né tránh bố mình nữa...</p>', '2022-05-28 17:54:03', 0, 0),
 (37, 'NHỮNG TRUYỆN HAY VIẾT CHO THIẾU NHI - NGUYÊN HỒNG', 'NXB Kim Đồng', 'Nguyên Hồng', 17, 0, 'tn1.png', 10, 35000, 0, '<p>“…Nguyên&nbsp; Hồng&nbsp; có&nbsp; những&nbsp; trang&nbsp; viết đầy&nbsp; xúc&nbsp; động&nbsp; về&nbsp; những&nbsp; nhân&nbsp; vật&nbsp; trẻ thơ.&nbsp; “Trẻ&nbsp; em&nbsp; như&nbsp; búp&nbsp; trên&nbsp; cành”&nbsp; lẽ&nbsp; ra phải&nbsp; được&nbsp; thương&nbsp; yêu,&nbsp; chiều&nbsp; chuộng, phải&nbsp; được&nbsp; chăm&nbsp; sóc&nbsp; đủ&nbsp; đầy,&nbsp; ấy&nbsp; vậy</p><p>dưới&nbsp; chế&nbsp; độ&nbsp; cũ,&nbsp; trẻ&nbsp; em&nbsp; cũng&nbsp; là&nbsp; những nạn&nbsp; nhân&nbsp; đau&nbsp; khổ.&nbsp; Nguyên&nbsp; Hồng&nbsp; viết về&nbsp; những&nbsp; sinh&nbsp; mệnh&nbsp; đáng&nbsp; thương&nbsp; này bằng chính những trải nghiệm trong thời thơ&nbsp; ấu&nbsp; của&nbsp; mình&nbsp; nên&nbsp; có&nbsp; sức&nbsp; lay&nbsp; động lòng người sâu sắc.” - Tiến sĩ Bạch Văn Hợp</p><p>Cuốn sách tuyển chọn những truyện ngắn tiêu biểu: Con chó vàng, Mợ Du, Hai nhà nghề, Giọt máu, Chuyện cái xóm tha hương ở cửa rừng Suối Cát và con hùm con mồ côi… và những truyện ngắn đặc sắc viết cho thiếu nhi của nhà văn Nguyên Hồng.</p><p>Nhà văn NGUYÊN HỒNG (1918 -1982)</p><p>Tên thật: Nguyễn Nguyên Hồng - Quê quán: Nam Định</p><p>* Giải thưởng Hồ Chí Minh về Văn học nghệ thuật, năm 1996</p><p>Tác phẩm chính: Bỉ vỏ, Bảy Hựu, Những ngày thơ ấu, Địa ngục và lò lửa, Đất nước yêu dấu, Đêm giải phóng, Giữ thóc, Giọt máu, Trời xanh, Cháu gái người mãi võ họ Hoa, Sóng gầm, Thời kỳ đen tối, Cơn bão đã đến, Một tuổi thơ văn, Sông núi quê hương, Khi đứa con ra đời, Núi rừng Yên Thế, Tuyển tập Nguyên Hồng …</p>', '2022-05-29 09:49:57', 0, 0),
 (38, 'NHỮNG TRUYỆN HAY VIẾT CHO THIẾU NHI - NGUYỄN KIÊN', 'NXB Kim Đồng', 'Nguyễn Kiên', 17, 0, 'tn2.png', 155, 35000, 0, '<p>“Tác phẩm dành cho thiếu nhi là những câu chuyện đời sống được nhìn bằng đôi mắt trẻ thơ. Còn giấc mơ ẩn sau mỗi câu chuyện là giấc mơ trẻ thơ của chính tác giả, hằng lưu giữ trong tâm hồn.”</p><p>Nhà văn NGUYỄN KIÊN</p>', '2022-05-29 09:51:39', 0, 0),
@@ -289,14 +318,15 @@ INSERT INTO `products` (`id`, `product_name`, `publisher`, `author`, `category_i
 (43, 'Danh Tướng', 'NXB Dân Trí', 'Will Durant', 13, 0, 'ls1.png', 10, 425000, 0, '<p><i><strong>Danh Tướng</strong></i></p><p>Danh tướng đưa ra cái nhìn mới về giới lãnh đạo quân sự, những người đã làm nên lịch sử bằng những trận chiến trên bộ, trên biển, cũng như trên không, từ Alexander Đại Đế, nhà chinh phạt lẫy lừng của thế kỉ 4 TCN, tới chư tướng dẫn dắt các chiến dịch ở Afghanistan và Iraq ngày nay.</p><p>&nbsp;Cuốn sách bao gồm thông tin tiểu sử và hình ảnh tướng lãnh, bản đồ trận đánh và chi tiết sống động về các cuộc hành quân. Đây là cẩm nang bằng hình giúp bạn tìm hiểu về các thiên tài quân sự trên thế giới.</p><p>&nbsp;“Coi lính như con em, lính sẽ cùng ta vào thâm khê. Coi lính như con yêu, lính sẽ bên ta sống chết.” – <i>Binh pháp Tôn Tử</i></p><p><br>&nbsp;</p>', '2022-05-29 10:12:56', 0, 0),
 (44, 'Putin - Logic Của Quyền Lực - Putin: Innenansichten Der Macht', 'NXB Tổng Hợp TPHCM', 'Hubert Seipel', 9, 1, 'ct.png', 100, 134000, 12, '<p>Tên gốc của tác phẩm là Putin: Innenansichten der Macht. Sách gồm 21 chương, do Hubert Seipel thực hiện trong 5 năm (từ năm 2010 đến 2015). Tác giả đã có hơn 20 buổi phỏng vấn chuyên sâu với Putin, đồng thời tháp tùng ông trên hàng chục chuyến đi trong, ngoài nước.</p><p>Sách mở ra góc nhìn mới về nhà lãnh đạo Nga. Putin: Logic của quyền lực phát hành ở Việt Nam cuối tháng 11, do dịch giả Phan Xuân Loan chuyển ngữ, Nhà xuất bản Tổng hợp phát hành. Hubert Seipel tái hiện những dấu mốc chính trong cuộc đời Putin. Năm 1975, Putin tốt nghiệp khoa Luật Đại học Tổng hợp Quốc gia Saint Petersburg. Năm 1985, ông trở thành nhân viên tình báo đối ngoại của Liên Xô ở Đức. Năm 1994, ông trở thành phó chủ tịch thứ nhất của thành phố quê nhà Saint Petersburg. Năm 1996, ông chuyển đến Moskva và được bổ nhiệm nhiều chức vụ quan trọng trong văn phòng Tổng thống Nga. Cuối năm 1999, ông trở thành Tổng thống Nga…</p>', '2022-05-29 10:16:02', 0, 0),
 (45, 'Nguồn Gốc Văn Minh - Nguyễn Hiến Lê', 'NXB Hồng Đức', 'Will Durant', 13, 1, 'ls2.png', 99, 84000, 60, '<p><i><strong>Ngược dòng thời gian để xem văn minh nhân loại và vạn vật muôn loài được hình thành như thế nào.</strong></i></p><p>Bạn có biết lịch sử hình thành văn minh nhân loại được hình thành như thế nào không? Và cho tới hiện tại nền văn minh đã và đang ở đâu không? Mỗi giai đoạn lịch sử qua đi là một điểm nhấn mấu chốt mà gần như người xảy ra những biến cố hoặc dấu tích đặc trưng cho thời kỳ đó.</p><p><strong>Nguồn gốc văn minh từ đâu?</strong></p><p>Theo các nhà khoa học, loài người phát triển từ thuở hoang sơ cho đến nay ước khoảng mười nghìn năm, gồm các thời Cổ Đại, Trung Cổ, Cận Đại và Hiện đại. Ở mỗi thời đại, xã hội loài người nổi lên một số vùng, hoặc một mảnh đất mà ở đó xã hội cư dân ở điểm tập hợp được các giá trị tiên tiến vượt trội trong nhiều lĩnh vực - hình thành <strong>nền văn minh</strong>.</p><p>Một số thống kê cụ thể ở thời Cổ Đại có 8 nền văn minh lớn: nền văn minh Ai Cập cổ đại, nền văn minh Hy Lạp, nền văn minh La Mã, nền văn minh Tây Á, nền văn minh Ấn Độ, nền văn minh Trung Hoa, nền văn minh Maya và nền văn minh Andes…</p>', '2022-05-29 10:19:38', 0, 0),
-(46, 'How Psychology Works - Hiểu Hết Về Tâm Lý Học', 'NXB Thế Giới', 'Jo Hemmings', 16, 1, 'tl.png', 100, 250000, 20, '<p>MỘT TRONG NHỮNG CUỐN SÁCH MỞ KHÓA HỮU ÍCH NHẤT VỀ TƯ DUY, KÝ ỨC VÀ CẢM XÚC CỦA CON NGƯỜI!<br>Ám sợ là gì, ám sợ có thực sự đáng sợ không? Rối loạn tâm lý là gì, làm thế nào để thoát khỏi tình trạng suy nhược và xáo trộn đó? Trầm cảm là gì, vì sao con người hiện đại thường xuyên gặp và chống chọi với tình trạng u uất, mệt mỏi và tuyệt vọng này?</p><p>Tìm hiểu về các vấn đề tâm trí của con người luôn đầy sức hấp dẫn và lôi cuốn, vì vậy mà tâm lý học ra đời, hình thành và phát triển rất nhiều các học thuyết và trường phái. Cuốn sách này dẫn dắt bạn đọc qua hành trình tìm hiểu các học thuyết và trường phái đó, về cách các nhà tâm lý diễn giải hành xử và tâm trí con người. Tại sao chúng ta có những hành vi, suy nghĩ và cảm xúc như vậy, chúng diễn ra và kết thúc như thế nào, chúng ảnh hưởng lâu dài, gián đoạn hay ngắn ngủỉ đến đời sống của chúng ta ra sao, làm thế nào để chúng ta thoát khỏi những tác động tiêu cực của chúng?</p>', '2022-05-29 10:23:26', 0, 0),
+(46, 'How Psychology Works - Hiểu Hết Về Tâm Lý Học', 'NXB Thế Giới', 'Jo Hemmings', 16, 1, 'tl.png', 99, 250000, 20, '<p>MỘT TRONG NHỮNG CUỐN SÁCH MỞ KHÓA HỮU ÍCH NHẤT VỀ TƯ DUY, KÝ ỨC VÀ CẢM XÚC CỦA CON NGƯỜI!<br>Ám sợ là gì, ám sợ có thực sự đáng sợ không? Rối loạn tâm lý là gì, làm thế nào để thoát khỏi tình trạng suy nhược và xáo trộn đó? Trầm cảm là gì, vì sao con người hiện đại thường xuyên gặp và chống chọi với tình trạng u uất, mệt mỏi và tuyệt vọng này?</p><p>Tìm hiểu về các vấn đề tâm trí của con người luôn đầy sức hấp dẫn và lôi cuốn, vì vậy mà tâm lý học ra đời, hình thành và phát triển rất nhiều các học thuyết và trường phái. Cuốn sách này dẫn dắt bạn đọc qua hành trình tìm hiểu các học thuyết và trường phái đó, về cách các nhà tâm lý diễn giải hành xử và tâm trí con người. Tại sao chúng ta có những hành vi, suy nghĩ và cảm xúc như vậy, chúng diễn ra và kết thúc như thế nào, chúng ảnh hưởng lâu dài, gián đoạn hay ngắn ngủỉ đến đời sống của chúng ta ra sao, làm thế nào để chúng ta thoát khỏi những tác động tiêu cực của chúng?</p>', '2022-05-29 10:23:26', 0, 0),
 (47, 'Tri Thức Bách Khoa - Những Phát Kiến, Phát Minh Trong Khoa Học Công Nghệ Và Cuộc Sống', 'NXB Đại Học Sư Phạm', 'Lê Quang', 10, 0, 'kh.png', 100, 31000, 0, '<p>Tri Thức Bách Khoa - Những Phát Kiến, Phát Minh Trong Khoa Học Công Nghệ Và Cuộc Sống</p>', '2022-05-29 11:11:09', 0, 0),
 (48, 'Harry Potter and the Deathly Hallows', 'Bloomsbury Publishing PLC', 'J. K. Rowling', 8, 0, 'hr.png', 10, 100000, 0, '<p>Harry Potter and the Deathly Hallows</p>', '2022-05-29 11:16:24', 0, 0),
 (49, 'Harry Potter and the Deathly Hallows (Hardcover)', 'Bloomsbury Publishing PLC', 'J. K. Rowling', 8, 0, 'hr2.png', 99, 450000, 400000, '<p>Harry Potter and the Deathly Hallows</p>', '2022-05-31 09:16:40', 0, 0),
 (50, 'Tanya Chiến Ký 1: Deus Lo Vult', 'NXB Thái Hà', 'Carlo Zen', 19, 1, 'b_a_27_2.jpg', 96, 145000, 20, '<p>Tanya Chiến ký (tên gốc: Youjo senki) là light novel đầu tay của tác giả Carlo Zen, minh họa bởi Shinotsuki Shinobu lấy đề tài chiến tranh, giả tưởng thời cận hiện đại trên một thế giới khác, tồn tại đồng thời pháo binh, những cỗ tăng thiết giáp và máy bay chiến đấu cùng với những ma pháp sư sử dụng ngọc diễn toán can thiệp vào thế giới vật lý bay lượn trên bầu trời.</p><p>Tanya chiến ký bắt đầu với khung cảnh một bé gái cất tiếng khóc chào đời tại một cô nhi viện, tuy nhiên, có vẻ như bé gái ấy lại tồn tại một ý thức khác, một ý thức chưa từng nghĩ tới rằng mình sẽ tái sinh thành một cô bé trong một thế giới thảm khốc như vậy. Ý thức ấy thuộc về một trưởng phòng nhân sự mẫn cán tại Nhật Bản xa xôi. Là một người làm công ăn lương mẫu mực, chăm chỉ nhưng không có lòng trắc ẩn và có phần vô tâm, từ khi đi học cho tới khi đi làm, anh ta luôn làm theo đúng y sì những gì mà xã hội và cấp trên mong muốn, tuân thủ mọi quy định và hoàn thành mọi mệnh lệnh từ trên xuống. Là người phụ trách nhân sự, trong thời buổi kinh tế khó khăn và đổi mới công nghệ, anh ta đã hoàn thành xuất sắc việc cắt giảm nhân sự không hiệu quả cho công ty, dẫu đó có là một nhân viên lâu năm hay dẫu người ấy có quỳ lạy khóc lóc như nào. Sự vô tình này đã khiến anh ta hứng thụ sự uất hận từ người bị sa thải, và trong một khoảnh khắc trước khi ý thức mất đi, anh ta vẫn nhớ rằng mình đang đứng đợi tàu điện ở sát đường ray rồi bị một ai đó đẩy từ phía sau.</p>', '2022-05-31 19:42:23', 0, 0),
 (54, 'OVERLORD - Tập 1: Chúa Tể Bất Tử - Tặng Kèm Postcard', 'Kim đồng', '', 10, 0, '60637604_2038961603076540_7399464138239377408_n.jpg', 0, 0, 0, '<p>ssx</p>', '2023-05-05 05:06:29', 1, 0),
-(56, 'OVERLORD - Tập 15 -  The Half-Elf Demigod Part I', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '81FCNBoCUAL._AC_UF1000,1000_QL80_.jpg', 10, 120000, 10, '<p>War with the Nation of Darkness is inevitable―or so the Theocracy’s leaders believe with every part of their beings. With such an obvious threat on their borders, there’s no time to waste on lesser concerns, so they decide to eliminate the elf king who has been a thorn in their sides for too long! Meanwhile, Ainz sets out for the elf country on what he’s decided to call a paid vacation. His real goal is to create an opportunity for Aura and Mare to make some friends their age―even as the Theocracy armies march on the capital! The twins know their wise ruler has his hopes pinned on them and won’t stop until they bring this forest under the control of Ainz Ooal Gown!</p>', '2023-05-13 14:10:05', 0, 0),
-(57, 'OVERLORD - Tập 16:  The Half-Elf Demigod Part II', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'tải xuống.jpg', 15, 150000, 0, '<p>Even fierce warriors are in awe when they see the majesty of <a href=\"https://overlordmaruyama.fandom.com/wiki/Great_Tomb_of_Nazarick\">Nazarick</a>! <a href=\"https://overlordmaruyama.fandom.com/wiki/Ainz_Ooal_Gown\">Ainz</a> and the twins stay in the <a href=\"https://overlordmaruyama.fandom.com/wiki/Dark_Elf\">dark elf</a> village and continue to interact with the villagers. But the Theocracy has finally just begun to attack the <a href=\"https://overlordmaruyama.fandom.com/wiki/Elf_Country\">elf country</a>. Ainz, who had a plan, started to act.</p>', '2023-05-13 14:12:32', 0, 0);
+(56, 'OVERLORD - Tập 15 -  The Half-Elf Demigod Part I', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '81FCNBoCUAL._AC_UF1000,1000_QL80_.jpg', 6, 120000, 10, '<p>War with the Nation of Darkness is inevitable―or so the Theocracy’s leaders believe with every part of their beings. With such an obvious threat on their borders, there’s no time to waste on lesser concerns, so they decide to eliminate the elf king who has been a thorn in their sides for too long! Meanwhile, Ainz sets out for the elf country on what he’s decided to call a paid vacation. His real goal is to create an opportunity for Aura and Mare to make some friends their age―even as the Theocracy armies march on the capital! The twins know their wise ruler has his hopes pinned on them and won’t stop until they bring this forest under the control of Ainz Ooal Gown!</p>', '2023-05-13 14:10:05', 0, 0),
+(57, 'OVERLORD - Tập 16:  The Half-Elf Demigod Part II', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'tải xuống.jpg', 4, 150000, 0, '<p>Even fierce warriors are in awe when they see the majesty of <a href=\"https://overlordmaruyama.fandom.com/wiki/Great_Tomb_of_Nazarick\">Nazarick</a>! <a href=\"https://overlordmaruyama.fandom.com/wiki/Ainz_Ooal_Gown\">Ainz</a> and the twins stay in the <a href=\"https://overlordmaruyama.fandom.com/wiki/Dark_Elf\">dark elf</a> village and continue to interact with the villagers. But the Theocracy has finally just begun to attack the <a href=\"https://overlordmaruyama.fandom.com/wiki/Elf_Country\">elf country</a>. Ainz, who had a plan, started to act.</p>', '2023-05-13 14:12:32', 0, 0),
+(58, 'Không biết bằng cách nào, dàn mỹ nhân hạng S lại đề cập đến tôi', 'NXB Hồng Đức', 'Wakioka Konatsu', 8, 0, 's15461-eb8c3422-acae-4c43-a448-9ece51a0fbeb-m.jpg', 2, 10000, 0, '<p>なぜかS級美女達の話題に俺があがる件</p><p>Naze ka S-kyuu Bijo-tachi no Wadai ni Ore ga Agaru ken</p>', '2023-08-04 08:01:29', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -315,21 +345,18 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT current_timestamp(),
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `role` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `phone`, `address`, `avatar`, `created_at`, `status`, `role`) VALUES
-(1, 'admin@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Phạm Toàn Thắng', 769234431, 'Cẩm Phả-Quảng Ninh', 'avt.jpg', '2022-04-07 23:40:11', 0, 1),
+(1, 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Toàn Thắng ', 769234431, 'Cẩm Phả-Quảng Ninh', 'avt.jpg', '2022-04-07 23:40:11', 0, 1),
 (2, 'user1@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'User', 3213, '', 'avt.png', '2022-04-07 18:41:02', 0, 0),
-(10, 'A@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Nguyễn Văn An 123', 122939341, 'Hà Nội', 'avt.png', '2022-05-05 15:43:10', 0, 0),
-(11, 'test@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Đường Ngọc Hà', 122939341, '', 'avt.png', '2022-05-07 17:15:57', 0, 0),
 (12, 'long@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Vĩnh Long', 122939341, '', 'avt.png', '2022-05-31 16:12:53', 0, 0),
-(13, 'thinh.nq@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Nguyễn Quốc Thịnh', 123513467, '', 'avt.png', '2022-05-31 19:17:56', 0, 0),
 (14, 'AB@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Nguyễn Văn A', 122939341, '', 'avt.png', '2022-06-01 04:28:59', 0, 0),
-(15, 'ad@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Phạm Toàn Thắng', 769234431, 'quảng ninh', '705.jpg', '2023-05-16 13:45:13', 0, 0);
+(16, 'thang@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Long', 358859711, 'quảng ninh', 'Screenshot 2023-06-01 234309.png', '2023-06-10 09:51:34', 0, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -358,6 +385,7 @@ ALTER TABLE `category`
 -- Chỉ mục cho bảng `comment`
 --
 ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user` (`user_id`),
   ADD KEY `book` (`book_id`);
 
@@ -420,6 +448,12 @@ ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT cho bảng `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT cho bảng `news`
 --
 ALTER TABLE `news`
@@ -429,25 +463,25 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

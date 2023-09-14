@@ -1,5 +1,5 @@
 <p>
-	<a href="<?= URL ?>index.php/home/detailsUserOrder"><button type="button" class="btn btn-primary">Back</button></a>
+	<a href="<?= URL ?>index.php/home/detailsUser"><button type="button" class="btn btn-primary">Back</button></a>
 
 </p>
 <div class="container2">

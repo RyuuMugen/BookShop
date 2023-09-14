@@ -28,7 +28,7 @@ $orderInfo = "Thanh toán qua QR MoMo";
 $amount = $_POST['total'];
 $orderId = time() ."";
 $returnUrl = "http://localhost/bookstorenew/index.php/home/payment";
-$notifyurl = "http://localhost/bookstorenew/index.php/home/payment";
+$notifyurl = "http://localhost/bookstorenew/index.php/home/complete";
 $extraData = "";
 
 

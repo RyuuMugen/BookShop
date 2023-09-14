@@ -8,6 +8,7 @@ class Home extends Controller
 		parent::__construct();
 		$this->p = new Paginator();
 		$this->p2 = new Paginator();
+		$this->p3 = new Paginator();
 		
 	}
 	public function index()
@@ -18,7 +19,7 @@ class Home extends Controller
 		$data["sale_products"] = $this->model->getSaleProducts();
 		$data["news_list"] = $this->model->getNewsList();
 		if (isset($_SESSION['user_id'])) {
-			$data["recomment"] = $this->model->getRecommend();
+			$data["recomment"] = $this->model->getRecommendindex();
 		}
 		$data["category"] = $this->model->getCategory();
 		$data['page'] = 'shop/pages/home';
@@ -126,7 +127,6 @@ class Home extends Controller
 	{
 		$data["category"] = $this->model->getCategory();
 		if (isset($_SESSION['cart'])) {
-			echo "đã có";
 		}
 		$data['page'] = 'shop/pages/cart';
 		$this->load->view("shop/index", $data);
@@ -134,8 +134,25 @@ class Home extends Controller
 	public function payment()
 	{	
 		$data["category"] = $this->model->getCategory();
+		$data["newest"] =  $this->model->newestOrder();
 		if (isset($_SESSION['user'])) {
 			$data['page'] = 'shop/pages/payment';
+			if(isset($_GET['message'])){
+				$message = $_GET['message'];
+				$decodedMessage = urldecode($message);
+				$id = $data["newest"]["id"];
+					if ($decodedMessage === "Giao dịch bị từ chối bởi người dùng.") {
+						$this->model->deleteOrder($id);
+						$newUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/bookstorenew/index.php/home/payment';
+						header('Location: ' . $newUrl);
+						exit;
+					} elseif($decodedMessage === "Successful."){
+						unset($_SESSION['cart']);
+						$_SESSION['total'] = 0;
+						$newUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/bookstorenew/index.php/home/complete';
+						header('Location: ' . $newUrl);
+						exit;
+					}}
 			$this->load->view("shop/index", $data);
 		} else {
 			header('Location:' . URL . 'index.php/home/login');
@@ -218,6 +235,20 @@ class Home extends Controller
 		}
 		
 	}
+	public function momoatm()
+	{
+		if (isset($_SESSION['cart'])) {
+			$p = [];
+			$this->model->doOrder();
+			$p['a'] = $this->model->getOrder();
+			$this->model->doDetailsOrder($p['a'][0]['id'], $_SESSION['cart']);
+			// unset($_SESSION['cart']);
+			// $_SESSION['total'] = 0;
+			$data['page'] = 'shop/pages/momoatm';
+			$this->load->view("shop/index2", $data);
+		}
+		
+	}
 	public function complete()
 	{	
 		$data = [];
@@ -231,6 +262,7 @@ class Home extends Controller
 			header('Location:' . URL . 'index.php/home/login');
 		}
 		$data["detailUser"] = $this->model->getUser($_SESSION['user_id']);
+		$data["detailUserOrder"] = $this->model->getUserOrder($_SESSION['user_id']);
 		$_SESSION['user'] = $data["detailUser"]["name"];
 		$data["category"] = $this->model->getCategory();
 		$data['page'] = 'shop/pages/users';
@@ -240,12 +272,6 @@ class Home extends Controller
 	{
 		$this->model->doUpdateUser($_SESSION["user_id"]);
 		header('Location:' . URL . 'index.php/home/detailsUser');
-	}
-	public function changepass()
-	{
-		$data["category"] = $this->model->getCategory();
-		$data['page'] = 'shop/pages/changepass';
-		$this->load->view("shop/index", $data);
 	}
 	public function postchangepass()
 	{
@@ -275,24 +301,8 @@ class Home extends Controller
 			header('Location:../home/index');
 		}
 	}
-	public function detailsUserOrder()
-	{
-		$data = array();
-		$data["category"] = $this->model->getCategory();
-		if (!isset($_SESSION['user'])) {
-			header('Location:' . URL . 'index.php/home/login');
-		}
-		$data["detailUserOrder"] = $this->model->getUserOrder($_SESSION['user_id']);
-		if ($data["detailUserOrder"] == NULL) {
-			$data['page'] = 'shop/pages/userordernull';
-			$this->load->view("shop/index", $data);
-		} else {
-			$data["detailUser"] = $this->model->getUser($_SESSION['user_id']);
-			$_SESSION['user'] = $data["detailUser"]["name"];
-			$data['page'] = 'shop/pages/userorder';
-			$this->load->view("shop/index", $data);
-		}
-	}
+	
+	
 	function orderDetails($id)
 	{
 		$data["category"] = $this->model->getCategory();
@@ -304,6 +314,11 @@ class Home extends Controller
 	function deleteOrder($id)
 	{
 		$this->model->deleteOrder($id);
+		header('Location:' . URL . 'index.php/home/detailsUserOrder');
+	}
+	function cancelOrder($id)
+	{
+		$this->model->cancelOrder($id);
 		header('Location:' . URL . 'index.php/home/detailsUserOrder');
 	}
 	function postComment($id)
@@ -360,6 +375,7 @@ class Home extends Controller
 		);
 		$this->p->init($config);
 		$data["recommend"] = $this->model->countRecommend($config['per_page'], $page);
+
 		$data['authors'] = $this->model->getAuthor();
 		$data['author'] = $this->model->getRecommendAuthor($data['authors']);
 		$n2 = count($data['author']);
@@ -372,10 +388,23 @@ class Home extends Controller
 		$this->p2->init($config2);
 		$data["recommendauthor"] = $this->model->countRecommendAuthor($data['authors'],$config2['per_page'], $page);
 		
+		$data['publishers'] = $this->model->getPublisher();
+		$data['publisher'] = $this->model->getRecommendPublisher($data['publishers']);
+		$n3 = count($data['publisher']);
+		$config3 = array(
+			'base_url' => URL . "index.php/home/recommend/",
+			'total_rows' => $n3,
+			'per_page' => 8,
+			'cur_page' => $page
+		);
+		$this->p3->init($config3);
+		$data["recommendpublisher"] = $this->model->countRecommendPublisher($data['publishers'],$config3['per_page'], $page);
+		
 		$data['page'] = "shop/pages/recommend";
 		$data["category"] = $this->model->getCategory();
 		$data['paginator'] = $this->p->createLinks();
 		$data['paginator2'] = $this->p2->createLinks();
+		$data['paginator3'] = $this->p3->createLinks();
 		$this->load->view("shop/index", $data);
 	}
 	public function search($search,$page)

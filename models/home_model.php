@@ -83,6 +83,54 @@ class Home_Model extends Model{
 		$result = $this->getOne($sql);
 		return $result;
 	}
+	public function getRecommendindex()
+	{
+		$userId = $_SESSION['user_id'];
+		$sql= "SELECT DISTINCT p.*
+				FROM orders o
+				JOIN order_details od ON o.id = od.order_id
+				JOIN products p ON od.product_id = p.id
+				JOIN category c ON p.category_id = c.id
+				WHERE o.customer_id = $userId
+				AND p.category_id IN (
+					SELECT DISTINCT p.category_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				AND p.id NOT IN (
+					SELECT DISTINCT p.id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				UNION
+				SELECT DISTINCT p.*
+				FROM products p
+				JOIN category c ON p.category_id = c.id
+				WHERE p.category_id IN (
+					SELECT DISTINCT p.category_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				AND p.id NOT IN (
+					SELECT DISTINCT p.id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					JOIN products p ON od.product_id = p.id
+					WHERE o.customer_id = $userId
+				)
+				AND p.trash = 0
+  				AND p.status = 0
+				LIMIT 8;
+				";
+		$result = $this->getAll($sql);
+		return $result;
+	}
 	public function getRecommend()
 	{
 		$userId = $_SESSION['user_id'];
@@ -123,7 +171,9 @@ class Home_Model extends Model{
 					JOIN order_details od ON o.id = od.order_id
 					JOIN products p ON od.product_id = p.id
 					WHERE o.customer_id = $userId
-				);
+				)
+				AND p.trash = 0
+  				AND p.status = 0;;
 				";
 		$result = $this->getAll($sql);
 		return $result;
@@ -141,7 +191,7 @@ class Home_Model extends Model{
 					FROM orders o
 					JOIN order_details od ON o.id = od.order_id
 					JOIN products p ON od.product_id = p.id
-					WHERE o.customer_id = $userId
+					WHERE o.customer_id = $userId 
 				)
 				AND p.id NOT IN (
 					SELECT DISTINCT p.id
@@ -167,7 +217,10 @@ class Home_Model extends Model{
 					JOIN order_details od ON o.id = od.order_id
 					JOIN products p ON od.product_id = p.id
 					WHERE o.customer_id = $userId
-				) LIMIT ".($page-1)*$limit. ",".$limit;
+				)
+				AND p.trash = 0
+  				AND p.status = 0
+				LIMIT ".($page-1)*$limit. ",".$limit;
 		$result = $this->getAll($sql);
 		return $result;
 	}
@@ -201,7 +254,7 @@ class Home_Model extends Model{
 		$userId = $_SESSION['user_id'];
 		$sql = "SELECT DISTINCT p.*
 				FROM products p
-				WHERE p.author = '$author' AND p.id NOT IN (
+				WHERE trash=0 AND status=0 AND p.author = '$author' AND p.id NOT IN (
 					SELECT DISTINCT od.product_id
 					FROM orders o
 					JOIN order_details od ON o.id = od.order_id
@@ -215,7 +268,60 @@ class Home_Model extends Model{
 		$userId = $_SESSION['user_id'];
 		$sql = "SELECT DISTINCT p.*
 				FROM products p
-				WHERE p.author = '$author' AND p.id NOT IN (
+				WHERE trash=0 AND status=0 AND p.author = '$author' AND p.id NOT IN (
+					SELECT DISTINCT od.product_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					WHERE o.customer_id = $userId
+				) LIMIT ".($page-1)*$limit. ",".$limit;
+		$result = $this->getAll($sql);
+		return $result;
+	}
+
+	public function getPublisher()
+	{
+		$userId = $_SESSION['user_id'];
+		$sql = "SELECT p.publisher, COUNT(p.publisher) AS publisher_count
+				FROM orders o
+				JOIN order_details od ON o.id = od.order_id
+				JOIN products p ON od.product_id = p.id
+				WHERE o.customer_id = $userId
+				GROUP BY p.publisher;
+				";
+		$result = $this->getAll($sql);
+
+		$maxCount = 0;
+		$maxPublisher = null;
+
+		foreach ($result as $publisher) {
+			$count = $publisher['publisher_count'];
+			if ($count > $maxCount) {
+				$maxCount = $count;
+				$maxPublisher = $publisher;
+			}
+		}
+		return $maxPublisher['publisher'];
+	}
+	public function getRecommendPublisher($publisher)
+	{
+		$userId = $_SESSION['user_id'];
+		$sql = "SELECT DISTINCT p.*
+				FROM products p
+				WHERE trash=0 AND status=0 AND p.publisher = '$publisher' AND p.id NOT IN (
+					SELECT DISTINCT od.product_id
+					FROM orders o
+					JOIN order_details od ON o.id = od.order_id
+					WHERE o.customer_id = $userId
+				);";
+		$result = $this->getAll($sql);
+		return $result;
+	}
+	public function countRecommendPublisher($publisher,$limit,$page)
+	{
+		$userId = $_SESSION['user_id'];
+		$sql = "SELECT DISTINCT p.*
+				FROM products p
+				WHERE trash=0 AND status=0 AND p.publisher = '$publisher' AND p.id NOT IN (
 					SELECT DISTINCT od.product_id
 					FROM orders o
 					JOIN order_details od ON o.id = od.order_id
@@ -265,12 +371,22 @@ class Home_Model extends Model{
 		$this->addRecord("comment",$comment);
 	}
 	public function doUpdateUser($id)
-	{
+	{	
+		
 		$user = array(
 			'name'=>$_POST['name'],
 			'phone'=>$_POST['phone'],
 			'address'=>$_POST['address'],
 		);
+		if ($_FILES['avatar']['size'] != 0) {
+			$file = $_FILES['avatar'];
+			$i = $file['name'];
+			$user['avatar'] = $i;
+			$u = new Upload();
+			$u->doUpload($file, 'avatar');
+			unset($_SESSION['avatar']);
+			$_SESSION['avatar'] = $i;
+		}
 		$this->editRecord("users",$user,$id);
 	}
 	public function doLogin()
@@ -295,7 +411,7 @@ class Home_Model extends Model{
 			'address'=>$_POST['address'],
 			'total'=>$_SESSION['total'],
 			'note'=>$_POST['note'],
-			'method'=>$_POST['sexampleRadios'],
+			'method'=>$_POST['method'],
 			'payment' => $_POST['payment']
 		);
 		$this->addRecord("orders",$order);
@@ -348,6 +464,18 @@ class Home_Model extends Model{
 			$sql2 = "DELETE FROM order_details WHERE order_id=$id";
 			$this->setQuery($sql2);
 			$this->setQuery($sql);
+		}
+		public function cancelOrder($id)
+		{
+			$sql = "UPDATE orders SET delivered = 3  WHERE id=$id";
+			$this->setQuery($sql);
+			
+		}
+	public function newestOrder()
+		{
+			$sql = "SELECT id FROM orders ORDER BY order_date DESC LIMIT 1";
+			$result = $this->getOne($sql);
+			return $result;
 		}
 	public function search($search)
 		{

@@ -25,6 +25,13 @@ class Admin_Model extends Model
 		);
 		$this->editRecord('category', $cate, $id);
 	}
+	public function deleteOrder($id)
+		{
+			$sql = "DELETE FROM orders WHERE id=$id";
+			$sql2 = "DELETE FROM order_details WHERE order_id=$id";
+			$this->setQuery($sql2);
+			$this->setQuery($sql);
+		}
 	public function orderEdit($id)
 	{
 		$cate = array(

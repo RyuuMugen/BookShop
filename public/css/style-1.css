@@ -827,4 +827,7 @@ font-weight: 700;
   .listimg img:last-child {
     margin-right: 0;
   }
-  
+  .paymentt{
+    text-align: center;
+    padding: 20px;
+  }

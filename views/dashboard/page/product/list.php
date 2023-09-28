@@ -1,6 +1,6 @@
 <p>
 	<a href="<?= URL ?>index.php/admin/addProduct"><button type="button" class="btn btn-primary">Add</button></a>
-	<a href="<?= URL ?>index.php/admin/trashProduct/1"><button type="button" class="btn btn-primary">Trash(<?= count($data['trash']) ?>)</button></a>
+	<a href="<?= URL ?>index.php/admin/trashProduct?page=1"><button type="button" class="btn btn-primary">Trash(<?= count($data['trash']) ?>)</button></a>
 </p>
 
 <table class="table table-bordered table-hover">
@@ -56,7 +56,7 @@
 				<?php } ?>
 			</td>
 			<td><a href="<?= URL ?>index.php/admin/editProduct/<?= $value['id'] ?>"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/edit.png" /></a></td>
-			<td><a href="<?= URL ?>index.php/admin/infoProduct/<?= $value['id'] ?>/1"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/booki.png" /></a></td>
+			<td><a href="<?= URL ?>index.php/admin/infoProduct?id=<?= $value['id'] ?>&page=1"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/booki.png" /></a></td>
 			<td><a onclick="actionChange('Chuyển vào trash','<?= URL ?>index.php/admin/delTempProduct/<?= $value['id'] ?>')"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/bookdelete.png" /></a></td>
 		</tr>
 	<?php endforeach; ?>

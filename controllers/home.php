@@ -22,6 +22,7 @@ class Home extends Controller
 			$data["recomment"] = $this->model->getRecommendindex();
 		}
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		$data['page'] = 'shop/pages/home';
 		$this->load->view("shop/index", $data);
 	}
@@ -32,6 +33,7 @@ class Home extends Controller
 		$data["comment"] = $this->model->getComment($id);
 		$data["cover"] = $this->model->getCover($id);
 		$data['page'] = 'shop/pages/details';
+
 		$data["category"] = $this->model->getCategory();
 		$this->load->view("shop/index", $data);
 	}
@@ -40,17 +42,19 @@ class Home extends Controller
 	{
 		$data = array();
 		$data["news"] = $this->model->getNews($id);
+		$data["banner"] = $this->model->getBanner();
 		$data['page'] = 'shop/pages/news';
 		$data["category"] = $this->model->getCategory();
 		$this->load->view("shop/index", $data);
 	}
-	public function category($id, $page)
+	public function category()
 	{
-
+		$id =  $_GET['category'];
+		$page = $_GET['page'];
 		$cat = $this->model->getProductbyCategory($id);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/home/category/$id/",
+			'base_url' => URL . "index.php/home/category?category=$id&page=",
 			'total_rows' => $n,
 			'per_page' => 6,
 			'cur_page' => $page
@@ -58,6 +62,7 @@ class Home extends Controller
 		$this->p->init($config);
 		$data = array();
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		$data['product_ed'] = $this->model->getDataCate($id, 'products', $config['per_page'], $page);
 		$data['paginator'] = $this->p->createLinks();
 		$data["product_cate"] = $this->model->getProductbyCategory($id);
@@ -73,8 +78,15 @@ class Home extends Controller
 	}
 	public function postRegister()
 	{
-		$this->model->doRegister();
-		header('Location:../home/index');
+		$data['count'] = $this->model->isEmailExists($_POST['email']);
+		if ($data['count'] <1) {
+			$data['page'] = 'shop/pages/register';
+			$data["thongbao"] = "TÀI KHOẢN ĐÃ TỒN TẠI";
+			$this->load->view("shop/index", $data);
+		} else {
+			$this->model->doRegister();
+			header('Location:../home/index');
+		}
 	}
 	public function login()
 	{
@@ -84,6 +96,7 @@ class Home extends Controller
 			$data = array();
 			$data['page'] = 'shop/pages/login';
 			$data["category"] = $this->model->getCategory();
+			
 			$this->load->view("shop/index", $data);
 			
 		}
@@ -126,6 +139,7 @@ class Home extends Controller
 	public function cartview()
 	{
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		if (isset($_SESSION['cart'])) {
 		}
 		$data['page'] = 'shop/pages/cart';
@@ -134,6 +148,7 @@ class Home extends Controller
 	public function payment()
 	{	
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		$data["newest"] =  $this->model->newestOrder();
 		if (isset($_SESSION['user'])) {
 			$data['page'] = 'shop/pages/payment';
@@ -302,15 +317,6 @@ class Home extends Controller
 		}
 	}
 	
-	
-	function orderDetails($id)
-	{
-		$data["category"] = $this->model->getCategory();
-		$data['product'] = $this->model->getRecordByTrash('products', 0);
-		$data['order_details'] = $this->model->getOrderDetails('order_details', $id);
-		$data['page'] = "shop/pages/orderdetails";
-		$this->load->view("shop/index", $data);
-	}
 	function deleteOrder($id)
 	{
 		$this->model->deleteOrder($id);
@@ -326,13 +332,14 @@ class Home extends Controller
 		$this->model->addComent($id);
 		header('Location:'.URL."index.php/home/details/$id");
 	}
-	public function newss($page)
+	public function newss()
 	{
+		$page = $_GET['page'];
 		$data = $this->model->getNewsListfull();
 		$n = count($data);
 		$_SESSION['pages'] = $page;
 		$config = array(
-			'base_url' => URL . "index.php/home/newss/",
+			'base_url' => URL . "index.php/home/newss?page=",
 			'total_rows' => $n,
 			'per_page' => 9,
 			'cur_page' => $page
@@ -341,16 +348,18 @@ class Home extends Controller
 		$data["news_list"] = $this->model->countNewsListfull($config['per_page'], $page);
 		$data['page'] = 'shop/pages/newss';
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		$data['paginator'] = $this->p->createLinks();
 		$this->load->view("shop/index", $data);
 	}
-	public function sale($page)
+	public function sale()
 	{
+		$page = $_GET['page'];
 		$data = $this->model->getSaleProductsall();
 		$n = count($data);
 		$_SESSION['pages'] = $page;
 		$config = array(
-			'base_url' => URL . "index.php/home/sale/",
+			'base_url' => URL . "index.php/home/sale?page=",
 			'total_rows' => $n,
 			'per_page' => 16,
 			'cur_page' => $page
@@ -359,57 +368,61 @@ class Home extends Controller
 		$data["sale_products"] = $this->model->countSaleProducts($config['per_page'], $page);
 		$data['page'] = "shop/pages/sale";
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		$data['paginator'] = $this->p->createLinks();
 		$this->load->view("shop/index", $data);
 	}
-	public function recommend($page)
+	public function recommend()
 	{
+		$page = $_GET['page'];
+		$page2 = $_GET['page2'];
+		$page3 = $_GET['page3'];
 		$data = $this->model->getRecommend();
 		$n = count($data);
-		$_SESSION['pages'] = $page;
 		$config = array(
-			'base_url' => URL . "index.php/home/recommend/",
+			'base_url' => URL . "index.php/home/recommend?page2=1&page3=1&page=",
 			'total_rows' => $n,
 			'per_page' => 8,
 			'cur_page' => $page
 		);
 		$this->p->init($config);
 		$data["recommend"] = $this->model->countRecommend($config['per_page'], $page);
-
 		$data['authors'] = $this->model->getAuthor();
 		$data['author'] = $this->model->getRecommendAuthor($data['authors']);
 		$n2 = count($data['author']);
 		$config2 = array(
-			'base_url' => URL . "index.php/home/recommend/",
+			'base_url' => URL . "index.php/home/recommend?page=1&page3=1&page2=",
 			'total_rows' => $n2,
 			'per_page' => 8,
-			'cur_page' => $page
+			'cur_page' => $page2
 		);
 		$this->p2->init($config2);
-		$data["recommendauthor"] = $this->model->countRecommendAuthor($data['authors'],$config2['per_page'], $page);
+		$data["recommendauthor"] = $this->model->countRecommendAuthor($data['authors'],$config2['per_page'], $page2);
 		
 		$data['publishers'] = $this->model->getPublisher();
 		$data['publisher'] = $this->model->getRecommendPublisher($data['publishers']);
 		$n3 = count($data['publisher']);
 		$config3 = array(
-			'base_url' => URL . "index.php/home/recommend/",
+			'base_url' => URL . "index.php/home/recommend?page=1&page2=1&page3=",
 			'total_rows' => $n3,
 			'per_page' => 8,
-			'cur_page' => $page
+			'cur_page' => $page3
 		);
 		$this->p3->init($config3);
-		$data["recommendpublisher"] = $this->model->countRecommendPublisher($data['publishers'],$config3['per_page'], $page);
+		$data["recommendpublisher"] = $this->model->countRecommendPublisher($data['publishers'],$config3['per_page'], $page3);
 		
 		$data['page'] = "shop/pages/recommend";
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		$data['paginator'] = $this->p->createLinks();
 		$data['paginator2'] = $this->p2->createLinks();
 		$data['paginator3'] = $this->p3->createLinks();
 		$this->load->view("shop/index", $data);
 	}
-	public function search($search,$page)
+	public function search()
 	{	
-		
+		$page = $_GET['page'];
+		$search = $_GET['value'];
 		$data = $this->model->search($search);
 		$n = count($data);
 		$_SESSION['pages'] = $page;
@@ -422,6 +435,7 @@ class Home extends Controller
 		$this->p->init($config);
 		$data["search"] = $this->model->searchcount($search,$config['per_page'], $page);
 		$data["category"] = $this->model->getCategory();
+		$data["banner"] = $this->model->getBanner();
 		$data['page'] = "shop/pages/search";
 		$data['paginator'] = $this->p->createLinks();
 		

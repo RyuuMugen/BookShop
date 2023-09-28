@@ -40,6 +40,15 @@ class Model
 		$result = $this->getAll($sql);
 		return $result;
 	}
+	function getBookComment($id)
+	{
+		$sql = "SELECT u.name, c.*
+				FROM users u
+				JOIN comment c ON u.id = c.user_id
+				WHERE c.book_id = $id;";
+		$result = $this->getAll($sql);
+		return $result;
+	}
 	function getBookReadByTrash($table, $trash, $id)
 	{
 		$sql = "SELECT * FROM $table WHERE trash=$trash AND book_id = $id AND types='read'";
@@ -80,6 +89,16 @@ class Model
 	function getbookData($table, $limit, $page, $id)
 	{
 		$sql = "SELECT * FROM $table WHERE trash= 0 AND book_id = $id AND types='cover' LIMIT " . ($page - 1) * $limit . "," . $limit;
+		$result = $this->getAll($sql);
+		return $result;
+	}
+	function getcommentbookData($limit, $page, $id)
+	{
+		$sql = "SELECT u.name, c.*
+				FROM users u
+				JOIN comment c ON u.id = c.user_id
+				WHERE c.book_id = $id  
+				LIMIT " . ($page - 1) * $limit . "," . $limit;
 		$result = $this->getAll($sql);
 		return $result;
 	}
@@ -157,14 +176,10 @@ class Model
 		$this->setQuery($sql);
 	}
 
-	public function statusF($table, $id)
+	
+	public function status($table, $id ,$num)
 	{
-		$sql = "UPDATE $table SET status=1 WHERE id=$id";
-		$this->setQuery($sql);
-	}
-	public function statusT($table, $id)
-	{
-		$sql = "UPDATE $table SET status=0 WHERE id=$id";
+		$sql = "UPDATE $table SET status=$num WHERE id=$id";
 		$this->setQuery($sql);
 	}
 }

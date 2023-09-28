@@ -10,7 +10,7 @@ class Admin_Model extends Model
 	{
 		$cate = array(
 			'category_name' => $_POST['category_name'],
-			'parent' => $_POST['parent'],
+			'trash' => 0,
 			'status' => $_POST['status'],
 
 		);

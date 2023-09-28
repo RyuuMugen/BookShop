@@ -104,52 +104,51 @@ $comments = $data["comment"];
             <?php endforeach; ?>
         </div>
 
-        <!-- Hiển thị nút "Xem thêm" nếu còn bình luận để hiển thị -->
         <?php if (count($comments) > $displayedComments) : ?>
         <button id="loadMoreBtn" onclick="loadMoreComments()">Xem thêm</button>
         <?php endif; ?>
     </div>
+</div>
 
 
 
-
-    <script>
-    $(document).ready(function() {
-        $('.proo').click(function() {
-            var imageSrc = $(this).attr('src');
-            var thumbnailId = $(this).attr('id');
-            var index = thumbnailId.replace('thumbnail', '');
-            var mainImage = $('#mainImage');
-            mainImage.attr('src', imageSrc);
-            mainImage.attr('alt', thumbnailId);
-        });
+<script>
+$(document).ready(function() {
+    $('.proo').click(function() {
+        var imageSrc = $(this).attr('src');
+        var thumbnailId = $(this).attr('id');
+        var index = thumbnailId.replace('thumbnail', '');
+        var mainImage = $('#mainImage');
+        mainImage.attr('src', imageSrc);
+        mainImage.attr('alt', thumbnailId);
     });
-    var displayedComments = <?php echo $displayedComments; ?>;
-    var totalComments = <?php echo count($comments); ?>;
-    var comments = <?php echo json_encode($comments); ?>;
+});
+var displayedComments = <?php echo $displayedComments; ?>;
+var totalComments = <?php echo count($comments); ?>;
+var comments = <?php echo json_encode($comments); ?>;
 
-    function loadMoreComments() {
-        var commentContainer = document.getElementById('commentContainer');
-        var loadMoreBtn = document.getElementById('loadMoreBtn');
+function loadMoreComments() {
+    var commentContainer = document.getElementById('commentContainer');
+    var loadMoreBtn = document.getElementById('loadMoreBtn');
 
-        for (var i = displayedComments; i < displayedComments + 5; i++) {
-            if (i >= totalComments) {
-                loadMoreBtn.style.display = 'none';
-                break;
-            }
+    for (var i = displayedComments; i < displayedComments + 5; i++) {
+        if (i >= totalComments) {
+            loadMoreBtn.style.display = 'none';
+            break;
+        }
 
-            var commentElement = document.createElement('div');
-            commentElement.className = 'comment';
-            commentElement.innerHTML = `
+        var commentElement = document.createElement('div');
+        commentElement.className = 'comment';
+        commentElement.innerHTML = `
             <img class='proo card-img-top' style='width: 32px; height: 32px; border-radius:16px;'
                                             src='<?= URL ?>public/img/avatar/${comments[i].avatar}'
                                             alt='${comments[i].name}'>
         <b class="comment-author">${comments[i].name}:</b></br>
         <span class="comment-content">${comments[i].content}</span>
       `;
-            commentContainer.appendChild(commentElement);
-        }
-
-        displayedComments += 5;
+        commentContainer.appendChild(commentElement);
     }
-    </script>
+
+    displayedComments += 5;
+}
+</script>

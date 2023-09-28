@@ -47,6 +47,18 @@ class Home_Model extends Model{
 		$result = $this->getAll($sql);
 		return $result;
 	}
+	public function getBanner()
+	{
+		$sql = "SELECT image, title 
+				FROM banner 
+				WHERE status = 0 AND trash = 0 
+				AND date_end > NOW() 
+				AND date_start < NOW() 
+				ORDER BY date_end ASC 
+				LIMIT 5;";
+		$result = $this->getAll($sql);
+		return $result;
+	}
 	public function getDetails($id)
 	{
 		$sql = "SELECT * FROM products Where id=$id";
@@ -336,8 +348,14 @@ class Home_Model extends Model{
 		$result = $this->getAll($sql);
 		return $result;
 	}
+	public function isEmailExists($email){
+		$sql = "SELECT COUNT(*) as count FROM users WHERE email = '$email'";
+		$result = $this->getAll($sql);
+		return $result;
+	}
 	public function doRegister()
 	{
+		
 		$i = "temp.png";
 		if ($_FILES['avatar']['size'] == 0) {
 			echo $_FILES['avatar']['error'];

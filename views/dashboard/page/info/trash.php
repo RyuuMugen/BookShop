@@ -1,6 +1,6 @@
 <p>
-	<a href="<?= URL ?>index.php/admin/infoProduct/<?= $data['id'] ?>/1"><button type="button" class="btn btn-primary">List</button></a>
-	<a href="<?= URL ?>index.php/admin/readInfo/<?= $data['id'] ?>/1"><button type="button" class="btn btn-primary">Read</button></a>
+	<a href="<?= URL ?>index.php/admin/infoProduct?id=<?= $data['id'] ?>&page=1"><button type="button" class="btn btn-primary">List</button></a>
+	<a href="<?= URL ?>index.php/admin/readInfo?id=<?= $data['id'] ?>&page=1"><button type="button" class="btn btn-primary">Read</button></a>
 
 </p>
 <table class="table table-bordered table-hover">

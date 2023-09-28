@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/style-1.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/style-user.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/stylecard.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>/public/css/login.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
@@ -52,9 +53,7 @@
     <!-- --body-- -->
     <!-- --banner-- -->
     <div class="banner">
-
-        <?php $this->view("shop/modules/banner"); ?>
-
+        <?php $this->view("shop/modules/banner" , $data); ?>
 
     </div>
     <!-- ---- -->
@@ -66,8 +65,9 @@
     </div>
     <!-- ---- -->
     <!-- --footer-- -->
-
     <?php $this->view("shop/modules/footer"); ?>
+    
+
     <!-- ---- -->
 </body>
 <script src="<?= URL ?>/public/js/control.js"></script>

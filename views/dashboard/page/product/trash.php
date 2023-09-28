@@ -1,5 +1,5 @@
 <p>
-	<a href="<?= URL ?>index.php/admin/productList/1"><button type="button" class="btn btn-primary">List</button></a>
+	<a href="<?= URL ?>index.php/admin/productList?page=1"><button type="button" class="btn btn-primary">List</button></a>
 	<a href=""><button type="button" class="btn btn-primary">Trash(<?= count($data['trash']) ?>)</button></a>
 </p>
 <table class="table table-bordered table-hover">
@@ -12,7 +12,6 @@
 		<th>Quantity</th>
 		<th>Price</th>
 		<th>Sale</th>
-		<th>Status</th>
 		<th>Info</th>
 		<th>Recover</th>
 		<th>Delete</th>
@@ -44,17 +43,7 @@
 					Không
 				<?php } ?>
 			</td>
-			<td>
-				<?php
-				if ($value['status'] == 0) { ?>
-
-					<a onclick="actionChange('Ẩn Sản phẩm','<?= URL ?>index.php/admin/delStatusProduct/<?= $value['id'] ?>')" class="showcursor"> <img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/status.png" /></a>
-
-				<?php } else { ?>
-					<a onclick="actionChange('Hiện Sản phẩm','<?= URL ?>index.php/admin/retoreStatusProduct/<?= $value['id'] ?> class= " showcursor" href="<?= URL ?>index.php/admin/retoreStatusProduct/<?= $value['id'] ?>"> <img class="icon " style="width:50px;" src="<?= URL ?>public/backend/images/forbidden.png" /></a>
-				<?php } ?>
-			</td>
-			<td><a href="<?= URL ?>index.php/admin/infoProduct/<?= $value['id'] ?>/1"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/booki.png" /></a></td>
+			<td><a href="<?= URL ?>index.php/admin/infoProduct?id=<?= $value['id'] ?>&page=1"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/booki.png" /></a></td>
 			<td><a onclick="actionChange('Khôi phục','<?= URL ?>index.php/admin/retoreTempProduct/<?= $value['id'] ?>')"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/recover.png" /></a></td>
 			<td><a onclick="actionChange('Xóa luôn sản phẩm','<?= URL ?>index.php/admin/deleteProduct/<?= $value['id'] ?>')"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/delete.png" /></a></td>
 		</tr>

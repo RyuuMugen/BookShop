@@ -2,9 +2,10 @@
 require("public/function/function.php");
 ?>
 
-<div class="h3 mb-5 container">Sản phẩm Mới</div>
-<div class="col-12 row" id="newsu">
-    <div class="col-10 row-2">
+
+<div class="row" id="newsu">
+    <div class="h3 mb-5 container">Sản phẩm Mới</div>
+    <div class="col-9 row-2">
         <?php foreach ($data["new_products"] as $value) : ?>
         <div class="col-lg-4 col-md-6 col-sm-6 col-6 mt-3">
             <div class="card product p-2" style="width: auto;">
@@ -42,17 +43,18 @@ require("public/function/function.php");
         </div>
         <?php endforeach; ?>
     </div>
-    <div class="col-2 row-2 menu-right">
+    <div class="col-3 row menu-right">
         <?php $this->view("shop/modules/sidebar", $data); ?>
     </div>
 
 </div>
+
+<div class="row" id="newsu">
 <?php if (isset($_SESSION['user_id']) && !empty($data["recomment"])) : ?>
 <div class="h3 mt-5 over">Sản phẩm đề xuất
-    <a style="float:right; font-size:20px;" href="<?= URL ?>index.php/home/recommend/1" tabindex="-1"
+    <a style="float:right; font-size:20px;" href="<?= URL ?>index.php/home/recommend?page=1&page2=1&page3=1" tabindex="-1"
         aria-disabled="true">xem thêm</a>
 </div>
-<div class="row" id="newsu">
     <div class="col-12 row">
         <?php foreach ($data["recomment"] as $value) : ?>
         <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
@@ -93,12 +95,13 @@ require("public/function/function.php");
     </div>
 </div>
 <?php endif; ?>
+
+<div class="row" id="newsu">
 <div class="h3 mt-5 over">Sản phẩm Giảm giá
-    <a style="float:right; font-size:20px;" href="<?= URL ?>index.php/home/sale/1" tabindex="-1"
+    <a style="float:right; font-size:20px;" href="<?= URL ?>index.php/home/sale?page=1" tabindex="-1"
         aria-disabled="true">xem thêm</a>
 </div>
-<div class="row" id="newsu">
-    <div class="col-12 row">
+    <div class="col-12 row ">
         <?php foreach ($data["sale_products"] as $value) : ?>
         <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
             <div class="card product p-2" style="width: auto;">
@@ -133,11 +136,12 @@ require("public/function/function.php");
 
 
 </div>
+
+<div class="row" id="newsu">
 <div class="h3 mt-5">Tin tức mới nhất
-    <a style="float:right;font-size:20px;" href="<?= URL ?>index.php/home/newss/1" tabindex="-1"
+    <a style="float:right;font-size:20px;" href="<?= URL ?>index.php/home/newss?page=1" tabindex="-1"
         aria-disabled="true">xem thêm</a>
 </div>
-<div class="row">
     <div class="col-12 row">
         <?php foreach ($data["news_list"] as $value) : ?>
         <div class='col-lg-4 col-md-6 col-sm-6 col-6 mt-3'>

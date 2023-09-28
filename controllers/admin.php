@@ -21,12 +21,13 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/home";
 		$this->load->view("dashboard/index", $data);
 	}
-	function cateList($page)
+	function cateList()
 	{
+		$page =$_GET['page'];
 		$cat = $this->model->getRecordByTrash('category', 0);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/cateList/",
+			'base_url' => URL . "index.php/admin/cateList?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
@@ -50,7 +51,7 @@ class admin extends Controller
 	function postaddcate()
 	{
 		$this->model->cateAdd();
-		header('Location:../admin/cateList/1');
+		header('Location:../admin/cateList?page=1');
 	}
 	public function editOrder($id)
 	{
@@ -63,12 +64,12 @@ class admin extends Controller
 	function deleteOrder($id)
 	{
 		$this->model->deleteOrder($id);
-		header('Location:' . URL . 'index.php/admin/orderList/1');
+		header('Location:' . URL . 'index.php/admin/orderList?page=1');
 	}
 	function posteditorder($id)
 	{
 		$this->model->orderEdit($id);
-		header('Location:' . URL . 'index.php/admin/orderList/1');
+		header('Location:' . URL . 'index.php/admin/orderList?page=1');
 	}
 	public function editCate($id)
 	{
@@ -81,162 +82,170 @@ class admin extends Controller
 	function posteditcate($id)
 	{
 		$this->model->cateEdit($id);
-		header('Location:' . URL . 'index.php/admin/cateList/1');
+		header('Location:' . URL . 'index.php/admin/cateList?page=1');
 	}
 	function delTempCate($id)
 	{
 		$this->model->delTempRecord('category', $id);
-		header('Location:' . URL . 'index.php/admin/cateList/1');
+		header('Location:' . URL . 'index.php/admin/cateList?page=1');
 	}
 	function retoreTempCate($id)
 	{
 		$this->model->retoreTempRecord('category', $id);
-		header('Location:' . URL . 'index.php/admin/trashCate/1');
+		header('Location:' . URL . 'index.php/admin/trashCate?page=1');
 	}
 
 	function delTempNews($id)
 	{
 		$this->model->delTempRecord('news', $id);
-		header('Location:' . URL . 'index.php/admin/newsList/1');
+		header('Location:' . URL . 'index.php/admin/newsList?page=1');
 	}
 	function retoreTempNews($id)
 	{
 		$this->model->retoreTempRecord('news', $id);
-		header('Location:' . URL . 'index.php/admin/trashNews/1');
+		header('Location:' . URL . 'index.php/admin/trashNews?page=1');
 	}
 	function delTempProduct($id)
 	{
 		$this->model->delTempRecord('products', $id);
-		header('Location:' . URL . 'index.php/admin/productList/1');
+		header('Location:' . URL . 'index.php/admin/productList?page=1');
 	}
 	function retoreTempProduct($id)
 	{
 		$this->model->retoreTempRecord('products', $id);
-		header('Location:' . URL . 'index.php/admin/trashProduct/1');
+		header('Location:' . URL . 'index.php/admin/trashProduct?page=1');
 	}
 	function delTempBanner($id)
 	{
 		$this->model->delTempRecord('banner', $id);
-		header('Location:' . URL . 'index.php/admin/trashBanner/1');
+		header('Location:' . URL . 'index.php/admin/trashBanner?page=1');
 	}
 	function retoreTempBanner($id)
 	{
 		$this->model->retoreTempRecord('banner', $id);
-		header('Location:' . URL . 'index.php/admin/trashBanner/1');
+		header('Location:' . URL . 'index.php/admin/trashBanner?page=1');
 	}
 	function delTempInfo($id1, $id2)
 	{
 		$this->model->delTempRecord('book_info', $id2);
-		header('Location:' . URL . 'index.php/admin/infoProduct/' . $id1 . '/1');
+		header('Location:' . URL . 'index.php/admin/infoProduct?id=' . $id1 . '&page=1');
 	}
 	function retoreTempInfo($id1, $id2)
 	{
 		$this->model->retoreTempRecord('book_info', $id2);
-		header('Location:' . URL . 'index.php/admin/trashInfo/' . $id1 . '/1');
+		header('Location:' . URL . 'index.php/admin/trashInfo?id=' . $id1 . '&page=1');
 	}
 	function delTempReadInfo($id1, $id2)
 	{
 		$this->model->delTempRecord('book_info', $id2);
-		header('Location:' . URL . 'index.php/admin/readtrashInfo/' . $id1 . '/1');
+		header('Location:' . URL . 'index.php/admin/readtrashInfo?id=' . $id1 . '&page=1');
 	}
 	function retoreTempReadInfo($id1, $id2)
 	{
 		$this->model->retoreTempRecord('book_info', $id2);
-		header('Location:' . URL . 'index.php/admin/readtrashInfo/' . $id1 . '/1');
+		header('Location:' . URL . 'index.php/admin/readtrashInfo?id=' . $id1 . '&page=1');
 	}
 
 	function delStatusCate($id)
 	{
-		$this->model->statusF('category', $id);
-		header('Location:' . URL . 'index.php/admin/cateList/1');
+		$this->model->status('category', $id, 1);
+		header('Location:' . URL . 'index.php/admin/cateList?page=1');
 	}
 	function deleteUsers($id)
 	{
 		$this->model->deleteTempRecord('users', $id);
-		header('Location:' . URL . 'index.php/admin/usersList/1');
+		header('Location:' . URL . 'index.php/admin/usersList?page=1');
 	}
 	function deleteNews($id)
 	{
 		$this->model->deleteTempRecord('news', $id);
-		header('Location:' . URL . 'index.php/admin/newsList/1');
+		header('Location:' . URL . 'index.php/admin/trashNews?page=1');
 	}
 	function deleteProduct($id)
 	{
 		$this->model->deleteTempRecord('products', $id);
-		header('Location:' . URL . 'index.php/admin/productList/1');
+		header('Location:' . URL . 'index.php/admin/trashProduct?page=1');
 	}
 	function deleteBanner($id)
 	{
 		$this->model->deleteTempRecord('banner', $id);
-		header('Location:' . URL . 'index.php/admin/trashBanner/1');
+		header('Location:' . URL . 'index.php/admin/trashBanner?page=1');
 	}
 	function deleteInfo($id1, $id2)
 	{
 		$this->model->deleteTempRecord('book_info', $id2);
-		header('Location:' . URL . 'index.php/admin/trashInfo/' . $id1 . '/1');
+		header('Location:' . URL . 'index.php/admin/trashInfo?id=' . $id1 . '&page=1');
+	}
+	function deleteComment()
+	{
+		$id1 = $_GET['bookid'];
+		$id2 = $_GET['id'];
+		$this->model->deleteTempRecord('comment', $id2);
+		header('Location:' . URL . 'index.php/admin/infoComment?id=' . $id1 . '&page=1');
 	}
 	function deleteReadInfo($id1, $id2)
 	{
 		$this->model->deleteTempRecord('book_info', $id2);
-		header('Location:' . URL . 'index.php/admin/readtrashInfo/' . $id1 . '/1');
+		header('Location:' . URL . 'index.php/admin/readtrashInfo?id=' . $id1 . '&page=1');
 	}
 
 	function deleteCategory($id)
 	{
 		$this->model->deleteTempRecord('category', $id);
-		header('Location:' . URL . 'index.php/admin/categoryList/1');
+		header('Location:' . URL . 'index.php/admin/categoryList?page=1');
 	}
 	function retoreStatusCate($id)
 	{
-		$this->model->statusT('category', $id);
-		header('Location:' . URL . 'index.php/admin/cateList/1');
+		$this->model->status('category', $id,0);
+		header('Location:' . URL . 'index.php/admin/cateList?page=1');
 	}
 	function delStatusUsers($id)
 	{
-		$this->model->statusF('users', $id);
-		header('Location:' . URL . 'index.php/admin/usersList/1');
+		$this->model->status('users', $id,1);
+		header('Location:' . URL . 'index.php/admin/usersList?page=1');
 	}
 	function retoreStatusUsers($id)
 	{
-		$this->model->statusT('users', $id);
-		header('Location:' . URL . 'index.php/admin/usersList/1');
+		$this->model->status('users', $id,0);
+		header('Location:' . URL . 'index.php/admin/usersList?page=1');
 	}
 	function delStatusProduct($id)
 	{
-		$this->model->statusF('products', $id);
-		header('Location:' . URL . 'index.php/admin/productList/1');
+		$this->model->status('products', $id,1);
+		header('Location:' . URL . 'index.php/admin/productList?page=1');
 	}
 	function retoreStatusProduct($id)
 	{
-		$this->model->statusT('products', $id);
-		header('Location:' . URL . 'index.php/admin/productList/1');
+		$this->model->status('products', $id,0);
+		header('Location:' . URL . 'index.php/admin/productList?page=1');
 	}
 	function delStatusBanner($id)
 	{
-		$this->model->statusF('banner', $id);
-		header('Location:' . URL . 'index.php/admin/bannerList/1');
+		$this->model->status('banner', $id,1);
+		header('Location:' . URL . 'index.php/admin/bannerList?page=1');
 	}
 	function retoreStatusBanner($id)
 	{
-		$this->model->statusT('banner', $id);
-		header('Location:' . URL . 'index.php/admin/bannerList/1');
+		$this->model->status('banner', $id,0);
+		header('Location:' . URL . 'index.php/admin/bannerList?page=1');
 	}
 	function delStatusNews($id)
 	{
-		$this->model->statusF('news', $id);
-		header('Location:' . URL . 'index.php/admin/newsList/1');
+		$this->model->status('news', $id,1);
+		header('Location:' . URL . 'index.php/admin/newsList?page=1');
 	}
 	function retoreStatusNews($id)
 	{
-		$this->model->statusT('news', $id);
-		header('Location:' . URL . 'index.php/admin/newsList/1');
+		$this->model->status('news', $id,0);
+		header('Location:' . URL . 'index.php/admin/newsList?page=1');
 	}
-	function trashCate($page)
+	function trashCate()
 	{
+		$page = $_GET['page'];
 		$cat = $this->model->getRecordByTrash('category', 1);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/trashCate/",
+			'base_url' => URL . "index.php/admin/trashCate?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
@@ -251,12 +260,13 @@ class admin extends Controller
 
 		$this->load->view("dashboard/index", $data);
 	}
-	function trashNews($page)
+	function trashNews()
 	{
+		$page = $_GET['page'];
 		$cat = $this->model->getRecordByTrash('news', 1);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/trashNews/",
+			'base_url' => URL . "index.php/admin/trashNews?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
@@ -270,12 +280,13 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/news/trash";
 		$this->load->view("dashboard/index", $data);
 	}
-	function trashProduct($page)
+	function trashProduct()
 	{
+		$page = $_GET['page'];
 		$cat = $this->model->getRecordByTrash('products', 1);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/trashCate/",
+			'base_url' => URL . "index.php/admin/trashCate?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
@@ -289,12 +300,13 @@ class admin extends Controller
 
 		$this->load->view("dashboard/index", $data);
 	}
-	function trashBanner($page)
+	function trashBanner()
 	{
+		$page = $_GET['page'];
 		$cat = $this->model->getRecordByTrash('banner', 1);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/trashBanner/",
+			'base_url' => URL . "index.php/admin/trashBanner?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
@@ -307,8 +319,10 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/banner/trash";
 		$this->load->view("dashboard/index", $data);
 	}
-	public function trashInfo($id, $page)
+	public function trashInfo()
 	{
+		$id = $_GET['id'];
+		$page = $_GET['page'];
 		$cat = $this->model->getBookRecordByTrash('book_info', 1, $id);
 		$n = count($cat);
 		$config = array(
@@ -326,8 +340,10 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/info/trash";
 		$this->load->view("dashboard/index", $data);
 	}
-	public function readtrashInfo($id, $page)
+	public function readtrashInfo()
 	{
+		$id = $_GET['id'];
+		$page = $_GET['page'];
 		$cat = $this->model->getBookReadByTrash('book_info', 1, $id);
 		$n = count($cat);
 		$config = array(
@@ -347,12 +363,13 @@ class admin extends Controller
 	}
 
 
-	function newsList($page)
+	function newsList()
 	{
+		$page =$_GET['page'];
 		$cat = $this->model->getRecordByTrash('news', 0);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/newsList/",
+			'base_url' => URL . "index.php/admin/newsList?page=",
 			'total_rows' => $n,
 			'per_page' => 4,
 			'cur_page' => $page
@@ -366,12 +383,13 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/news/list";
 		$this->load->view("dashboard/index", $data);
 	}
-	function usersList($page)
+	function usersList()
 	{
+		$page =$_GET['page'];
 		$cat = $this->model->getRecord('users');
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/usersList/",
+			'base_url' => URL . "index.php/admin/usersList?page=",
 			'total_rows' => $n,
 			'per_page' => 6,
 			'cur_page' => $page
@@ -383,12 +401,13 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/users/list";
 		$this->load->view("dashboard/index", $data);
 	}
-	function productList($page)
+	function productList()
 	{
+		$page =$_GET['page'];
 		$cat = $this->model->getRecordByTrash('products', 0);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/productList/",
+			'base_url' => URL . "index.php/admin/productList?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
@@ -404,31 +423,55 @@ class admin extends Controller
 
 		$this->load->view("dashboard/index", $data);
 	}
-	function bannerList($page)
+	function commentlist()
 	{
-		$cat = $this->model->getRecordByTrash('banner', 0);
+		$page =$_GET['page'];
+		$cat = $this->model->getRecordByTrash('products', 0);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/bannerList/",
+			'base_url' => URL . "index.php/admin/commentlist?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
 		);
 		$this->p->init($config);
 		$data = array();
+		$data['allCate'] = $this->model->getRecordByTrash('category', 0);
 
+		$data['trash'] =  $this->model->getRecordByTrash('products', 1);
+		$data['product'] = $this->model->getData('products', $config['per_page'], $page);
+		$data['paginator'] = $this->p->createLinks();
+		$data['page'] = "dashboard/page/comment/list";
+
+		$this->load->view("dashboard/index", $data);
+	}
+	function bannerList()
+	{
+		$page =$_GET['page'];
+		$cat = $this->model->getRecordByTrash('banner', 0);
+		$n = count($cat);
+		$config = array(
+			'base_url' => URL . "index.php/admin/bannerList?page=",
+			'total_rows' => $n,
+			'per_page' => 5,
+			'cur_page' => $page
+		);
+		$this->p->init($config);
+		$data = array();
 		$data['trash'] =  $this->model->getRecordByTrash('banner', 1);
 		$data['banner'] = $this->model->getData('banner', $config['per_page'], $page);
 		$data['paginator'] = $this->p->createLinks();
 		$data['page'] = "dashboard/page/banner/list";
 		$this->load->view("dashboard/index", $data);
 	}
-	public function infoProduct($id, $page)
+	public function infoProduct()
 	{
+		$id = $_GET['id'];
+		$page = $_GET['page'];
 		$cat = $this->model->getBookRecordByTrash('book_info', 0, $id);
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/infoProduct/$id/",
+			'base_url' => URL . "index.php/admin/infoProduct?id=$id&page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page
@@ -442,8 +485,29 @@ class admin extends Controller
 		$data['page'] = "dashboard/page/info/list";
 		$this->load->view("dashboard/index", $data);
 	}
-	public function readInfo($id, $page)
+	public function infoComment()
 	{
+		$id = $_GET['id'];
+		$page = $_GET['page'];
+		$cat = $this->model->getBookComment($id);
+		$n = count($cat);
+		$config = array(
+			'base_url' => URL . "index.php/admin/infoComment?id=$id&page=",
+			'total_rows' => $n,
+			'per_page' => 5,
+			'cur_page' => $page
+		);
+		$this->p->init($config);
+		$data = array();
+		$data['comment_info'] = $this->model->getcommentbookData($config['per_page'], $page, $id);
+		$data['paginator'] = $this->p->createLinks();
+		$data['page'] = "dashboard/page/comment/infocomment";
+		$this->load->view("dashboard/index", $data);
+	}
+	public function readInfo()
+	{
+		$id = $_GET['id'];
+		$page = $_GET['page'];
 		$cat = $this->model->getBookReadByTrash('book_info', 0, $id);
 		$n = count($cat);
 		$config = array(
@@ -488,22 +552,22 @@ class admin extends Controller
 	public function postaddproduct()
 	{
 		$this->model->productAdd();
-		header('Location:../admin/productList/1');
+		header('Location:../admin/productList?page=1');
 	}
 	public function postaddbanner()
 	{
 		$this->model->bannerAdd();
-		header('Location:../admin/bannerList/1');
+		header('Location:../admin/bannerList?page=1');
 	}
 	public function postaddnews()
 	{
 		$this->model->newsAdd();
-		header('Location:../admin/newsList/1');
+		header('Location:../admin/newsList?page=1');
 	}
 	public function postaddinfo($id)
 	{
 		$this->model->infoAdd();
-		header('Location:../infoProduct/' . $id . '/1');
+		header('Location:../infoProduct/?id=' . $id . '&page=1');
 	}
 	public function editProduct($id)
 	{
@@ -538,31 +602,32 @@ class admin extends Controller
 	public function posteditproduct($id)
 	{
 		$this->model->productEdit($id);
-		header('Location:../productList/1');
+		header('Location:../productList?page=1');
 	}
 	public function posteditnews($id)
 	{
 		$this->model->newsEdit($id);
-		header('Location:../newsList/1');
+		header('Location:../newsList?page=1');
 	}
 	public function posteditinfo($id)
 	{
 		$this->model->infoEdit($id);
 		$data['edit'] = $this->model->getOneRecordByTrash('book_info', 0, $id);
 		$data['id'] = $data['edit']['book_id'];
-		header('Location:../infoProduct/' . $data['id'] . '/1');
+		header('Location:../infoProduct?id=' . $data['id'] . '&page=1');
 	}
 	public function posteditbanner($id)
 	{
 		$this->model->bannerEdit($id);
-		header('Location:../bannerList/1');
+		header('Location:../bannerList?page=1');
 	}
-	function orderList($page)
+	function orderList()
 	{
+		$page =$_GET['page'];
 		$cat = $this->model->getRecord('orders');
 		$n = count($cat);
 		$config = array(
-			'base_url' => URL . "index.php/admin/orderList/",
+			'base_url' => URL . "index.php/admin/orderList?page=",
 			'total_rows' => $n,
 			'per_page' => 5,
 			'cur_page' => $page

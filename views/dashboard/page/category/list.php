@@ -1,6 +1,6 @@
 <p>
 	<a href="<?= URL ?>index.php/admin/addCate"><button type="button" class="btn btn-primary">Add</button></a>
-	<a href="<?= URL ?>index.php/admin/trashCate/1"><button type="button" class="btn btn-primary">Trash(<?= count($data['trash']) ?>)</button></a>
+	<a href="<?= URL ?>index.php/admin/trashCate?page=1"><button type="button" class="btn btn-primary">Trash(<?= count($data['trash']) ?>)</button></a>
 </p>
 <table class="table table-bordered table-hover">
 	<tr>

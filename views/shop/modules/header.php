@@ -1,5 +1,6 @@
-<div class="container-fluid fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
+
+
+    <nav class="navbar navbar-expand-lg navbar-red navbar-dark fixed-top">
         <div class="wrapper"></div>
         <div class="container-fluid all-show">
             <a href="<?= URL ?>index.php/home">
@@ -22,14 +23,14 @@
 
                     <li class="nav-item">
                         <div class="menubut">
-                            <a class="nav-link menuitem" href="<?= URL ?>index.php/home/sale/1" tabindex="-1"
+                            <a class="nav-link menuitem" href="<?= URL ?>index.php/home/sale?page=1" tabindex="-1"
                                 aria-disabled="true">GIẢM GIÁ</a>
                         </div>
                     </li>
 
                     <li class="nav-item">
                         <div class="menubut">
-                            <a class="nav-link menuitem" href="<?= URL ?>index.php/home/newss/1" tabindex="-1"
+                            <a class="nav-link menuitem" href="<?= URL ?>index.php/home/newss?page=1" tabindex="-1"
                                 aria-disabled="true">TIN TỨC</a>
                         </div>
                     </li>
@@ -39,14 +40,14 @@
                                 tabindex="-1" aria-disabled="true">DANH MỤC</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <?php foreach ($data["category"] as $value) : ?>
-                                <a class="dropdown-item" href="<?= URL ?>index.php/home/category/<?= $value["id"] ?>/1"
+                                <a class="dropdown-item" href="<?= URL ?>index.php/home/category?category=<?= $value["id"] ?>&page=1"
                                     style="color: #6c757d; font-size: 16px;"><?= $value["category_name"] ?></a>
                                 <?php endforeach; ?>
                             </div>
                         </div>
                     </li>
                     <div class="navbar  narbar2 navbar-light">
-                        <form id="searchForm" action="<?= URL ?>index.php/home/search/value/1" method="post"
+                        <form id="searchForm" action="<?= URL ?>index.php/home/search?value=value&page=1" method="post"
                             class="form-inline">
                             <input id="searchInput" type="text" name="search" class="form-control mr-sm-2"
                                 style="height: 48px;">
@@ -60,7 +61,7 @@
                             event.preventDefault();
 
                             var searchValue = document.getElementById("searchInput").value;
-                            var formAction = "<?= URL ?>index.php/home/search/" + searchValue + "/1";
+                            var formAction = "<?= URL ?>index.php/home/search?value=" + searchValue + "&page=1";
                             document.getElementById("searchForm").action = formAction;
                             this.submit();
                         });
@@ -126,4 +127,6 @@
         </div>
 </div>
 </nav>
-</div>
+<a href="#" title="Back to top" style="position: fixed; bottom: 20px; right: 20px; ">
+        <img style="height: 100px;width: 100px;" src="<?= URL ?>\public\images\go-to-top.png" alt="">
+</a>

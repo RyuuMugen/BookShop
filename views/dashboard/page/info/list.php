@@ -1,7 +1,7 @@
 <p>
 	<a href="<?= URL ?>index.php/admin/addInfo/<?= $data['id'] ?>"><button type="button" class="btn btn-primary">Add</button></a>
-	<a href="<?= URL ?>index.php/admin/readInfo/<?= $data['id'] ?>/1"><button type="button" class="btn btn-primary">Read</button></a>
-	<a href="<?= URL ?>index.php/admin/trashInfo/<?= $data['id'] ?>/1"><button type="button" class="btn btn-primary">Trash(<?= count($data['trash']) ?>)</button></a>
+	<a href="<?= URL ?>index.php/admin/readInfo?id=<?= $data['id'] ?>&page=1"><button type="button" class="btn btn-primary">Read</button></a>
+	<a href="<?= URL ?>index.php/admin/trashInfo?id=<?= $data['id'] ?>&page=1"><button type="button" class="btn btn-primary">Trash(<?= count($data['trash']) ?>)</button></a>
 </p>
 <table class="table table-bordered table-hover">
 	<tr>

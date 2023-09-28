@@ -61,7 +61,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $_SESSION['user'] ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="<?= URL ?>index.php/home/detailsUser"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -80,22 +80,25 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="<?= URL ?>index.php/admin/bannerList/1"><i class="fa fa-fw fa-image"></i>Quản lí banner</a>
+                        <a href="<?= URL ?>index.php/admin/bannerList?page=1"><i class="fa fa-fw fa-image"></i>Quản lí banner</a>
                     </li>
                     <li>
-                        <a href="<?= URL ?>index.php/admin/cateList/1"><i class="fa fa-fw fa-bar-chart-o"></i>Quản lí danh mục</a>
+                        <a href="<?= URL ?>index.php/admin/cateList?page=1"><i class="fa fa-fw fa-bar-chart-o"></i>Quản lí danh mục</a>
                     </li>
                     <li>
-                        <a href="<?= URL ?>index.php/admin/productList/1"><i class="fa fa-fw fa-table"></i> Quản lí sản phẩm </a>
+                        <a href="<?= URL ?>index.php/admin/productList?page=1"><i class="fa fa-fw fa-table"></i> Quản lí sản phẩm </a>
                     </li>
                     <li>
-                        <a href="<?= URL ?>index.php/admin/usersList/1"><i class="fa fa-fw fa-edit"></i>Quản lí người dùng</a>
+                        <a href="<?= URL ?>index.php/admin/usersList?page=1"><i class="fa fa-fw fa-users"></i>Quản lí người dùng</a>
                     </li>
                     <li>
-                        <a href="<?= URL ?>index.php/admin/orderList/1"><i class="fa fa-fw fa-desktop"></i>Quản lí đơn hàng</a>
+                        <a href="<?= URL ?>index.php/admin/orderList?page=1"><i class="fa fa-fw fa-desktop"></i>Quản lí đơn hàng</a>
                     </li>
                     <li>
-                        <a href="<?= URL ?>index.php/admin/newsList/1"><i class="fa fa-fw fa-wrench"></i> Quản lí tin tức</a>
+                        <a href="<?= URL ?>index.php/admin/newsList?page=1"><i class="fa fa-fw fa-newspaper-o"></i> Quản lí tin tức</a>
+                    </li>
+                    <li>
+                        <a href="<?= URL ?>index.php/admin/commentlist?page=1"><i class="fa fa-fw fa-comments"></i> Quản lí bình luận</a>
                     </li>
 
 

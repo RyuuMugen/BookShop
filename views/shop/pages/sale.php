@@ -1,3 +1,4 @@
+<div class="container product">
 <div class="container2 text-center">
     <div class="h2 mb-5">Sản phẩm giảm giá</div>
     <div class="row" id="newsu">
@@ -30,4 +31,5 @@
         </div>
         <?= $data['paginator'] ?>
     </div>
+</div>
 </div>

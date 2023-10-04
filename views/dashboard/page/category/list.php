@@ -6,7 +6,7 @@
 	<tr>
 		<th>Category_id</th>
 		<th>Category_name</th>
-
+		<th>Illustration</th>
 		<th>Status</th>
 		<th>Edit</th>
 		<th>Delete</th>
@@ -15,7 +15,7 @@
 		<tr>
 			<td><?= $value['id'] ?></td>
 			<td><?= $value['category_name'] ?></td>
-
+			<td><img style="width: 100px;" src="<?= URL ?>public/img/illustration/<?= $value['illustration'] ?>" alt=""></td>
 
 			<td>
 				<?php

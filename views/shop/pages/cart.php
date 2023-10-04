@@ -1,3 +1,4 @@
+<div class="container product">
 <div class="card text-center">
     <div class="card-header">
         SẢN PHẨM
@@ -43,4 +44,5 @@
         <a href="<?= URL ?>index.php/home/payment" class="btn btn-outline-success">Đặt hàng</a>
         <?php endif; ?>
     </div>
+</div>
 </div>

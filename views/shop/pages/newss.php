@@ -2,6 +2,7 @@
 require("public/function/function.php");
 
 ?>
+<div class="container product">
 <div class="container2  text-center">
     <div class="h2 mb-5">Tin tức</div>
 
@@ -21,4 +22,5 @@ require("public/function/function.php");
         <?php endforeach; ?>
         <?= $data['paginator'] ?>
     </div>
+</div>
 </div>

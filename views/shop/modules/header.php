@@ -87,11 +87,10 @@
                                             src='<?= URL ?>public/img/avatar/<?= $_SESSION['avatar']?>'
                                             alt='<?= $_SESSION['avatar']?>'>
                                         <?= $_SESSION['user'] ?>
-                                        
                                     </div>
                                 </button>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                                 <ul>
                                     <?php
                                         if ($_SESSION['role'] != 0) {

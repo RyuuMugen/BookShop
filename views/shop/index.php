@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/style-user.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/stylecard.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/login.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>/public/css/banner.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>/public/css/menu.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
@@ -28,20 +30,8 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0">
     </script>
-
-    <script>
-    function actionChange(a, i) {
-
-        var r = confirm(a);
-        if (r == true) {
-            window.location.href = i;
-        }
-    }
-
-    function notification() {
-        alert("Thêm vào giỏ hàng thành công");
-    }
-    </script>
+    <script src="<?= URL ?>/public/js/control.js"></script>
+    <script src="<?= URL ?>/public/js/banner.js"></script>
 
 </head>
 
@@ -54,52 +44,65 @@
     <!-- --banner-- -->
     <div class="banner">
         <?php $this->view("shop/modules/banner" , $data); ?>
-
     </div>
     <!-- ---- -->
     <!-- --product-- -->
-    <div class="container mt-5 mb-5">
-        <div class="container product">
-            <?php $this->view($data['page'], $data); ?>
-        </div>
-    </div>
+    
+        <?php $this->view($data['page'], $data); ?>
+    
+        
+    
     <!-- ---- -->
     <!-- --footer-- -->
     <?php $this->view("shop/modules/footer"); ?>
-    
+
 
     <!-- ---- -->
 </body>
 <script src="<?= URL ?>/public/js/control.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-                config: {
-                    toolbar: {
-                        items: [
-                            'heading',
-                            '|',
-                            'bold',
-                            'italic',
-                            'link',
-                            'bulletedList',
-                            'numberedList',
-                            'blockQuote'
-                        ]
-                    }
-                },
-                placeholder: 'Write comment here...',
-                wordCount: {
-                    onUpdate: ( stats ) => {
-                        console.log( 'Characters: ', stats.characters );
-                        console.log( 'Words: ', stats.words );
-                    }
-                }
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+        config: {
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'link',
+                    'bulletedList',
+                    'numberedList',
+                    'blockQuote'
+                ]
+            }
+        },
+        placeholder: 'Write comment here...',
+        wordCount: {
+            onUpdate: (stats) => {
+                console.log('Characters: ', stats.characters);
+                console.log('Words: ', stats.words);
+            }
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+function actionChange(a, i) {
+
+    var r = confirm(a);
+    if (r == true) {
+        window.location.href = i;
+    }
+}
+
+function notification() {
+    alert("Thêm vào giỏ hàng thành công");
+}
+</script>
+
 </html>

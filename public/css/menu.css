@@ -1,0 +1,32 @@
+/* styles.css */
+.sidebar {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.title {
+    color: #000;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    margin-bottom: 5px;
+}
+
+.menu-link {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}

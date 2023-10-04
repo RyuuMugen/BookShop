@@ -8,10 +8,20 @@ class Admin_Model extends Model
 	}
 	public function cateAdd()
 	{
+		$i = "temp.png";
+		if ($_FILES['illustration']['size'] == 0) {
+			echo $_FILES['illustration']['error'];
+		} else {
+			$file = $_FILES['illustration'];
+			$i = $file['name'];
+			$u = new Upload();
+			$u->doUpload($file, 'illustration');
+		}
 		$cate = array(
 			'category_name' => $_POST['category_name'],
 			'trash' => 0,
 			'status' => $_POST['status'],
+			'illustration' => $i,
 
 		);
 		$this->addRecord('category', $cate);
@@ -23,7 +33,16 @@ class Admin_Model extends Model
 			'status' => $_POST['status'],
 
 		);
+		if ($_FILES['illustration']['size'] != 0) {
+			$file = $_FILES['illustration'];
+			$i = $file['name'];
+			$cate['illustration'] = $i;
+			$u = new Upload();
+			$u->doUpload($file, 'illustration');
+		}
 		$this->editRecord('category', $cate, $id);
+
+	
 	}
 	public function deleteOrder($id)
 		{

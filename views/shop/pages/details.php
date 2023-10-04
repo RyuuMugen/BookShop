@@ -2,6 +2,7 @@
 $product = $data["details"];
 $comments = $data["comment"];
 ?>
+<div class="container product">
 <div class="container p-0 chitietsanpham">
     <h3>Sản phẩm/<?= $product["product_name"] ?></h3>
 
@@ -109,7 +110,7 @@ $comments = $data["comment"];
         <?php endif; ?>
     </div>
 </div>
-
+</div>
 
 
 <script>

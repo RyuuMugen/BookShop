@@ -75,7 +75,10 @@ textarea {
     vertical-align: top;
     resize: vertical;
 }
-
+.overflow{
+    overflow-y: scroll;
+    display: flex;
+}
 
 audio,
 canvas,
@@ -582,7 +585,7 @@ font-weight: 700;
     height: auto;
     padding-bottom: 0.5rem;
     border-radius: 5px;
-    left: 0px;
+
   }
   .sidebar .title{
       color: white;
@@ -842,4 +845,21 @@ font-weight: 700;
   .container-fluid{
     display: grid;
     place-items: center; 
+}
+.buttoninfo{
+    background-color: rgb(255, 255, 255) !important;
+    font-size: 30px !important;
+    color: rgb(15, 158, 151) !important;
+    border-radius: 10% !important;
+    border: rgb(15, 158, 151) solid 4px !important;
+    margin-left: 40px !important;
+    margin-right: 40px !important;
+    margin-bottom: 20px !important;
+}
+.buttoninfo:hover{
+    background-color: rgb(15, 158, 151) !important;
+    color: rgb(10, 12, 12) !important;
+    border: rgb(10, 12, 12) solid 4px !important;
+    
+    
 }

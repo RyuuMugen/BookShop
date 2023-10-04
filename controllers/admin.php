@@ -192,7 +192,7 @@ class admin extends Controller
 	function deleteCategory($id)
 	{
 		$this->model->deleteTempRecord('category', $id);
-		header('Location:' . URL . 'index.php/admin/categoryList?page=1');
+		header('Location:' . URL . 'index.php/admin/cateList?page=1');
 	}
 	function retoreStatusCate($id)
 	{

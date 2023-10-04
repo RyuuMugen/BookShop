@@ -6,6 +6,7 @@
 	<tr>
 		<th>Category_id</th>
 		<th>Category_name</th>
+		<th>Illustration</th>
 		<th>Recover</th>
 		<th>Delete</th>
 	</tr>
@@ -13,6 +14,7 @@
 		<tr>
 			<td><?= $value['id'] ?></td>
 			<td><?= $value['category_name'] ?></td>
+			<td><img style="width: 100px;" src="<?= URL ?>public/img/illustration/<?= $value['illustration'] ?>" alt=""></td>
 			<td><a onclick="actionChange('Khôi phục','<?= URL ?>index.php/admin/retoreTempCate/<?= $value['id'] ?>')"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/recover.png" /></a></td>
 			<td><a onclick="actionChange('Xóa','<?= URL ?>index.php/admin/deleteCategory/<?= $value['id'] ?>')"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/delete.png" /></a></td>
 		</tr>

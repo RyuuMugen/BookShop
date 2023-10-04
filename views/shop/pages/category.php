@@ -1,8 +1,9 @@
 <?php require("public/function/function.php"); ?>
+<div class="container product">
 
-<div class="h3 mb-5">Sản phẩm</div>
 <div class="row">
-    <div class="col-10 row">
+    <div class="col-10 row" id="newsu">
+    <div class="h3 mb-5">Sản phẩm</div>
         <?php if (count($data["product_cate"]) == 0) : ?>
         <div class='h1 text-warning'>Không có sản phẩm vui lòng chọn danh mục khác</div>
         <?php else : ?>
@@ -34,13 +35,14 @@
         </div>
         <?php endforeach; ?>
         <?php endif; ?>
+        <?php if (count($data["product_ed"]) > 0) : ?>
+        <?= $data['paginator'] ?>
+        <?php endif; ?>
+
     </div>
 
     <div class="col-2 menu-right">
         <?php $this->view("shop/modules/sidebar", $data); ?>
     </div>
 </div>
-
-<?php if (count($data["product_ed"]) > 0) : ?>
-<?= $data['paginator'] ?>
-<?php endif; ?>
+</div>

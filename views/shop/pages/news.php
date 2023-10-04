@@ -1,6 +1,7 @@
 <?php
 $product = $data["news"];
 ?>
+<div class="container product">
 <div class="container2 p-0 chitiettintuc">
     <div class="newss">
         <div class="content container2">
@@ -22,4 +23,5 @@ $product = $data["news"];
             </div>
 
         </div>
+    </div>
     </div>

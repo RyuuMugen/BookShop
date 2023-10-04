@@ -11,7 +11,7 @@ class Home_Model extends Model{
 		
 	}
 	public function getSaleProducts(){
-		$sql = "SELECT * FROM products Where sale=1 and status=0 AND trash=0 ORDER BY created_at DESC LIMIT 8";
+		$sql = "SELECT * FROM products Where sale=1 and status=0 AND trash=0 ORDER BY created_at DESC LIMIT 12";
 		$result = $this->getAll($sql);
 		return $result;
 	}
@@ -27,7 +27,7 @@ class Home_Model extends Model{
 	}
 	
 	public function getNewsList(){
-		$sql = "SELECT * FROM news Where status=0 AND trash=0 ORDER BY created_at DESC LIMIT 6 ";
+		$sql = "SELECT * FROM news Where status=0 AND trash=0 ORDER BY created_at DESC LIMIT 8 ";
 		$result = $this->getAll($sql);
 		return $result;
 	}
@@ -55,7 +55,7 @@ class Home_Model extends Model{
 				AND date_end > NOW() 
 				AND date_start < NOW() 
 				ORDER BY date_end ASC 
-				LIMIT 5;";
+				LIMIT 6;";
 		$result = $this->getAll($sql);
 		return $result;
 	}
@@ -138,7 +138,7 @@ class Home_Model extends Model{
 				)
 				AND p.trash = 0
   				AND p.status = 0
-				LIMIT 8;
+				LIMIT 12;
 				";
 		$result = $this->getAll($sql);
 		return $result;

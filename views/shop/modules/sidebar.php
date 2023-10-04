@@ -1,8 +1,10 @@
-<div class="sidebar" style="background-color: #f8f9fa; border-radius: 5px; padding: 15px;">
-    <h3 class="title" style="color: #000; font-size: 20px; margin-bottom: 10px;">MENU</h3>
-    <ul style="list-style: none; padding: 0;">
+<div class="sidebar menu-container">
+    <h3 class="title">MENU</h3>
+    <ul class="menu">
         <?php foreach ($data["category"] as $value) : ?>
-            <li style="margin-bottom: 5px;"><a href="<?= URL ?>index.php/home/category?category=<?= $value["id"] ?>&page=1" style="color: #6c757d; text-decoration: none; font-size: 16px;"><?= $value["category_name"] ?></a></li>
+            <li class="menu-item">
+                <a href="<?= URL ?>index.php/home/category?category=<?= $value["id"] ?>&page=1" class="menu-link"><?= $value["category_name"] ?></a>
+            </li>
         <?php endforeach; ?>
     </ul>
 </div>

@@ -1,4 +1,5 @@
 <?php $user = $data['detailUser']; ?>
+<div class="container product">
 <div class="row">
     <div class="col-3 text-center  bg-light border paddingcol">
         <div class="chil ">
@@ -158,6 +159,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <script>
 var button1 = document.getElementById("button1");

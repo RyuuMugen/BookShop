@@ -1,3 +1,4 @@
+<div class="container product">
 <div class="container-fluid all-show">
 <section class="login-block">
     <div class="containerl">
@@ -51,4 +52,4 @@
         </div>
 </section>
 </div>
-
+</div>

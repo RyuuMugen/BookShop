@@ -64,11 +64,6 @@
 
 /**------------- Start of body style ----------------**/
 
-#body div.banner {
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 606px;
-}
 
 #body div#content {
   width: 960px;

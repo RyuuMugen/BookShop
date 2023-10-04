@@ -1,4 +1,4 @@
-
+<div class="container product">
     <div class="container2">
         <button class="btn btn-primary" id="button1">Thanh toán khi nhận hàng</button>
         <button class="btn btn-primary" id="button2">Thanh toán QR MOMO</button>
@@ -147,7 +147,7 @@
             </form>
         </div>
     </div>
-
+    </div>
     <script>
         var button1 = document.getElementById("button1");
         var button2 = document.getElementById("button2");

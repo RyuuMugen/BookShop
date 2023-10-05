@@ -2,17 +2,20 @@
 require("public/function/function.php");
 ?>
 
-<div class="banner">
-    <div class="row" id="newsu">
-        <div class="h3 mt-5 over">Danh mục
+<div class="contentbody">
+    <div class="row text-center" id="newsu">
+        <div class="h3 mt-5 over"><h1>Danh mục</h1>
             <div class="col-12 overflow">
                 <?php foreach ($data["category"] as $value) : ?>
                 <div class="col-lg-2 col-md-6 col-sm-6 col-6 mt-3 ">
                     <a href="<?= URL ?>index.php/home/category?category=<?= $value["id"] ?>&page=1" class="menu-link">
-                        <div class="card product p-2" style="width: auto;">
-                            <img class='proo card-img-top' style='width: 200px; height: 300px;'
-                                src='<?= URL ?>public/img/illustration/<?= $value["illustration"] ?>'
-                                alt='<?= $value["illustration"] ?>'>
+                        <div class="card2 product p-2" style="width: auto;">
+                            <div class="newimg">
+                                <img class='proo card-img-top' style='width: 200px; height: 300px;'
+                                    src='<?= URL ?>public/img/illustration/<?= $value["illustration"] ?>'
+                                    alt='<?= $value["illustration"] ?>'>
+                            </div>
+
                             <div class="card">
                                 <div class='card-title product-title text-center h5'>
                                     <p class='proo'><?= $value["category_name"] ?></p>
@@ -26,20 +29,20 @@ require("public/function/function.php");
             </div>
         </div>
     </div>
-    <div class="row" id="newsu">
-        <div class="h3 mt-5 over">Sản phẩm Mới
+    <div class="row text-center" id="newsu">
+        <div class="h3 mt-5 over"><h1>Sản phẩm Mới</h1>
         </div>
         <div class="col-12 row-2">
             <?php foreach ($data["new_products"] as $value) : ?>
             <div class="col-lg-2 col-md-6 col-sm-6 col-6 mt-3">
-                <div class="card product p-2" style="width: auto;">
-                    <a href='<?= URL ?>index.php/home/details/<?= $value["id"] ?>'>
+                <div class="card2 product p-2" style="width: auto;">
+                    <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'>
                         <img class='proo card-img-top' style='width: 100%; height: 400px;'
                             src='<?= URL ?>public/img/book/<?= $value["image"] ?>' alt='<?= $value["image"] ?>'>
                     </a>
                     <div class="card">
                         <div class='card-title product-title text-center h5'>
-                            <a href='<?= URL ?>index.php/home/details/<?= $value["id"] ?>'
+                            <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'
                                 class='proo'><?= $value["product_name"] ?></a>
                         </div>
                         <h6 class="card-subtitle mb-2 text-muted">
@@ -71,19 +74,19 @@ require("public/function/function.php");
 
     </div>
     <?php if (isset($_SESSION['user_id']) && !empty($data["recomment"])) : ?>
-    <div class="row" id="newsu">
-        <div class="h3 mt-5 over">Sản phẩm đề xuất</div>
-        <div class="col-12 row">
+    <div class="row text-center" id="newsu">
+        <div class="h3 mt-5 over"><h1>Sản phẩm đề xuất</h1></div>
+        <div class="col-12 row-2">
             <?php foreach ($data["recomment"] as $value) : ?>
             <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
-                <div class="card product p-2" style="width: auto;">
-                    <a href='<?= URL ?>index.php/home/details/<?= $value["id"] ?>'>
+                <div class="card2 product p-2" style="width: auto;">
+                    <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'>
                         <img class='proo card-img-top' style='width: 100%; height: 400px;'
                             src='<?= URL ?>public/img/book/<?= $value["image"] ?>' alt='<?= $value["image"] ?>'>
                     </a>
                     <div class="card">
                         <div class='card-title product-title text-center h5'>
-                            <a href='<?= URL ?>index.php/home/details/<?= $value["id"] ?>'
+                            <a href='<?= URL ?>index.php/home/details/?id=<?= $value["id"] ?>&page=1'
                                 class='proo'><?= $value["product_name"] ?></a>
                         </div>
                         <h6 class="card-subtitle mb-2 text-muted">
@@ -113,7 +116,8 @@ require("public/function/function.php");
             <?php endforeach; ?>
         </div>
         <div class="center">
-            <a href="<?= URL ?>index.php/home/recommend?page=1&page2=1&page3=1" tabindex="-1" aria-disabled="true" style="text-decoration: none;">
+            <a href="<?= URL ?>index.php/home/recommend?page=1&page2=1&page3=1" tabindex="-1" aria-disabled="true"
+                style="text-decoration: none;">
                 <button type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
             </a>
 
@@ -123,21 +127,21 @@ require("public/function/function.php");
 
     <?php endif; ?>
 
-    <div class="row" id="newsu">
+    <div class="row text-center" id="newsu">
         <div class="h3 mt-5 over">
-            Sản phẩm Giảm giá
+        <h1>Sản phẩm Giảm giá</h1>
         </div>
-        <div class="col-12 row ">
+        <div class="col-12 row-2 ">
             <?php foreach ($data["sale_products"] as $value) : ?>
             <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
-                <div class="card product p-2" style="width: auto;">
-                    <a href='<?= URL ?>index.php/home/details/<?= $value["id"] ?>'>
+                <div class="card2 product p-2" style="width: auto;">
+                    <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'>
                         <img class='proo card-img-top' style='width: 100%; height: 400px;'
                             src='<?= URL ?>public/img/book/<?= $value["image"] ?>' alt='<?= $value["image"] ?>'>
                     </a>
                     <div class="card">
                         <div class='card-title product-title text-center h5'>
-                            <a href='<?= URL ?>index.php/home/details/<?= $value["id"] ?>'
+                            <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'
                                 class='proo'><?= $value["product_name"] ?></a>
                         </div>
                         <h6 class="card-subtitle mb-2 text-muted">
@@ -160,7 +164,8 @@ require("public/function/function.php");
             <?php endforeach; ?>
         </div>
         <div class="center">
-            <a href="<?= URL ?>index.php/home/sale?page=1" tabindex="-1" aria-disabled="true" style="text-decoration: none;">
+            <a href="<?= URL ?>index.php/home/sale?page=1" tabindex="-1" aria-disabled="true"
+                style="text-decoration: none;">
                 <button type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
             </a>
 
@@ -168,20 +173,20 @@ require("public/function/function.php");
 
     </div>
 
-    <div class="row" id="newsu">
+    <div class="row text-center" id="newsu">
         <div class="h3 mt-5">
-            Tin tức mới nhất
+        <h1>Tin tức mới nhất</h1>
         </div>
         <div class="col-12 row">
-            <?php foreach ($data["news_list"] as $value) : ?>
+            <?php foreach ($data["new_list"] as $value) : ?>
             <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
-                <div class="card product p-2" style="width: auto;">
-                    <a href='<?= URL ?>index.php/home/details_news/<?= $value["id"] ?>'><img class='proo card-img-top'
+                <div class="card2 product p-2" style="width: auto;">
+                    <a href='<?= URL ?>index.php/home/details_new/<?= $value["id"] ?>'><img class='proo card-img-top'
                             style='width: 100%; height: 180px;' src='<?= URL ?>public/img/news/<?= $value["avatar"] ?>'
                             alt='<?= $value["avatar"] ?>'></a>
                     <div class="card">
                         <div class='card-title product-title text-center h5'><a
-                                href='<?= URL ?>index.php/home/details_news/<?= $value["id"] ?>'
+                                href='<?= URL ?>index.php/home/details_new/<?= $value["id"] ?>'
                                 class='proo'><?= $value["title"] ?></a></div>
                         <div class='text-center h6 card-title2'><?= $value["short_description"] ?></div>
                         <div class='price text-center h6' style='color: transparent;'>.</div>
@@ -192,7 +197,8 @@ require("public/function/function.php");
             <?php endforeach; ?>
         </div>
         <div class="center">
-            <a href="<?= URL ?>index.php/home/newss?page=1" tabindex="-1" aria-disabled="true" style="text-decoration: none;">
+            <a href="<?= URL ?>index.php/home/news?page=1" tabindex="-1" aria-disabled="true"
+                style="text-decoration: none;">
                 <button type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
             </a>
 

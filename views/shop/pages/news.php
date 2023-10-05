@@ -1,27 +1,29 @@
 <?php
-$product = $data["news"];
-?>
-<div class="container product">
-<div class="container2 p-0 chitiettintuc">
-    <div class="newss">
-        <div class="content container2">
-            <div class="title">
-            </div>
-            <div href="#" class="title-name h5">
-                <h2>
-                    Tin Tức/<?= $product["title"] ?>
-                </h2>
-            </div>
-            <div>
-                <img src="<?= URL ?>public/img/news/<?= $product["avatar"] ?>" style="font-size:40px" alt="">
-            </div>
-            <div>
-                <h5 style="padding-top :20px; padding-bottom :20px;"><?= $product["short_description"] ?></h5>
-            </div>
-            <div>
-                <?= $product["content"] ?>
-            </div>
+require("public/function/function.php");
 
+?>
+
+<div class="contentbody">
+<div class="container2 text-center">
+    <div class="h2 mb-5">Sản phẩm giảm giá</div>
+    <div class="row" id="newsu">
+        <div class="col-12 over">
+            <?php foreach ($data["new_list"] as $value) : ?>
+            <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
+            <div class='card2 product p-2 news2'>
+                        <a href='<?= URL ?>index.php/home/details_new/<?= $value["id"] ?>'><img
+                                class='proo card-img-top' style='width:100%; height: 180px; border-radius:10px;'
+                                src='<?= URL ?>public/img/news/<?= $value["avatar"] ?>'
+                                alt='<?= $value["avatar"] ?>'></a>
+                        <div class='card-title product-title text-center h5'><a
+                                href='<?= URL ?>index.php/home/details_new/<?= $value["id"] ?>'
+                                class='proo'><?= $value["title"] ?></a></div>
+                        <div class='text-center h6 card-title3'><?= $value["short_description"] ?></div>
+                    </div>
+            </div>
+            <?php endforeach; ?>
         </div>
+        <?= $data['paginator'] ?>
     </div>
-    </div>
+</div>
+</div>

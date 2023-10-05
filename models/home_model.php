@@ -26,17 +26,17 @@ class Home_Model extends Model{
 		return $result;
 	}
 	
-	public function getNewsList(){
+	public function getnewList(){
 		$sql = "SELECT * FROM news Where status=0 AND trash=0 ORDER BY created_at DESC LIMIT 8 ";
 		$result = $this->getAll($sql);
 		return $result;
 	}
-	public function getNewsListfull(){
+	public function getnewListfull(){
 		$sql = "SELECT * FROM news Where status=0 AND trash=0 ORDER BY created_at DESC";
 		$result = $this->getAll($sql);
 		return $result;
 	}
-	public function countNewsListfull($limit,$page){
+	public function countnewListfull($limit,$page){
 		$sql = "SELECT * FROM news Where status=0 AND trash=0 ORDER BY created_at DESC LIMIT ". ($page-1)*$limit. ",".$limit;
 		$result = $this->getAll($sql);
 		return $result;
@@ -71,6 +71,17 @@ class Home_Model extends Model{
 		$result = $this->getAll($sql);
 		return $result;
 	}
+	function getcomments($limit, $page, $id)
+	{
+		$sql = "SELECT comment.*, users.name,users.avatar 
+				FROM comment 
+				INNER JOIN users 
+				ON comment.user_id = users.id 
+				WHERE comment.book_id = $id  
+				LIMIT " . ($page - 1) * $limit . "," . $limit;
+		$result = $this->getAll($sql);
+		return $result;
+	}
 	public function getCover($id)
 	{
 		$sql = "SELECT * FROM book_info WHERE book_id=$id AND types='cover' AND trash=0";
@@ -89,7 +100,7 @@ class Home_Model extends Model{
 		$result = $this->getAll($sql);
 		return $result;
 	}
-	public function getNews($id)
+	public function getnew($id)
 	{
 		$sql = "SELECT * FROM news Where id=$id LIMIT 5";
 		$result = $this->getOne($sql);
@@ -381,10 +392,12 @@ class Home_Model extends Model{
 	}
 	public function addComent($id)
 	{
+		$currentDateTime = date("d/m/Y");
 		$comment = array(
 			'content' => $_POST['comment'],
 			'book_id' => $id,
-			'user_id' => $_SESSION['user_id']
+			'user_id' => $_SESSION['user_id'],
+			'date'	=> $currentDateTime
 		);
 		$this->addRecord("comment",$comment);
 	}

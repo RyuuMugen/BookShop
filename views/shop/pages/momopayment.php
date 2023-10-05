@@ -27,8 +27,8 @@ $secretKey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa";
 $orderInfo = "Thanh toán qua QR MoMo";
 $amount = $_POST['total'];
 $orderId = time() ."";
-$returnUrl = "http://localhost/bookstorenew/index.php/home/payment";
-$notifyurl = "http://localhost/bookstorenew/index.php/home/complete";
+$returnUrl = URL."index.php/home/payment";
+$notifyurl = URL."index.php/home/payment";
 $extraData = "";
 
 

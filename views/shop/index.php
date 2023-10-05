@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/login.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/banner.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/menu.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>/public/css/detail.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
@@ -32,6 +33,8 @@
     </script>
     <script src="<?= URL ?>/public/js/control.js"></script>
     <script src="<?= URL ?>/public/js/banner.js"></script>
+    <script src="<?= URL ?>/public/js/detail.js"></script>
+    <script src="<?= URL ?>/public/js/jqueryimgbox.js"></script>
 
 </head>
 
@@ -47,11 +50,7 @@
     </div>
     <!-- ---- -->
     <!-- --product-- -->
-    
-        <?php $this->view($data['page'], $data); ?>
-    
-        
-    
+    <?php $this->view($data['page'], $data); ?>
     <!-- ---- -->
     <!-- --footer-- -->
     <?php $this->view("shop/modules/footer"); ?>
@@ -63,35 +62,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-ClassicEditor
-    .create(document.querySelector('#editor'), {
-        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
-        config: {
-            toolbar: {
-                items: [
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'link',
-                    'bulletedList',
-                    'numberedList',
-                    'blockQuote'
-                ]
-            }
-        },
-        placeholder: 'Write comment here...',
-        wordCount: {
-            onUpdate: (stats) => {
-                console.log('Characters: ', stats.characters);
-                console.log('Words: ', stats.words);
-            }
-        }
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
 function actionChange(a, i) {
 
     var r = confirm(a);

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 14, 2023 lúc 01:18 PM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Oct 05, 2023 at 05:55 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `bookstores`
+-- Database: `bookstores`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `banner`
+-- Table structure for table `banner`
 --
 
 CREATE TABLE `banner` (
@@ -38,18 +38,20 @@ CREATE TABLE `banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `banner`
+-- Dumping data for table `banner`
 --
 
 INSERT INTO `banner` (`id`, `image`, `date_start`, `date_end`, `status`, `trash`, `title`) VALUES
 (5, 'banner1.jpg', '2023-05-04', '2026-07-18', 0, 0, 'scdscds'),
 (10, 'banner2.jpg', '2023-05-09', '2025-07-19', 0, 0, 'new'),
-(11, 'banner3.jpg', '2023-05-15', '2023-06-30', 0, 0, 'new');
+(11, 'banner3.jpg', '2023-05-15', '2026-01-28', 0, 0, 'new'),
+(12, '840x320_-_DISNEY-100.jpg', '2023-09-01', '2023-10-27', 0, 1, 'aaa'),
+(13, 'KDKS_Mainbanner_T10_Slide_840x320.jpg', '2023-10-04', '2025-10-09', 0, 0, 'neww');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `book_info`
+-- Table structure for table `book_info`
 --
 
 CREATE TABLE `book_info` (
@@ -62,12 +64,11 @@ CREATE TABLE `book_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `book_info`
+-- Dumping data for table `book_info`
 --
 
 INSERT INTO `book_info` (`id`, `book_id`, `book_images`, `types`, `pages`, `trash`) VALUES
 (76, 17, 'Overlord_Volume_1_Chapter_1.jpg', 'cover', 0, 0),
-(77, 17, 'AH1.jpg', 'cover', 0, 1),
 (105, 17, 'Overlord_Volume_1_Chapter_3.jpg', 'cover', 0, 0),
 (106, 17, 'Screenshot 2023-01-08 183909.png', 'read', 0, 0),
 (109, 17, 'Screenshot 2023-03-11 203559.png', 'read', 0, 1),
@@ -85,67 +86,74 @@ INSERT INTO `book_info` (`id`, `book_id`, `book_images`, `types`, `pages`, `tras
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
+  `illustration` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `trash` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `category`
+-- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `category_name`, `status`, `trash`, `created_at`) VALUES
-(8, 'Tiểu Thuyết', 0, 0, '2022-05-04 21:33:38'),
-(9, 'Chính trị – pháp luật', 0, 0, '2022-05-04 21:34:16'),
-(10, 'Khoa học công nghệ', 0, 0, '2022-05-04 21:34:23'),
-(11, 'Kinh tế', 0, 0, '2022-05-04 21:34:40'),
-(12, 'Văn học nghệ thuật', 0, 0, '2022-05-04 21:34:52'),
-(13, 'Văn hóa xã hội – Lịch sử', 0, 0, '2022-05-04 21:35:01'),
-(14, 'Giáo trình', 0, 0, '2022-05-04 21:35:17'),
-(15, 'Truyện tranh', 0, 0, '2022-05-04 21:35:30'),
-(16, 'Tâm lý, tâm linh, tôn giáo', 0, 0, '2022-05-04 21:35:45'),
-(17, 'Thiếu nhi', 0, 0, '2022-05-04 21:36:08'),
-(18, 'Ngoại Ngữ', 0, 1, '2022-05-04 21:36:15'),
-(19, 'Light Novel', 0, 0, '2022-05-04 21:36:22');
+INSERT INTO `category` (`id`, `category_name`, `illustration`, `status`, `trash`, `created_at`) VALUES
+(8, 'Tiểu Thuyết', 'tasi xuống.jpg', 0, 0, '2022-05-04 21:33:38'),
+(9, 'Chính trị – pháp luật', 'tải xuống (1).jpg', 0, 0, '2022-05-04 21:34:16'),
+(10, 'Khoa học công nghệ', 'tải xuống (2).jpg', 0, 0, '2022-05-04 21:34:23'),
+(11, 'Kinh tế', 'tải xuống (3).jpg', 0, 0, '2022-05-04 21:34:40'),
+(12, 'Văn học nghệ thuật', 'tải xuống (4).jpg', 0, 0, '2022-05-04 21:34:52'),
+(13, 'Văn hóa xã hội – Lịch sử', 'a.jpg', 0, 0, '2022-05-04 21:35:01'),
+(14, 'Giáo trình', 'tải xuống.jpg', 0, 0, '2022-05-04 21:35:17'),
+(15, 'Truyện tranh', 'tải xuống (6).jpg', 0, 0, '2022-05-04 21:35:30'),
+(16, 'Tâm lý, tâm linh, tôn giáo', 'abs.jpg', 0, 0, '2022-05-04 21:35:45'),
+(17, 'Thiếu nhi', 'e1678328-f01f-4abe-8532-26581b44461balice-114327.jpg', 0, 0, '2022-05-04 21:36:08'),
+(19, 'Light Novel', '1.jpg', 0, 0, '2022-05-04 21:36:22'),
+(22, 'aaa', 'Screenshot 2023-06-01 234309.png', 1, 0, '2023-10-04 17:38:56'),
+(23, 'aaa', 'T3.jpg', 0, 1, '2023-10-04 17:48:29');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `content` varchar(255) NOT NULL
+  `content` varchar(255) NOT NULL,
+  `date` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `comment`
+-- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`id`, `book_id`, `user_id`, `content`) VALUES
-(7, 57, 1, 'ádasd'),
-(8, 57, 1, 'ss'),
-(9, 57, 1, 'sấd'),
-(10, 57, 1, 'sadasdas'),
-(11, 57, 1, 's'),
-(12, 57, 1, 'd'),
-(13, 57, 16, 'sss'),
-(14, 57, 1, '<ul><li><i><strong>aaasdaaasdu</strong></i></li></ul>'),
-(21, 57, 1, '<h2><strong>sssss</strong></h2>');
+INSERT INTO `comment` (`id`, `book_id`, `user_id`, `content`, `date`) VALUES
+(8, 57, 1, 'ss', '05/10/2023'),
+(10, 57, 1, 'sadasdas', '05/10/2023'),
+(13, 57, 16, 'sss', '05/10/2023'),
+(21, 57, 1, '<h2><strong>sssss</strong></h2>', '05/10/2023'),
+(22, 17, 1, '<p>hhi</p>', '05/10/2023'),
+(23, 17, 1, '', '05/10/2023'),
+(24, 17, 1, '', '05/10/2023'),
+(25, 17, 1, '', '05/10/2023'),
+(26, 17, 1, '<p>http://localhost/bookstorenew/index.php/home/details/17</p>', '05/10/2023'),
+(27, 17, 1, '<p>http://localhost/bookstorenew/index.php/home/details/17</p>', '05/10/2023'),
+(28, 17, 1, '<p>http://localhost/bookstorenew/index.php/home/details/17</p>', '05/10/2023'),
+(29, 17, 1, '<p>sssss</p>', '05/10/2023'),
+(30, 57, 1, '<p>ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>', '05/10/2023');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE `news` (
@@ -160,7 +168,7 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `short_description`, `content`, `avatar`, `created_at`, `status`, `trash`) VALUES
@@ -171,14 +179,13 @@ INSERT INTO `news` (`id`, `title`, `short_description`, `content`, `avatar`, `cr
 (11, 'NOVEL JUJUTSU KAISEN 0 SẼ PHÁT HÀNH VÀO THÁNG 12', 'Bộ phim Jujutsu Kaisen 0 sắp ra mắt sẽ được chuyển thể từ tiểu thuyết chính thức của Ballad Kitaguni. Cuốn tiểu thuyết được phát hành vào ngày 24 tháng 12 tại Nhật Bản, cùng ngày với buổi ra mắt bộ phim.', '<p>Cuốn tiểu thuyết sẽ dựa trên kịch bản của bộ phim của Hiroshi Seko, với Gege Akutami (mangaka) được liệt kê là tác giả gốc. Tác giả Kitaguni trước đây đã từng làm <a href=\"https://otakugo.net/jujutsu-kaisen\">light novel Jujutsu Kaisen</a>: Iku Natsu to Kaeru Aki . Tiểu thuyết Jujutsu Kaisen sẽ có giá 836 yên (khoảng 7,5 USD) và có 256 trang.</p><p><a href=\"https://otakugo.net/jujutsu-kaisen-0-movie-tiet-lo-hinh-anh-nhan-vat-moi-100739.og\">Movie Jujutsu Kaisen 0</a> gần đây đã tiết lộ trailer đầu tiên và sẽ chuyển thể tập truyện tranh tiền truyện tập trung vào Yuta Okkotsu. Ngoài movie, TV anime của MAPPA được phát sóng từ mùa Thu năm 2020 đến mùa Đông năm 2021.</p><p><strong>Jujutsu Kaisen 0</strong></p><p>Manga Jujutsu Kaisen 0 của tác giả Gege Akutami có 4 chương, được biên soạn thành 1 tập. Bộ truyện kéo dài từ ngày 28 tháng 4 năm 2017 đến ngày 28 tháng 7 năm 2017, trong khi tập truyện ra mắt vào năm 2018. Bộ truyện ban đầu có tựa đề là Trường kỹ thuật lời nguyền Tokyo Metropolitan . Viz Media đã cấp phép cho manga bằng tiếng Anh.</p><p>Trang web Jump-J-Books liệt kê cuốn tiểu thuyết cũng có sẵn bìa:</p>', 'tin4.png', '2022-05-26 12:59:31', 0, 0),
 (12, 'NOVEL THE DEVIL IS A PART TIMER XÁC NHẬN RA MẮT PHẦN TIẾP THEO', 'Vào tháng 8 năm 2020, Satoshi Wagahara đã ra mắt phân cảnh cuối cùng của Hataraku Mao-Sama trong phạm vi công cộng. Nhưng thật kinh ngạc, tác giả đã phải đối mặt với những lời dọa giết vì con đường mà anh ta đi cùng với cái kết.', '<p>Hai năm sau sự cố này, cuối cùng người hâm mộ cũng có thông báo mới từ tác giả. The Devil Is A Part Timer Novel Sequel đã được xác nhận. Vì vậy, đây là tất cả mọi thứ mà bạn cần biết về dự án này.</p><p>The Devil Is A Part Timer, hay còn gọi là Hataraku Mao-Sama là một bộ light novel gốc ra mắt vào năm 2011. Do Satoshi Wagahara sáng tác, cuốn tiểu thuyết này được minh họa bởi 029. Loạt phim này được tiếp nối bởi ba lần phát hành manga thành công và một mùa anime. Hiện tại, phần tiếp theo của tiểu thuyết này và phần tiếp theo của anime đang được thực hiện.</p><p>Tin tức đến trực tiếp từ các trang truyền thông xã hội chính thức của tác giả Satoshi Waghara. Lên Twitter, tác giả viết rằng cuốn tiểu thuyết gốc không phải là kết thúc cuối cùng của câu chuyện. Thay vào đó, anh đã lên kế hoạch cho phần tiếp theo trong một thời gian dài. Cũng trong chuỗi này, anh ấy đã lên bục để công bố chính thức về dự án. Do đó, The Devil Is A Part Timer Novel Sequel đã được thực hiện. Cùng với điều này, người tạo cũng xác nhận cửa sổ phát hành cuối cùng cho dự án. Hãy tiếp tục đọc thêm để tìm hiểu khi nào thì dự án sẽ trở nên nổi bật.</p><p>Tên của dự án mới này là Hataraku Maou-sama – Okawari . Phần viết sẽ do Satoshi Waghara thực hiện. Hơn nữa, 029 trong người minh họa trên dự án. Cùng với đó, chi tiết cốt truyện của liên doanh cũng được tiết lộ.</p><h3><strong>Novel nói về điều gì?</strong></h3><p>Satoshi đã đề cập trong thông báo rằng phần tiếp theo kết hợp chặt chẽ với câu chuyện về dự án đầu tiên của anh ấy. Ngay khi tập cuối cùng của cuốn tiểu thuyết ra mắt vào năm 2020, dự án này vẫn đang được tiếp tục phát triển. Câu chuyện chọn lọc từ cuốn tiểu thuyết cuối cùng. Một lập luận mà người hâm mộ đang bàn tán trên internet liên quan đến sự lựa chọn của tác giả. Sau cái kết nặng nề được đưa ra cho câu chuyện chính, tác giả đã phải nhận một số lời dọa giết cho phần kết.</p><p>Toàn bộ cuộc tranh luận xoay quanh ý kiến ​​bác bỏ con đường hậu cung. Vì vậy, đây có thể là một trong những lý do khiến cuốn tiểu thuyết mới trở lại với bàn ăn.</p><h3><strong>Phần tiếp theo The Devil Is A Part Timer: Chi tiết phát hành</strong></h3><p>Hiện tại, ngày ra mắt thích hợp của tiểu thuyết phần tiếp theo vẫn chưa được công bố. Nhưng những người hâm mộ có một cửa sổ phát hành cho dự án. Vì vậy, Hataraku Maou-sama – Okawari , The Devil Is A Part Timer Novel Sequel sẽ phát hành vào tháng 7 năm 2022. Công ty xuất bản tại nhà của manga là Yen Press. Vì vậy, dự kiến ​​rằng công ty này sẽ trở lại xuất bản một lần nữa.</p>', 'tin6.png', '2022-05-27 09:45:23', 0, 0),
 (13, 'LIGHT NOVEL 86 -EIGHTY SIX- VOLUME 11 BỊ HOÃN DO TÁC GIẢ SỨC KHỎE KÉM', 'Trên trang web chính thức của Dengeki Bunko , đã thông báo rằng light novel 86 -Eighty Six- Volume 11 của Asato Asato sẽ bị hoãn chiếu do tác giả sức khỏe không tốt. Mặc dù tập mới nhất được cho là sẽ phát hành vào tháng 12 này, nhưng hiện tại nó đã được dời đến tháng 2 năm 2022. Thông báo viết:', '<p>Cảm ơn bạn rất nhiều vì đã tiếp tục ủng hộ Dengeki Bunko. Chúng tôi rất tiếc phải thông báo rằng “86: Eighty-Six – Ep. 11 Dies Passionis ”sẽ bị trì hoãn. Cuốn sách dự kiến ​​xuất bản vào tháng 12 năm 2021, nhưng đã bị hoãn lại do tác giả sức khỏe không tốt. Ngày phát hành mới dự kiến ​​vào tháng 2 năm 2022. Chúng tôi thành thật xin lỗi độc giả của chúng tôi, những người đã chờ đợi bản phát hành mới này. Chúng tôi rất lấy làm tiếc vì sự ra mắt đột ngột bị hoãn lại.</p><p>&nbsp;</p><p>Trong khi đó, Crunchyroll phát trực tuyến anime và họ mô tả câu chuyện:</p><blockquote><p><i>Được gọi là “Juggernaut”, đây là những máy bay không người lái chiến đấu được phát triển bởi Cộng hòa San Magnolia để đáp trả các cuộc tấn công của máy bay không người lái tự động của Đế chế Giad láng giềng, “ Quân đoàn ”. Nhưng chúng chỉ không có người lái trên danh nghĩa. Trên thực tế, chúng được điều khiển bởi Tám mươi sáu người – những người được coi là kém hơn con người và được coi như những công cụ đơn thuần. Quyết tâm đạt được mục đích bí ẩn của riêng mình, Shin, đội trưởng của Spearhead Squadron, bao gồm tám mươi sáu người, tiếp tục chiến đấu trong một cuộc chiến vô vọng trên một chiến trường nơi chỉ có cái chết đang chờ đợi anh ta.</i></p></blockquote><p>Chúng tôi luôn buồn khi biết về sức khỏe kém của một tác giả, và chúng tôi cầu chúc cho Asato Asato sớm khỏe lại và thành công trong tương lai với 86 -Eighty Six-!</p>', 'tin7.png', '2022-05-27 10:00:09', 0, 0),
-(14, '‘Bà đỡ’ cho những tác phẩm văn học', 'Dòng sách văn học có những đặc thù riêng, đòi hỏi biên tập viên phải chú ý đến cốt truyện, văn phong và ý đồ nghệ thuật mà tác giả cài cắm trong bản thảo.', '<h3><strong>Tiêu chí chọn bản thảo</strong></h3><p>Với 14 năm trong nghề, thay vì làm việc trực tiếp với các tác giả và bản thảo gốc, biên tập viên Thùy Linh gắn bó chủ yếu với bản dịch và dịch giả.</p><p>Xét về mặt kỹ thuật, biên tập viên sách văn học ngoài đảm bảo sự chỉn chu, chuẩn mực cho bản thảo, phải đủ nhạy cảm để tôn trọng phong cách sáng tạo, đôi khi là sự phá cách của tác giả cả về ý tưởng lẫn văn phong. Chẳng hạn như dụng ý văn chương khi tác giả viết thường các chữ mà theo quy định chính tả phải viết hoa, hoặc cố ý ngắt dòng giữa trang…</p><p>“Độc giả của dòng sách phi hư cấu thường đọc để lấy thông tin, kiến thức. Nhưng bạn đọc của mảng sách văn học còn muốn được thưởng thức. Đó cũng là đặc thù của dòng sách này”, chị Thùy Linh nói.</p><p>Theo biên tập viên Công ty sách Nhã Nam, người làm công việc biên tập phải đứng ở giữa, dung hòa các yêu cầu từ nhiều phía (nhà xuất bản, tác giả, dịch giả, độc giả), đặc biệt là đối với các tác phẩm có nhiều phá cách mới mẻ, lạ lẫm trong một thời điểm nào đó.</p><p>Do mang những đặc thù riêng, việc khai thác bản thảo văn học cũng cần có tiêu chí nhất định. Với chị Thùy Linh, nếu là câu chuyện, trước hết nó phải thuyết phục, logic, có cái kết bất ngờ (hoặc ít nhất là hợp lý) và cách viết hấp dẫn.</p><p>“Còn với các tác phẩm có hàm lượng văn chương cao hơn, không đề cao yếu tố câu chuyện, thì nó phải mang sự độc đáo. Đôi khi chúng tôi phải lựa chọn bản thảo dựa trên trực giác mà không có tiêu chuẩn cụ thể nào”, biên tập viên Thùy Linh cho hay.</p><p>Mỗi đơn vị xuất bản đều có định hướng riêng khi lựa chọn bản thảo. Sở hữu thế mạnh về tiểu thuyết lịch sử, truyện ngắn đương đại, Nhà xuất bản Phụ nữ Việt Nam nhận được nhiều bản thảo gửi về trong một tháng.</p><p>“Có tháng, chúng tôi nhận được hơn 20 bản thảo. Công việc của biên tập viên là phân loại theo đề tài, đọc và phản hồi lại với tác giả. Đối với đơn vị chúng tôi, những bản thảo thóa mạ hình tượng phụ nữ, mang tính cá nhân, đề cao cái tôi quá mức sẽ không được chấp nhận. Văn chương cần tìm được sự đồng cảm từ số đông”, chị Nguyễn Thu Giang - biên tập viên mảng sách văn học trong nước, Nhà xuất bản Phụ nữ Việt Nam - cho biết.</p><p>Khi đọc bản thảo văn chương, theo chị Thu Giang, người biên tập còn phải lưu ý cả về mặt tư tưởng, chính trị, văn hóa, để đảm bảo tác phẩm không chứa chi tiết nhạy cảm.</p><h3><strong>Công việc thầm lặng</strong></h3><p>Công việc biên tập sách văn học liên quan nhiều đến cảm hứng sáng tác của các nhà văn. Nó mang tính chất tự do, không khuôn phép như những dòng sách về khoa học, kỹ năng. Khi làm việc với các nhà văn, nhà thơ, khó khăn đối với chị Thu Giang là thuyết phục tác giả chỉnh sửa “đứa con tinh thần” của họ.</p><p>“Văn mình - vợ người” là câu nói khá chính xác khi nhận xét về một tác phẩm văn chương. Sẽ rất khó để thuyết phục nhà văn, nhà thơ chỉnh sửa những ý mà đôi khi họ cho là hay nhất và có dụng ý nghệ thuật.</p><p>Làm “bà đỡ” cho những tác phẩm văn chương như <i>Phật trong hẻm nhỏ</i> (Huỳnh Trọng Khang), <i>Người khách kỳ dị</i> (Ma Văn Kháng), <i>Người bán linh hồn</i> (Trần Thùy Mai)… chị Thu Giang cho rằng bản thân mình chỉ là người đứng ở hậu trường, nhưng luôn “đồng cam, cộng khổ” với tác giả trước sự đón nhận của bạn đọc.</p><p>“Trong quá trình trao đổi với tác giả, tôi học hỏi được nhiều điều hơn về cuộc đời, con người và trải nghiệm của những nhân vật khác nhau. Văn chương luôn có sự đa dạng trong cách viết, nên khi tiếp cận các bản thảo khác nhau, tôi thấy thú vị vì cùng viết về một đề tài nhưng mỗi người sẽ có cách khai thác riêng”, biên tập viên Thu Giang chia sẻ.</p><p>Trong khi đó, niềm vui với biên tập viên Thùy Linh (Nhã Nam) khi làm nghề trước hết là được đọc nhiều câu chuyện và đóng góp cho sự ra đời của một sản phẩm mang tính sáng tạo, từ khi nó còn ở dạng bản thảo thô đến khi trở thành cuốn sách hoàn chỉnh, đẹp đẽ trong các hiệu sách.</p><p>“Tất cả khó khăn sẽ được bù đắp bằng sự đón nhận từ độc giả và nếu may mắn thì của cả giới phê bình. Dòng sách văn học dịch thường không bán được số lượng lớn, nhưng được tham dự một phần nào đó vào thế giới hư cấu đã là một điều rất thú vị”, chị Thùy Linh bày tỏ.</p><p>Từng biên tập nhiều dòng sách khác nhau, trong đó có mảng văn học, chị Đàm Thị Ly - Phó trưởng Ban biên tập, Nhà xuất bản Hà Nội - luôn tự hỏi bản thân: Bản thảo văn chương này khi được xuất bản thành sách sẽ mang giá trị gì tới bạn đọc?</p><p>Theo chị Ly, giá trị, thông điệp của bản thảo là yếu tố tiên quyết trong khâu lựa chọn để biên tập. Cách khai thác đề tài tùy thuộc hướng tiếp cận và văn phong của mỗi nhà văn. Đề tài đó không cần quá mới mẻ, chỉ cần có cách viết mới mẻ, lôi cuốn, thì sẽ trở thành tác phẩm hay.</p><p>“Dù ở thể loại truyện ngắn hay tiểu thuyết, tác phẩm đó cũng phải truyền tải được giá trị nhân văn tốt đẹp đến độc giả. Khi khép cuốn sách, những gì đọng lại trong lòng độc giả sẽ là điều quyết định tác phẩm đó có thành công hay không”, chị Ly nói thêm.</p>', 'cat.jpg', '2022-05-28 08:06:54', 0, 0),
-(17, 'dvfds', 'dscsdc', '<p>sdfsdf</p>', 'car18.jpg', '2023-05-06 09:50:29', 0, 1),
-(18, 'v sv ', 'dvdsv', '<p>dsvds</p>', 'infinity-logo-symbol-template-icons-vector-business-sign-modern-concept-design-creative-element-shape-emblem-loop-infinite-170504485.jpg', '2023-05-10 04:29:08', 0, 1);
+(14, '‘Bà đỡ’ cho những tác phẩm văn học', 'Dòng sách văn học có những đặc thù riêng, đòi hỏi biên tập viên phải chú ý đến cốt truyện, văn phong và ý đồ nghệ thuật mà tác giả cài cắm trong bản thảo.', '<h3><strong>Tiêu chí chọn bản thảo</strong></h3><p>Với 14 năm trong nghề, thay vì làm việc trực tiếp với các tác giả và bản thảo gốc, biên tập viên Thùy Linh gắn bó chủ yếu với bản dịch và dịch giả.</p><p>Xét về mặt kỹ thuật, biên tập viên sách văn học ngoài đảm bảo sự chỉn chu, chuẩn mực cho bản thảo, phải đủ nhạy cảm để tôn trọng phong cách sáng tạo, đôi khi là sự phá cách của tác giả cả về ý tưởng lẫn văn phong. Chẳng hạn như dụng ý văn chương khi tác giả viết thường các chữ mà theo quy định chính tả phải viết hoa, hoặc cố ý ngắt dòng giữa trang…</p><p>“Độc giả của dòng sách phi hư cấu thường đọc để lấy thông tin, kiến thức. Nhưng bạn đọc của mảng sách văn học còn muốn được thưởng thức. Đó cũng là đặc thù của dòng sách này”, chị Thùy Linh nói.</p><p>Theo biên tập viên Công ty sách Nhã Nam, người làm công việc biên tập phải đứng ở giữa, dung hòa các yêu cầu từ nhiều phía (nhà xuất bản, tác giả, dịch giả, độc giả), đặc biệt là đối với các tác phẩm có nhiều phá cách mới mẻ, lạ lẫm trong một thời điểm nào đó.</p><p>Do mang những đặc thù riêng, việc khai thác bản thảo văn học cũng cần có tiêu chí nhất định. Với chị Thùy Linh, nếu là câu chuyện, trước hết nó phải thuyết phục, logic, có cái kết bất ngờ (hoặc ít nhất là hợp lý) và cách viết hấp dẫn.</p><p>“Còn với các tác phẩm có hàm lượng văn chương cao hơn, không đề cao yếu tố câu chuyện, thì nó phải mang sự độc đáo. Đôi khi chúng tôi phải lựa chọn bản thảo dựa trên trực giác mà không có tiêu chuẩn cụ thể nào”, biên tập viên Thùy Linh cho hay.</p><p>Mỗi đơn vị xuất bản đều có định hướng riêng khi lựa chọn bản thảo. Sở hữu thế mạnh về tiểu thuyết lịch sử, truyện ngắn đương đại, Nhà xuất bản Phụ nữ Việt Nam nhận được nhiều bản thảo gửi về trong một tháng.</p><p>“Có tháng, chúng tôi nhận được hơn 20 bản thảo. Công việc của biên tập viên là phân loại theo đề tài, đọc và phản hồi lại với tác giả. Đối với đơn vị chúng tôi, những bản thảo thóa mạ hình tượng phụ nữ, mang tính cá nhân, đề cao cái tôi quá mức sẽ không được chấp nhận. Văn chương cần tìm được sự đồng cảm từ số đông”, chị Nguyễn Thu Giang - biên tập viên mảng sách văn học trong nước, Nhà xuất bản Phụ nữ Việt Nam - cho biết.</p><p>Khi đọc bản thảo văn chương, theo chị Thu Giang, người biên tập còn phải lưu ý cả về mặt tư tưởng, chính trị, văn hóa, để đảm bảo tác phẩm không chứa chi tiết nhạy cảm.</p><h3><strong>Công việc thầm lặng</strong></h3><p>Công việc biên tập sách văn học liên quan nhiều đến cảm hứng sáng tác của các nhà văn. Nó mang tính chất tự do, không khuôn phép như những dòng sách về khoa học, kỹ năng. Khi làm việc với các nhà văn, nhà thơ, khó khăn đối với chị Thu Giang là thuyết phục tác giả chỉnh sửa “đứa con tinh thần” của họ.</p><p>“Văn mình - vợ người” là câu nói khá chính xác khi nhận xét về một tác phẩm văn chương. Sẽ rất khó để thuyết phục nhà văn, nhà thơ chỉnh sửa những ý mà đôi khi họ cho là hay nhất và có dụng ý nghệ thuật.</p><p>Làm “bà đỡ” cho những tác phẩm văn chương như <i>Phật trong hẻm nhỏ</i> (Huỳnh Trọng Khang), <i>Người khách kỳ dị</i> (Ma Văn Kháng), <i>Người bán linh hồn</i> (Trần Thùy Mai)… chị Thu Giang cho rằng bản thân mình chỉ là người đứng ở hậu trường, nhưng luôn “đồng cam, cộng khổ” với tác giả trước sự đón nhận của bạn đọc.</p><p>“Trong quá trình trao đổi với tác giả, tôi học hỏi được nhiều điều hơn về cuộc đời, con người và trải nghiệm của những nhân vật khác nhau. Văn chương luôn có sự đa dạng trong cách viết, nên khi tiếp cận các bản thảo khác nhau, tôi thấy thú vị vì cùng viết về một đề tài nhưng mỗi người sẽ có cách khai thác riêng”, biên tập viên Thu Giang chia sẻ.</p><p>Trong khi đó, niềm vui với biên tập viên Thùy Linh (Nhã Nam) khi làm nghề trước hết là được đọc nhiều câu chuyện và đóng góp cho sự ra đời của một sản phẩm mang tính sáng tạo, từ khi nó còn ở dạng bản thảo thô đến khi trở thành cuốn sách hoàn chỉnh, đẹp đẽ trong các hiệu sách.</p><p>“Tất cả khó khăn sẽ được bù đắp bằng sự đón nhận từ độc giả và nếu may mắn thì của cả giới phê bình. Dòng sách văn học dịch thường không bán được số lượng lớn, nhưng được tham dự một phần nào đó vào thế giới hư cấu đã là một điều rất thú vị”, chị Thùy Linh bày tỏ.</p><p>Từng biên tập nhiều dòng sách khác nhau, trong đó có mảng văn học, chị Đàm Thị Ly - Phó trưởng Ban biên tập, Nhà xuất bản Hà Nội - luôn tự hỏi bản thân: Bản thảo văn chương này khi được xuất bản thành sách sẽ mang giá trị gì tới bạn đọc?</p><p>Theo chị Ly, giá trị, thông điệp của bản thảo là yếu tố tiên quyết trong khâu lựa chọn để biên tập. Cách khai thác đề tài tùy thuộc hướng tiếp cận và văn phong của mỗi nhà văn. Đề tài đó không cần quá mới mẻ, chỉ cần có cách viết mới mẻ, lôi cuốn, thì sẽ trở thành tác phẩm hay.</p><p>“Dù ở thể loại truyện ngắn hay tiểu thuyết, tác phẩm đó cũng phải truyền tải được giá trị nhân văn tốt đẹp đến độc giả. Khi khép cuốn sách, những gì đọng lại trong lòng độc giả sẽ là điều quyết định tác phẩm đó có thành công hay không”, chị Ly nói thêm.</p>', 'tin8.png', '2022-05-28 08:06:54', 0, 0),
+(17, 'dvfds', 'dscsdc', '<p>sdfsdf</p>', 'car18.jpg', '2023-05-06 09:50:29', 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -196,31 +203,30 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `customer_id`, `name`, `phone`, `address`, `total`, `note`, `order_date`, `delivered`, `method`, `payment`) VALUES
 (48, 2, 'User', 12332, 'e', 871000, '11', '2022-05-07 16:49:33', 2, 0, 0),
-(63, 1, 'Phạm Toàn Thắng', 12332, 'Bắc Giang', 60000, '', '2022-05-29 16:47:09', 2, 0, 0),
-(64, 1, 'Phạm Toàn Thắng', 122939341, 'Bắc Giang', 400000, '', '2022-05-31 14:14:29', 2, 0, 0),
-(65, 14, 'Nguyễn Văn A', 122939341, 'Quảng Ninh', 348000, '', '2022-06-01 09:29:47', 0, 0, 0),
-(70, 1, 'Phạm Toàn Thắng', 769234431, 'quảng ninh', 150000, 'sách', '2023-05-23 15:49:47', 0, 0, 0),
 (73, 16, 'Long', 0, 'á', 20000, 'á', '2023-06-13 12:03:21', 1, 0, 0),
 (74, 16, 'Long', 769234431, 'quảng ninh', 37000, 'sách', '2023-06-13 12:10:50', 0, 0, 0),
 (75, 16, 'Long', 769234431, 'quảng ninh', 20000, 'sách', '2023-06-13 12:17:02', 0, 0, 0),
-(76, 12, 'Vĩnh Long', 769234431, 'd', 150000, 'sách', '2023-06-13 13:23:03', 0, 0, 0),
 (77, 12, 'Vĩnh Long', 769234431, 'quảng ninh', 108000, 'á', '2023-06-13 13:33:17', 0, 0, 0),
 (78, 12, 'Vĩnh Long', 769234431, 'quảng ninh', 112000, 'sách', '2023-06-13 15:51:06', 0, 1, 0),
 (79, 12, 'Vĩnh Long', 769234431, 'quảng ninh', 200000, 'sách', '2023-06-13 15:55:31', 0, 2, 0),
-(80, 1, 'Phạm Toàn Thắng', 769234431, 'quảng ninh', 108000, 'sách', '2023-06-13 16:05:09', 0, 0, 0),
 (81, 1, 'Phạm Toàn Thắng', 769234431, 'quảng ninh', 112000, 'sách', '2023-06-13 16:26:21', 0, 1, 0),
-(89, 1, 'Phạm Toàn Thắng', 11111, 'aa11', 112000, 'ssss', '2023-09-11 14:59:48', 0, 0, 1),
-(103, 1, 'Phạm Toàn Thắng', 11111, '2222', 262000, 'tes', '2023-09-14 16:06:02', 0, 0, 1);
+(103, 1, 'Phạm Toàn Thắng', 11111, '2222', 262000, 'tes', '2023-09-14 16:06:02', 0, 0, 1),
+(105, 1, 'Phạm Toàn Thắng ', 358859711, 'quảng ninh', 112000, 'sách', '2023-09-15 14:17:39', 0, 0, 1),
+(108, 1, 'Phạm Toàn Thắng ', 358859711, 'quảng ninh', 150000, 'sách', '2023-09-15 14:30:40', 0, 0, 1),
+(110, 1, 'Phạm Toàn Thắng ', 358859711, 'quảng ninh', 150000, 'sách', '2023-09-15 14:33:04', 0, 1, 1),
+(114, 1, 'Phạm Toàn Thắng ', 358859711, 'quảng ninh', 150000, 'sách', '2023-09-15 14:39:52', 0, 0, 1),
+(120, 1, 'Phạm Toàn Thắng ', 11111, 'ssss', 590000, '333', '2023-10-05 20:31:09', 0, 1, 0),
+(121, 1, 'Phạm Toàn Thắng ', 1111, 'sss', 85000, 'aa', '2023-10-05 21:32:07', 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_details`
+-- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -233,7 +239,7 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `order_details`
+-- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `qty`, `product_price`, `total`) VALUES
@@ -243,28 +249,30 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `qty`, `product_pri
 (39, 48, 27, 1, 123000, 123000),
 (40, 48, 26, 1, 152000, 152000),
 (41, 48, 25, 1, 112000, 112000),
-(59, 63, 45, 1, 60000, 60000),
-(60, 64, 49, 1, 400000, 400000),
-(61, 65, 50, 3, 116000, 348000),
-(65, 70, 57, 1, 150000, 150000),
 (67, 73, 31, 1, 20000, 20000),
 (68, 74, 33, 1, 20000, 20000),
 (69, 74, 35, 1, 17000, 17000),
 (70, 75, 31, 1, 20000, 20000),
-(71, 76, 57, 1, 150000, 150000),
 (72, 77, 56, 1, 108000, 108000),
 (73, 78, 25, 1, 112000, 112000),
 (74, 79, 46, 1, 200000, 200000),
-(75, 80, 56, 1, 108000, 108000),
 (76, 81, 25, 1, 112000, 112000),
-(84, 89, 25, 1, 112000, 112000),
 (104, 103, 25, 1, 112000, 112000),
-(105, 103, 57, 1, 150000, 150000);
+(105, 103, 57, 1, 150000, 150000),
+(108, 105, 25, 1, 112000, 112000),
+(111, 108, 57, 1, 150000, 150000),
+(113, 110, 57, 1, 150000, 150000),
+(117, 114, 57, 1, 150000, 150000),
+(123, 120, 17, 1, 100000, 100000),
+(124, 120, 57, 1, 150000, 150000),
+(125, 120, 56, 1, 108000, 108000),
+(126, 120, 50, 2, 116000, 232000),
+(127, 121, 17, 1, 85000, 85000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -285,19 +293,19 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `product_name`, `publisher`, `author`, `category_id`, `sale`, `image`, `quantity`, `price`, `saleprice`, `product_detail`, `created_at`, `trash`, `status`) VALUES
-(17, 'OVERLORD - Tập 1 - The Undead King', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'u2-adb94b86-5d78-4921-ad8e-87a8d811a7a2.jpg', 93, 100000, 0, '<p>Chuyện xảy ra vào năm 2138, thời đại công nghệ thực tế ảo phát triển đến đỉnh cao, giúp người chơi game trải nghiệm thế giới ảo theo một cách chân thực nhất. Trong số game ấy có một trò đỉnh cao. Trong trò ấy có một guild đỉnh cao. Trong guild ấy có một thủ lĩnh gắn bó đỉnh cao. Đồng đội dần dần rời</p>', '2023-05-05 05:04:05', 0, 0),
-(18, 'OVERLORD - Tập 2 - The Dark Warrior', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, '705.jpg', 99, 108000, 0, '<p>Vào ngày hoạt động cuối cùng của game YGGDRASIL, do hiện tượng bí ẩn nào đó, một người chơi là Momonga trong tạo hình nhân vật bộ xương tự nhiên bị dịch chuyển tới một thế giới xa lạ. Đã tám ngày trôi qua. Suốt tám ngày này, Momonga, giờ đổi tên thành Ainz, đã thăm thú toàn bộ lăng mộ Nazarick, xem xét tình hình các thuộc hạ của mình. Sau khi xác nhận rằng nơi đây chẳng khác mấy so với thế giới game, Ainz quyết định đã đến lúc tiến hành bước tiếp theo, là mở rộng phạm vi khám phá và chinh phục. Dẫn theo một hầu gái hộ vệ, anh tìm đến thành phố trong vai trò người chuyên diệt quái, mà người ta vẫn gọi là “mạo hiểm giả”. Không biết chữ, không có tiền, tìm việc làm, cẩn trọng thăm dò môi trường mới, gặp gỡ nhiều nhân vật thuộc nhiều thành phần, đi săn một sinh vật pháp thuật hùng mạnh, và đáng kể nhất là bắt đầu công khai bộc lộ tài năng… Ainz cứ thế đặt chân vào một chuyến phiêu lưu mới.&nbsp;</p>', '2022-05-29 10:30:47', 0, 0),
+(17, 'OVERLORD - Tập 1 - The Undead King', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, 'u2-adb94b86-5d78-4921-ad8e-87a8d811a7a2.jpg', 91, 100000, 15, '<p>Chuyện xảy ra vào năm 2138, thời đại công nghệ thực tế ảo phát triển đến đỉnh cao, giúp người chơi game trải nghiệm thế giới ảo theo một cách chân thực nhất. Trong số game ấy có một trò đỉnh cao. Trong trò ấy có một guild đỉnh cao. Trong guild ấy có một thủ lĩnh gắn bó đỉnh cao. Đồng đội dần dần rời di</p>', '2023-10-05 15:58:43', 0, 0),
+(18, 'OVERLORD - Tập 2 - The Dark Warrior', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '705.jpg', 99, 108000, 18, '<p>Vào ngày hoạt động cuối cùng của game YGGDRASIL, do hiện tượng bí ẩn nào đó, một người chơi là Momonga trong tạo hình nhân vật bộ xương tự nhiên bị dịch chuyển tới một thế giới xa lạ. Đã tám ngày trôi qua. Suốt tám ngày này, Momonga, giờ đổi tên thành Ainz, đã thăm thú toàn bộ lăng mộ Nazarick, xem xét tình hình các thuộc hạ của mình. Sau khi xác nhận rằng nơi đây chẳng khác mấy so với thế giới game, Ainz quyết định đã đến lúc tiến hành bước tiếp theo, là mở rộng phạm vi khám phá và chinh phục. Dẫn theo một hầu gái hộ vệ, anh tìm đến thành phố trong vai trò người chuyên diệt quái, mà người ta vẫn gọi là “mạo hiểm giả”. Không biết chữ, không có tiền, tìm việc làm, cẩn trọng thăm dò môi trường mới, gặp gỡ nhiều nhân vật thuộc nhiều thành phần, đi săn một sinh vật pháp thuật hùng mạnh, và đáng kể nhất là bắt đầu công khai bộc lộ tài năng… Ainz cứ thế đặt chân vào một chuyến phiêu lưu mới.&nbsp;</p>', '2023-10-05 15:58:53', 0, 0),
 (19, 'OVERLORD - Tập 3 - The Bloody Valkyrie', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1294.jpg', 99, 110700, 0, '<p>Giới thiệu sách: OVERLORD - Tập 3: Valkyrie Khát Máu Mở đầu cho một hành trình huy hoàng, thông thường sẽ có hai phong cách. Một, nhân vật chính là người bình thường, không biết gì cả, lơ ngơ đơn thuần rơi vào một thế giới xa lạ, đi đâu cũng đụng kẻ mạnh và va vấp với muôn vàn thử thách, vừa run sợ vừa dũng cảm tiến bước và trưởng thành. Hai, nhân vật chính là kẻ mạnh có một không hai trên đời, xuất phát từ vạch đích, không bao giờ phải phấn đấu vì vừa hiện ra đã mạnh sẵn rồi, chỉ có đi gặt hái thất bại và sinh mạng của đối thủ mà thôi. Nếu như có ai đó, đem cả hai phong cách này hòa làm một thì sao? Thì sẽ có câu chuyện như OVERLORD vậy… Sau khi game anh từng chơi bỗng biến thành một thế giới khác, Suzuki Satoru hay Momonga hay Ainz Ooal Gown cùng các bề tôi ở Nazarick bắt đầu con đường vừa dò tìm vừa chinh phục không gian vừa quen vừa lạ này. Kế hoạch đang tiến triển vô cùng thuận lợi thì một yếu tố cản trở xuất hiện: Shalltear Bloodfallen, hộ vệ tầng hùng mạnh hàng đầu Nazarick nổi loạn, phản bội, chống chúa tể. Thách thức dành cho Ainz lần này chỉ được làm có một lần, yêu cầu là phải toàn thắng, tiêu diệt được Shalltear, khẳng định tư chất và bản lĩnh lãnh đạo của mình. Nhưng cô gái cũng lại là đứa con tinh thần của đồng đội cũ, là sợi dây duy nhất gắn kết anh với những yêu thương hoài niệm, giữ cô lại cũng là minh chứng anh đủ sức bảo vệ toàn vẹn Nazarick. Ainz phải làm thế nào đây? Tập 3, “Valkyrie khát máu”, bởi vì pha trộn những trăn trở rất người như thế, thành ra vừa dữ dằn, lại vừa ấm áp…</p>', '2022-05-29 10:30:55', 0, 0),
 (20, 'OVERLORD - Tập 4 - The Lizard Man Heroes', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '707.jpg', 50, 117000, 10, '<p>OVERLORD - Tập 4: Lizarmand Anh Dũng</p>', '2022-05-07 08:38:34', 0, 0),
 (21, 'OVERLORD - Tập 5 - The Men in the Kingdom 1', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '707 (1).jpg', 49, 152000, 14, '<p>OVERLORD - Tập 5: Những Anh Hùng Vương Quốc</p>', '2022-05-07 08:38:41', 0, 0),
 (22, 'OVERLORD - Tập 6 - The Men in the Kingdom 2', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '708.jpg', 50, 150000, 20, '<p>OVERLORD - Tập 6 - The Men in the Kingdom 2</p>', '2022-05-07 08:18:32', 0, 0),
 (23, 'OVERLORD - Tập 7 - The Invaders of the Large tomb', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '705_cb=20150928200622.jpg', 9, 100000, 15, '<p>OVERLORD - Tập 7 - The Invaders of the Large tomb</p>', '2022-05-07 08:19:58', 0, 0),
 (24, 'OVERLORD - Tập 8 - The Two Leaders', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, 'book_1299.jpg', 6, 152000, 24, '<p>OVERLORD - Tập 8 - The Two Leaders</p>', '2022-05-07 08:40:15', 0, 0),
-(25, 'OVERLORD - Tập 9 - The Magic Caster of Destroy', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1300.jpg', 31, 112000, 15, '<p>OVERLORD - Tập 9 - The Magic Caster of Destroy</p>', '2023-06-13 06:12:53', 0, 0),
+(25, 'OVERLORD - Tập 9 - The Magic Caster of Destroy', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1300.jpg', 29, 112000, 15, '<p>OVERLORD - Tập 9 - The Magic Caster of Destroy</p>', '2023-06-13 06:12:53', 0, 0),
 (26, 'OVERLORD - Tập 10 - The Ruler of Conspiracy', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'book_1301.jpg', 99, 152000, 0, '<p>OVERLORD - Tập 10 - The Ruler of Conspiracy</p>', '2022-05-07 08:44:02', 0, 0),
 (27, 'OVERLORD - Tập 11 - The Craftsman of Dwarf', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'e11.png', 88, 123000, 0, '<p>OVERLORD - Tập 11 - The Craftsman of Dwarf</p>', '2022-05-07 16:37:37', 0, 0),
 (28, 'OVERLORD - Tập 12: The Pladin of the Holy kingdom', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'ep12.png', 2, 120000, 0, '<p>OVERLORD - Tập 12: The Pladin of the Holy kingdom</p>', '2022-05-07 16:26:15', 0, 0),
@@ -322,16 +330,15 @@ INSERT INTO `products` (`id`, `product_name`, `publisher`, `author`, `category_i
 (47, 'Tri Thức Bách Khoa - Những Phát Kiến, Phát Minh Trong Khoa Học Công Nghệ Và Cuộc Sống', 'NXB Đại Học Sư Phạm', 'Lê Quang', 10, 0, 'kh.png', 100, 31000, 0, '<p>Tri Thức Bách Khoa - Những Phát Kiến, Phát Minh Trong Khoa Học Công Nghệ Và Cuộc Sống</p>', '2022-05-29 11:11:09', 0, 0),
 (48, 'Harry Potter and the Deathly Hallows', 'Bloomsbury Publishing PLC', 'J. K. Rowling', 8, 0, 'hr.png', 10, 100000, 0, '<p>Harry Potter and the Deathly Hallows</p>', '2022-05-29 11:16:24', 0, 0),
 (49, 'Harry Potter and the Deathly Hallows (Hardcover)', 'Bloomsbury Publishing PLC', 'J. K. Rowling', 8, 0, 'hr2.png', 99, 450000, 400000, '<p>Harry Potter and the Deathly Hallows</p>', '2022-05-31 09:16:40', 0, 0),
-(50, 'Tanya Chiến Ký 1: Deus Lo Vult', 'NXB Thái Hà', 'Carlo Zen', 19, 1, 'b_a_27_2.jpg', 96, 145000, 20, '<p>Tanya Chiến ký (tên gốc: Youjo senki) là light novel đầu tay của tác giả Carlo Zen, minh họa bởi Shinotsuki Shinobu lấy đề tài chiến tranh, giả tưởng thời cận hiện đại trên một thế giới khác, tồn tại đồng thời pháo binh, những cỗ tăng thiết giáp và máy bay chiến đấu cùng với những ma pháp sư sử dụng ngọc diễn toán can thiệp vào thế giới vật lý bay lượn trên bầu trời.</p><p>Tanya chiến ký bắt đầu với khung cảnh một bé gái cất tiếng khóc chào đời tại một cô nhi viện, tuy nhiên, có vẻ như bé gái ấy lại tồn tại một ý thức khác, một ý thức chưa từng nghĩ tới rằng mình sẽ tái sinh thành một cô bé trong một thế giới thảm khốc như vậy. Ý thức ấy thuộc về một trưởng phòng nhân sự mẫn cán tại Nhật Bản xa xôi. Là một người làm công ăn lương mẫu mực, chăm chỉ nhưng không có lòng trắc ẩn và có phần vô tâm, từ khi đi học cho tới khi đi làm, anh ta luôn làm theo đúng y sì những gì mà xã hội và cấp trên mong muốn, tuân thủ mọi quy định và hoàn thành mọi mệnh lệnh từ trên xuống. Là người phụ trách nhân sự, trong thời buổi kinh tế khó khăn và đổi mới công nghệ, anh ta đã hoàn thành xuất sắc việc cắt giảm nhân sự không hiệu quả cho công ty, dẫu đó có là một nhân viên lâu năm hay dẫu người ấy có quỳ lạy khóc lóc như nào. Sự vô tình này đã khiến anh ta hứng thụ sự uất hận từ người bị sa thải, và trong một khoảnh khắc trước khi ý thức mất đi, anh ta vẫn nhớ rằng mình đang đứng đợi tàu điện ở sát đường ray rồi bị một ai đó đẩy từ phía sau.</p>', '2022-05-31 19:42:23', 0, 0),
-(54, 'OVERLORD - Tập 1: Chúa Tể Bất Tử - Tặng Kèm Postcard', 'Kim đồng', '', 10, 0, '60637604_2038961603076540_7399464138239377408_n.jpg', 0, 0, 0, '<p>ssx</p>', '2023-05-05 05:06:29', 1, 0),
-(56, 'OVERLORD - Tập 15 -  The Half-Elf Demigod Part I', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '81FCNBoCUAL._AC_UF1000,1000_QL80_.jpg', 6, 120000, 10, '<p>War with the Nation of Darkness is inevitable―or so the Theocracy’s leaders believe with every part of their beings. With such an obvious threat on their borders, there’s no time to waste on lesser concerns, so they decide to eliminate the elf king who has been a thorn in their sides for too long! Meanwhile, Ainz sets out for the elf country on what he’s decided to call a paid vacation. His real goal is to create an opportunity for Aura and Mare to make some friends their age―even as the Theocracy armies march on the capital! The twins know their wise ruler has his hopes pinned on them and won’t stop until they bring this forest under the control of Ainz Ooal Gown!</p>', '2023-05-13 14:10:05', 0, 0),
-(57, 'OVERLORD - Tập 16:  The Half-Elf Demigod Part II', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'tải xuống.jpg', 4, 150000, 0, '<p>Even fierce warriors are in awe when they see the majesty of <a href=\"https://overlordmaruyama.fandom.com/wiki/Great_Tomb_of_Nazarick\">Nazarick</a>! <a href=\"https://overlordmaruyama.fandom.com/wiki/Ainz_Ooal_Gown\">Ainz</a> and the twins stay in the <a href=\"https://overlordmaruyama.fandom.com/wiki/Dark_Elf\">dark elf</a> village and continue to interact with the villagers. But the Theocracy has finally just begun to attack the <a href=\"https://overlordmaruyama.fandom.com/wiki/Elf_Country\">elf country</a>. Ainz, who had a plan, started to act.</p>', '2023-05-13 14:12:32', 0, 0),
+(50, 'Tanya Chiến Ký 1: Deus Lo Vult', 'NXB Thái Hà', 'Carlo Zen', 19, 1, 'b_a_27_2.jpg', 94, 145000, 20, '<p>Tanya Chiến ký (tên gốc: Youjo senki) là light novel đầu tay của tác giả Carlo Zen, minh họa bởi Shinotsuki Shinobu lấy đề tài chiến tranh, giả tưởng thời cận hiện đại trên một thế giới khác, tồn tại đồng thời pháo binh, những cỗ tăng thiết giáp và máy bay chiến đấu cùng với những ma pháp sư sử dụng ngọc diễn toán can thiệp vào thế giới vật lý bay lượn trên bầu trời.</p><p>Tanya chiến ký bắt đầu với khung cảnh một bé gái cất tiếng khóc chào đời tại một cô nhi viện, tuy nhiên, có vẻ như bé gái ấy lại tồn tại một ý thức khác, một ý thức chưa từng nghĩ tới rằng mình sẽ tái sinh thành một cô bé trong một thế giới thảm khốc như vậy. Ý thức ấy thuộc về một trưởng phòng nhân sự mẫn cán tại Nhật Bản xa xôi. Là một người làm công ăn lương mẫu mực, chăm chỉ nhưng không có lòng trắc ẩn và có phần vô tâm, từ khi đi học cho tới khi đi làm, anh ta luôn làm theo đúng y sì những gì mà xã hội và cấp trên mong muốn, tuân thủ mọi quy định và hoàn thành mọi mệnh lệnh từ trên xuống. Là người phụ trách nhân sự, trong thời buổi kinh tế khó khăn và đổi mới công nghệ, anh ta đã hoàn thành xuất sắc việc cắt giảm nhân sự không hiệu quả cho công ty, dẫu đó có là một nhân viên lâu năm hay dẫu người ấy có quỳ lạy khóc lóc như nào. Sự vô tình này đã khiến anh ta hứng thụ sự uất hận từ người bị sa thải, và trong một khoảnh khắc trước khi ý thức mất đi, anh ta vẫn nhớ rằng mình đang đứng đợi tàu điện ở sát đường ray rồi bị một ai đó đẩy từ phía sau.</p>', '2022-05-31 19:42:23', 0, 0),
+(56, 'OVERLORD - Tập 15 -  The Half-Elf Demigod Part I', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 1, '81FCNBoCUAL._AC_UF1000,1000_QL80_.jpg', 1, 120000, 10, '<p>War with the Nation of Darkness is inevitable―or so the Theocracy’s leaders believe with every part of their beings. With such an obvious threat on their borders, there’s no time to waste on lesser concerns, so they decide to eliminate the elf king who has been a thorn in their sides for too long! Meanwhile, Ainz sets out for the elf country on what he’s decided to call a paid vacation. His real goal is to create an opportunity for Aura and Mare to make some friends their age―even as the Theocracy armies march on the capital! The twins know their wise ruler has his hopes pinned on them and won’t stop until they bring this forest under the control of Ainz Ooal Gown!</p>', '2023-05-13 14:10:05', 0, 0),
+(57, 'OVERLORD - Tập 16:  The Half-Elf Demigod Part II', 'NXB Hồng Đức', 'Kugane Maruyama', 19, 0, 'tải xuống.jpg', -7, 150000, 0, '<p>Even fierce warriors are in awe when they see the majesty of <a href=\"https://overlordmaruyama.fandom.com/wiki/Great_Tomb_of_Nazarick\">Nazarick</a>! <a href=\"https://overlordmaruyama.fandom.com/wiki/Ainz_Ooal_Gown\">Ainz</a> and the twins stay in the <a href=\"https://overlordmaruyama.fandom.com/wiki/Dark_Elf\">dark elf</a> village and continue to interact with the villagers. But the Theocracy has finally just begun to attack the <a href=\"https://overlordmaruyama.fandom.com/wiki/Elf_Country\">elf country</a>. Ainz, who had a plan, started to act.</p>', '2023-05-13 14:12:32', 0, 0),
 (58, 'Không biết bằng cách nào, dàn mỹ nhân hạng S lại đề cập đến tôi', 'NXB Hồng Đức', 'Wakioka Konatsu', 8, 0, 's15461-eb8c3422-acae-4c43-a448-9ece51a0fbeb-m.jpg', 2, 10000, 0, '<p>なぜかS級美女達の話題に俺があがる件</p><p>Naze ka S-kyuu Bijo-tachi no Wadai ni Ore ga Agaru ken</p>', '2023-08-04 08:01:29', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -348,7 +355,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `phone`, `address`, `avatar`, `created_at`, `status`, `role`) VALUES
@@ -356,33 +363,34 @@ INSERT INTO `users` (`id`, `email`, `password`, `name`, `phone`, `address`, `ava
 (2, 'user1@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'User', 3213, '', 'avt.png', '2022-04-07 18:41:02', 0, 0),
 (12, 'long@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Vĩnh Long', 122939341, '', 'avt.png', '2022-05-31 16:12:53', 0, 0),
 (14, 'AB@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Nguyễn Văn A', 122939341, '', 'avt.png', '2022-06-01 04:28:59', 0, 0),
-(16, 'thang@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Long', 358859711, 'quảng ninh', 'Screenshot 2023-06-01 234309.png', '2023-06-10 09:51:34', 0, 0);
+(16, 'thang@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Long', 358859711, 'quảng ninh', 'Screenshot 2023-06-01 234309.png', '2023-06-10 09:51:34', 0, 0),
+(22, 'admin2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Toàn Thắng2', 1111, 'aa', 'image.png', '2023-09-23 10:17:09', 0, 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `banner`
+-- Indexes for table `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `book_info`
+-- Indexes for table `book_info`
 --
 ALTER TABLE `book_info`
   ADD PRIMARY KEY (`id`),
   ADD KEY `infor` (`book_id`);
 
 --
--- Chỉ mục cho bảng `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
@@ -390,20 +398,20 @@ ALTER TABLE `comment`
   ADD KEY `book` (`book_id`);
 
 --
--- Chỉ mục cho bảng `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Chỉ mục cho bảng `order_details`
+-- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
@@ -411,7 +419,7 @@ ALTER TABLE `order_details`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Chỉ mục cho bảng `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
@@ -419,102 +427,102 @@ ALTER TABLE `products`
   ADD KEY `brand_id` (`publisher`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `banner`
+-- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `book_info`
+-- AUTO_INCREMENT for table `book_info`
 --
 ALTER TABLE `book_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
--- AUTO_INCREMENT cho bảng `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT cho bảng `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT cho bảng `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT cho bảng `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
--- AUTO_INCREMENT cho bảng `order_details`
+-- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `book_info`
+-- Constraints for table `book_info`
 --
 ALTER TABLE `book_info`
   ADD CONSTRAINT `infor` FOREIGN KEY (`book_id`) REFERENCES `products` (`id`);
 
 --
--- Các ràng buộc cho bảng `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `book` FOREIGN KEY (`book_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Các ràng buộc cho bảng `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`);
 
 --
--- Các ràng buộc cho bảng `order_details`
+-- Constraints for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
--- Các ràng buộc cho bảng `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);

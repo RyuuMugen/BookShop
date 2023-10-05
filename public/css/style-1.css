@@ -19,7 +19,9 @@ time, mark, audio, video {
  font: inherit;
  vertical-align: baseline;
 }
-
+a{
+    text-decoration: none;
+}
 
 :focus {
     outline: 0;
@@ -342,6 +344,13 @@ button .menu{
     margin: 0 auto;
     height: auto;
 }
+.contentbody{
+    margin-top: 2% !important;
+    width: 90% ;
+    margin: 0 auto;
+    height: auto;
+    margin-bottom: 20px;
+}
 .logo{
     width: 200px;
     margin-right: 5rem;
@@ -379,7 +388,10 @@ border-bottom: 1px black solid;
     margin: 0 auto;
     transition: all 1s;
     color: rgb(0, 0, 0);
-
+    
+}
+.product{
+    margin-bottom: 20px;
 }
 .product-title a{
     text-decoration: none;
@@ -628,12 +640,30 @@ font-weight: 700;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+#newsu2{
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px !important;
+}
 body{
    background-color: rgb(219, 218, 218) !important;
 }
 .card {
     border-radius: 10px !important;
-    border: none !important;
+    border: 2px white solid !important;
+
+}
+.card2 {
+    border-radius: 10px !important;
+    border: 4px white solid !important;
+    box-shadow: 5px 10px white;
+
+}
+.card2:hover{
+    border-radius: 10px !important;
+    border: 4px rgb(230, 85, 85) solid !important;
+    box-shadow: 5px 10px rgb(230, 85, 85);
 }
 .cartli{
     list-style: none;
@@ -658,7 +688,7 @@ body{
     max-width: 100%;
 }
 .container2{
-	background-color: rgb(247, 244, 244);
+	background-color: white;
     padding: 20px;
     border-radius: 10px; 
     margin-top: 20px;
@@ -668,6 +698,7 @@ body{
     padding: 20px 20px 20px 20px ;
     border-radius: 10px; 
     margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
 }
 .comment{
@@ -700,6 +731,10 @@ body{
     display: flex;
     flex-direction: column;
     padding-left: 2rem;
+}
+.newimg{
+    display: flex;
+    justify-content: center;
 }
 .newss .content .title-name{
     display: block;
@@ -820,23 +855,7 @@ font-weight: 700;
   z-index: 10;
 }
 
-  .listimg {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 80%;
-    padding-top: 20px;
-  }
   
-  .listimg img {
-    width: 150px !important;
-    height: 170px !important;
-    margin-right: 10px;
-  }
-  
-  .listimg img:last-child {
-    margin-right: 0;
-  }
   .paymentt{
     text-align: center;
     padding: 20px;
@@ -855,11 +874,12 @@ font-weight: 700;
     margin-left: 40px !important;
     margin-right: 40px !important;
     margin-bottom: 20px !important;
+    box-shadow: 5px 10px white;
 }
 .buttoninfo:hover{
     background-color: rgb(15, 158, 151) !important;
-    color: rgb(10, 12, 12) !important;
-    border: rgb(10, 12, 12) solid 4px !important;
-    
+    color: rgb(66, 77, 77) !important;
+    border: rgb(66, 77, 77) solid 4px !important;
+    box-shadow: 5px 10px rgb(15, 158, 151);
     
 }

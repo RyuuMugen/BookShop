@@ -1,16 +1,16 @@
-<div class="container product">
+<div class="contentbody">
 <div class="container2 text-center">
     <div class="h2 mb-5">Sản phẩm đề xuất</div>
     <div class="row" id="newsu">
-        <div class="col-12 row">
+        <div class="col-12 over">
             <?php foreach ($data["recommend"] as $value) : ?>
-            <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
-                <div class='card product p-2' style='width:auto'>
-                    <a href="<?= URL ?>index.php/home/details/<?= $value["id"] ?>"><img class='proo card-img-top'
+            <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
+                <div class='card2 product p-2' style='width:auto'>
+                    <a href="<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1"><img class='proo card-img-top'
                             style='width: 100%; height: 400px;' src='<?= URL ?>public/img/book/<?= $value["image"] ?>'
                             alt='<?= $value["image"] ?>'></a>
                     <div class='card-title product-title text-center h5'>
-                        <a href="<?= URL ?>index.php/home/details/<?= $value["id"] ?>"
+                        <a href="<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1"
                             class='proo'><?= $value["product_name"] ?></a>
                     </div>
                     <div class='price text-center h6'>
@@ -43,15 +43,15 @@
 <div class="container2 text-center">
     <div class="h2 mb-5">Tác giả đề xuất : <?php echo $data['authors'] ?></div>
     <div class="row" id="newsu">
-        <div class="col-12 row">
+        <div class="col-12 over">
             <?php foreach ($data["recommendauthor"] as $value) : ?>
-            <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
-                <div class='card product p-2' style='width:auto'>
-                    <a href="<?= URL ?>index.php/home/details/<?= $value["id"] ?>"><img class='proo card-img-top'
+            <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
+                <div class='card2 product p-2' style='width:auto'>
+                    <a href="<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1"><img class='proo card-img-top'
                             style='width: 100%; height: 400px;' src='<?= URL ?>public/img/book/<?= $value["image"] ?>'
                             alt='<?= $value["image"] ?>'></a>
                     <div class='card-title product-title text-center h5'>
-                        <a href="<?= URL ?>index.php/home/details/<?= $value["id"] ?>"
+                        <a href="<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1"
                             class='proo'><?= $value["product_name"] ?></a>
                     </div>
                     <div class='price text-center h6'>
@@ -83,15 +83,15 @@
     <div class="container2 text-center">
     <div class="h2 mb-5">NXB đề xuất : <?php echo $data['publishers'] ?></div>
     <div class="row" id="newsu">
-        <div class="col-12 row">
+        <div class="col-12 over">
             <?php foreach ($data["recommendpublisher"] as $value) : ?>
-            <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
-                <div class='card product p-2' style='width:auto'>
-                    <a href="<?= URL ?>index.php/home/details/<?= $value["id"] ?>"><img class='proo card-img-top'
+            <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
+                <div class='card2 product p-2' style='width:auto'>
+                    <a href="<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1"><img class='proo card-img-top'
                             style='width: 100%; height: 400px;' src='<?= URL ?>public/img/book/<?= $value["image"] ?>'
                             alt='<?= $value["image"] ?>'></a>
                     <div class='card-title product-title text-center h5'>
-                        <a href="<?= URL ?>index.php/home/details/<?= $value["id"] ?>"
+                        <a href="<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1"
                             class='proo'><?= $value["product_name"] ?></a>
                     </div>
                     <div class='price text-center h6'>

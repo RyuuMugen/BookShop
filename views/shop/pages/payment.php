@@ -3,7 +3,7 @@
         <button class="btn btn-primary" id="button1">Thanh toán khi nhận hàng</button>
         <button class="btn btn-primary" id="button2">Thanh toán QR MOMO</button>
         <button class="btn btn-primary" id="button3">Thanh toán bằng thẻ ngân hàng</button>
-        <div id="form1" style="display: none;">
+        <div id="form1" >
             
             <form action="<?= URL ?>index.php/home/Ordercomplete" id="checkoutForm1" method="post">
             <h2 class="paymentt">Thanh toán khi nhận hàng</h2>

@@ -1,0 +1,211 @@
+#myCarousel {
+    img {
+      height: 50%;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+  
+  #thumbSlider {
+    .carousel-inner {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      
+      .row {
+        overflow: hidden;
+      }
+      
+      .thumb {
+        &:hover {
+          cursor: pointer;
+        }
+        &.active img {
+          opacity: 1;
+        }
+      }
+      
+      img {
+        height: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        opacity: .5;
+        
+        &:hover {
+          opacity: 1;
+        }
+      }
+      
+      .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='%23000'%20viewBox='0%200%208%208'%3E%3Cpath%20d='M5.25%200l-4%204%204%204%201.5-1.5-2.5-2.5%202.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+      }
+      .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='%23000'%20viewBox='0%200%208%208'%3E%3Cpath%20d='M2.75%200l-1.5%201.5%202.5%202.5-2.5%202.5%201.5%201.5%204-4-4-4z'/%3E%3C/svg%3E");
+      }
+    }
+  }
+  .listimg {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    width: 80%;
+    
+    margin:0  !important;
+    background-color: #fff;
+  }
+  
+  .listimg img {
+    width: 150px !important;
+    height: 170px !important;
+    margin-right: 10px;
+  }
+  
+  .listimg img:last-child {
+    margin-right: 0;
+  }
+  .clear{
+    padding:0  !important;
+  }
+
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
+}
+
+body {
+    margin: 0
+}
+
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects
+}
+
+a:active,a:hover {
+    outline-width: 0
+}
+
+.material-icons:before {
+    display: inline-block;
+    font-family: "Material Icons";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "liga";
+    font-feature-settings: "liga"
+}
+
+.check-original-image {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    -webkit-transform: translate3d(-50%,0,0);
+    transform: translate3d(-50%,0,0);
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    background-color: rgba(0,0,0,.4);
+    font-size: 15px;
+    color: #fff;
+    z-index: 10000001;
+    transition: all 0.25s;
+}
+
+.check-original-image:hover {
+	box-shadow: 0px 0px 10px -2px rgb(0, 0, 0);
+}
+
+a.close-original-image {
+	z-index: 10000001;
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .6);
+    transform: rotate(-50deg);
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    text-align: center;
+    line-height: 150px;
+    cursor: pointer;
+}
+
+a.close-original-image::before,
+a.close-original-image::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 30px;
+    background-color: #fff;
+    top: 35px;
+    left: 48px;
+}
+
+a.close-original-image::after {
+    transform: rotate(90deg);
+}
+
+a.close-original-image:hover {
+    transform: rotate(-50deg) scale(1.2);
+}
+.media .comment {
+    background: #F4F4F4;
+    border: none;
+    border-radius: 10px
+}
+
+.card2 {
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 40px
+}
+.round {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px
+}
+h6.user {
+    color: #5C5C5C;
+    font-size: 15px !important;
+    padding-left: 15px !important;
+    margin-bottom: 0
+}
+p.text {
+    margin-bottom: 0;
+    color: #8A8A8A !important;
+    font-size: 14px
+}
+
+.pd{
+    margin-top: 20px;
+}
+
+.commentContainer{
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px dashed black;
+    border-radius: 20px;
+}
+.eclip {
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+
+.content {
+    max-width: 800px; 
+    word-wrap: break-word;
+}

@@ -27,8 +27,8 @@ $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua ATM";
 $amount = $_POST['total'];
 $orderId = time() ."";
-$redirectUrl = "http://localhost/bookstorenew/index.php/home/payment";
-$ipnUrl = "http://localhost/bookstorenew/index.php/home/complete";
+$redirectUrl = URL."index.php/home/payment";
+$ipnUrl = URL."index.php/home/payment";
 $extraData = "";
 
 $requestId = time() . "";

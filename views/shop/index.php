@@ -42,6 +42,7 @@
 <body>
     <!-- --header-- -->
     <?php $this->view("shop/modules/header",$data); ?>
+    
     <!-- ---- -->
 
     <!-- --body-- -->

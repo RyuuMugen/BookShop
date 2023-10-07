@@ -423,28 +423,7 @@ class admin extends Controller
 
 		$this->load->view("dashboard/index", $data);
 	}
-	function commentlist()
-	{
-		$page =$_GET['page'];
-		$cat = $this->model->getRecordByTrash('products', 0);
-		$n = count($cat);
-		$config = array(
-			'base_url' => URL . "index.php/admin/commentlist?page=",
-			'total_rows' => $n,
-			'per_page' => 5,
-			'cur_page' => $page
-		);
-		$this->p->init($config);
-		$data = array();
-		$data['allCate'] = $this->model->getRecordByTrash('category', 0);
-
-		$data['trash'] =  $this->model->getRecordByTrash('products', 1);
-		$data['product'] = $this->model->getData('products', $config['per_page'], $page);
-		$data['paginator'] = $this->p->createLinks();
-		$data['page'] = "dashboard/page/comment/list";
-
-		$this->load->view("dashboard/index", $data);
-	}
+	
 	function bannerList()
 	{
 		$page =$_GET['page'];

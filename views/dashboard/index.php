@@ -97,9 +97,7 @@
                     <li>
                         <a href="<?= URL ?>index.php/admin/newsList?page=1"><i class="fa fa-fw fa-newspaper-o"></i> Quản lí tin tức</a>
                     </li>
-                    <li>
-                        <a href="<?= URL ?>index.php/admin/commentlist?page=1"><i class="fa fa-fw fa-comments"></i> Quản lí bình luận</a>
-                    </li>
+    
 
 
                 </ul>

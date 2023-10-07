@@ -2,7 +2,7 @@
 <div class="container2 text-center">
     <div class="h2 mb-5">Sản phẩm giảm giá</div>
     <div class="row" id="newsu">
-        <div class="col-12 over">
+        <div class="col-12 row">
             <?php foreach ($data["sale_products"] as $value) : ?>
             <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
                 <div class='card2 product p-2' style='width:auto'>

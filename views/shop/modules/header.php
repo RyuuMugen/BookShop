@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-red navbar-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-red navbar-dark fixed-top">
     <div class="wrapper"></div>
+
     <div class="container-fluid all-show">
         <a href="<?= URL ?>index.php/home">
             <div class="logo">
@@ -11,7 +12,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mr-auto sm-lg-0">
                 <li class="nav-item">
                     <div class="menubut">
                         <a class="nav-link menuitem" href="<?= URL ?>index.php/home">TRANG CHỦ <span
@@ -45,15 +46,22 @@
                         </div>
                     </div>
                 </li>
-                <div class="navbar  narbar2 navbar-light">
-                    <form id="searchForm" action="<?= URL ?>index.php/home/search?value=value&page=1" method="post"
-                        class="form-inline">
-                        <input id="searchInput" type="text" name="search" class="form-control mr-sm-2"
-                            style="height: 48px;">
-                        <button type="submit" class="btn btn-light btn-lg btn-outline-light">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+                <li class="navbar narbar2 navbar-light">
+
+                    <div class="input-group">
+                        <form id="searchForm" action="<?= URL ?>index.php/home/search?value=value&page=1" method="post"
+                            class="form-inline">
+                            <input id="searchInput" type="text" name="search" class="form-control"
+                                style="height: 48px;">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-light btn-lg btn-outline-light"
+                                    style="height: 48px;">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
 
                     <script>
                     document.getElementById("searchForm").addEventListener("submit", function(event) {
@@ -65,68 +73,68 @@
                         this.submit();
                     });
                     </script>
-                </div>
+                </li>
             </ul>
-            <div class="d-flex flex-column sim">
-                <div class="navbar narbar2 navbar-light">
+            <ul class="navbar-nav ml-auto sm-lg-0">
 
+                <li class="nav-item">
                     <a href="<?= URL ?>index.php/home/cartview" class="mr-2">
                         <button type="button" class="btn btn-primary btn-lg btn-outline-primary"><i
                                 class="fas fa-shopping-cart"></i></button>
-
                     </a>
-                    <li class="nav-item dropdown cartli">
-                        <?php
+                </li>
+                <li class="nav-item dropdown ">
+                    <?php
                             if (isset($_SESSION['user'])) {
                             ?>
-                        <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <button type="button" class="btn btn-primary btn-lg btn-outline-primary">
-                                <div> <img class='proo card-img-top'
-                                        style='width: 32px; height: 32px; border-radius:16px;'
-                                        src='<?= URL ?>public/img/avatar/<?= $_SESSION['avatar']?>'
-                                        alt='<?= $_SESSION['avatar']?>'>
-                                    <?= $_SESSION['user'] ?>
-                                </div>
-                            </button>
-                        </a>
-                        <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                    <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <button type="button" class="btn btn-primary btn-lg btn-outline-primary">
+                            <div> <img class='proo card-img-top' style='width: 32px; height: 32px; border-radius:16px;'
+                                    src='<?= URL ?>public/img/avatar/<?= $_SESSION['avatar']?>'
+                                    alt='<?= $_SESSION['avatar']?>'>
+                                <?= $_SESSION['user'] ?>
+                            </div>
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
 
-                            <?php
+                        <?php
                                         if ($_SESSION['role'] != 0) {
                                             echo "<a href='" . URL . "index.php/admin' class='dropdown-item'>Quản lý</a>";
                                         }
                                         ?>
-                            <a class="dropdown-item" href="<?= URL ?>index.php/home/detailsUser">Chi tiết</a>
-                            <a class="dropdown-item" href="<?= URL ?>index.php/home/logout">Đăng xuất</a>
+                        <a class="dropdown-item" href="<?= URL ?>index.php/home/detailsUser">Chi tiết</a>
+                        <a class="dropdown-item" href="<?= URL ?>index.php/home/logout">Đăng xuất</a>
 
-                        </div>
-                </div>
+                    </div>
 
 
-                <?php
+
+                    <?php
                             } else {
 
 
                 ?>
-                <a href="<?= URL ?>index.php/home/login" class="mr-2">
-                    <button type="button" class="btn btn-primary btn-lg btn-outline-primary">Đăng nhập</button>
-                </a>
-                <a href="<?= URL ?>index.php/home/register" class="mr-2">
-                    <button type="button" class="btn btn-primary btn-lg btn-outline-primary">Đăng ký</button>
-                </a>
+                <li class="nav-item">
+                    <a href="<?= URL ?>index.php/home/login" class="mr-2">
+                        <button type="button" class="btn btn-primary btn-lg btn-outline-primary">Đăng nhập</button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= URL ?>index.php/home/register" class="mr-2">
+                        <button type="button" class="btn btn-primary btn-lg btn-outline-primary">Đăng ký</button>
+                    </a>
+                </li>
                 <?php
                             }
                 ?>
                 </li>
-            </div>
+            </ul>
 
 
         </div>
     </div>
     <a href="#" title="Back to top" style="position: fixed; bottom: 20px; right: 20px; ">
-    <img style="height: 100px;width: 100px;" src="<?= URL ?>\public\images\go-to-top.png" alt="">
-</a>
+        <img style="height: 100px;width: 100px;" src="<?= URL ?>\public\images\go-to-top.png" alt="">
+    </a>
 </nav>
-
-</div>

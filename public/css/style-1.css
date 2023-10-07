@@ -774,6 +774,8 @@ font-weight: 700;
 .row{
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
 }
 .btn-form{
     width: 20%;

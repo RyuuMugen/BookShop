@@ -16,6 +16,7 @@
 		<th>Status</th>
 		<th>Edit</th>
 		<th>Info</th>
+		<th>Comment</th>
 		<th>Trash</th>
 	</tr>
 	<?php foreach ($data['product'] as $value) : ?>
@@ -57,6 +58,7 @@
 			</td>
 			<td><a href="<?= URL ?>index.php/admin/editProduct/<?= $value['id'] ?>"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/edit.png" /></a></td>
 			<td><a href="<?= URL ?>index.php/admin/infoProduct?id=<?= $value['id'] ?>&page=1"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/booki.png" /></a></td>
+			<td><a href="<?= URL ?>index.php/admin/infoComment?id=<?= $value['id'] ?>&page=1"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/1647114.png" /></a></td>
 			<td><a onclick="actionChange('Chuyển vào trash','<?= URL ?>index.php/admin/delTempProduct/<?= $value['id'] ?>')"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/bookdelete.png" /></a></td>
 		</tr>
 	<?php endforeach; ?>

@@ -2,7 +2,7 @@
 <div class="contentbody">
 
     <div class="row " id="newsu">
-        <div class="col-10 over" >
+        <div class="col-10 row" >
             <div class="h3 mb-5">Sản phẩm</div>
             <?php if (count($data["product_cate"]) == 0) : ?>
             <div class='h1 text-warning'>Không có sản phẩm vui lòng chọn danh mục khác</div>
@@ -46,10 +46,10 @@
             <?php endforeach; ?>
             <?php endif; ?>
         </div>
-        <div class="col-2 menu-right over">
+        <div class="col-2 menu-right row">
             <?php $this->view("shop/modules/sidebar", $data); ?>
         </div>
-        <div class="col-10 over center">
+        <div class="col-10 row center">
             <?= $data['paginator'] ?>
         </div>
     </div>

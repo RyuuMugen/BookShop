@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/banner.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/menu.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/detail.css">
+    <link rel="shortcut icon" type="image/png" href="<?php echo URL; ?>public/img/book/BS2.ico"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>

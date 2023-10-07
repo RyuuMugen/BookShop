@@ -1,5 +1,7 @@
 
-
+<p>
+	<a href="<?= URL ?>index.php/admin/productList?page=1"><button type="button" class="btn btn-primary">Back</button></a>
+</p>
 <table class="table table-bordered table-hover">
 	<tr>
         <th>id</th>

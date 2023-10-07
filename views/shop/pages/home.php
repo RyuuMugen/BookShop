@@ -4,7 +4,7 @@ require("public/function/function.php");
 
 <div class="contentbody">
     <div class="row text-center" id="newsu">
-        <div class="h3 mt-5 over"><h1>Danh mục</h1>
+        <div class="h3 mt-5 row"><h1>Danh mục</h1>
             <div class="col-12 overflow">
                 <?php foreach ($data["category"] as $value) : ?>
                 <div class="col-lg-2 col-md-6 col-sm-6 col-6 mt-3 ">
@@ -32,7 +32,7 @@ require("public/function/function.php");
     <div class="row text-center" id="newsu">
         <div class="h3 mt-5 over"><h1>Sản phẩm Mới</h1>
         </div>
-        <div class="col-12 row-2">
+        <div class="col-12 row">
             <?php foreach ($data["new_products"] as $value) : ?>
             <div class="col-lg-2 col-md-6 col-sm-6 col-6 mt-3">
                 <div class="card2 product p-2" style="width: auto;">
@@ -76,7 +76,7 @@ require("public/function/function.php");
     <?php if (isset($_SESSION['user_id']) && !empty($data["recomment"])) : ?>
     <div class="row text-center" id="newsu">
         <div class="h3 mt-5 over"><h1>Sản phẩm đề xuất</h1></div>
-        <div class="col-12 row-2">
+        <div class="col-12 row ">
             <?php foreach ($data["recomment"] as $value) : ?>
             <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
                 <div class="card2 product p-2" style="width: auto;">
@@ -115,23 +115,20 @@ require("public/function/function.php");
             </div>
             <?php endforeach; ?>
         </div>
-        <div class="center">
-            <a href="<?= URL ?>index.php/home/recommend?page=1&page2=1&page3=1" tabindex="-1" aria-disabled="true"
-                style="text-decoration: none;">
-                <button type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
-            </a>
-
+        <div class="center over col-4"></div>
+        <div class="center over col-4">
+                <button href="<?= URL ?>index.php/home/recommend?page=1&page2=1&page3=1" type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
         </div>
-
+        <div class="center over col-4"></div>
     </div>
 
     <?php endif; ?>
 
     <div class="row text-center" id="newsu">
-        <div class="h3 mt-5 over">
+        <div class="h3 mt-5 row">
         <h1>Sản phẩm Giảm giá</h1>
         </div>
-        <div class="col-12 row-2 ">
+        <div class="col-12 row ">
             <?php foreach ($data["sale_products"] as $value) : ?>
             <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
                 <div class="card2 product p-2" style="width: auto;">
@@ -163,14 +160,11 @@ require("public/function/function.php");
             </div>
             <?php endforeach; ?>
         </div>
-        <div class="center">
-            <a href="<?= URL ?>index.php/home/sale?page=1" tabindex="-1" aria-disabled="true"
-                style="text-decoration: none;">
-                <button type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
-            </a>
-
+        <div class="center over col-4"></div>
+        <div class="over center col-4">
+                <button href="<?= URL ?>index.php/home/sale?page=1" type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
         </div>
-
+        <div class="center over col-4"></div>
     </div>
 
     <div class="row text-center" id="newsu">
@@ -196,14 +190,11 @@ require("public/function/function.php");
             </div>
             <?php endforeach; ?>
         </div>
-        <div class="center">
-            <a href="<?= URL ?>index.php/home/news?page=1" tabindex="-1" aria-disabled="true"
-                style="text-decoration: none;">
-                <button type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
-            </a>
-
+        <div class="center over col-4"></div>
+        <div class="center over col-4">
+                <button  href="<?= URL ?>index.php/home/news?page=1" type="button" class="buttoninfo btn btn-lg btn-block">xem thêm</button>
         </div>
-
+        <div class="center over col-4"></div>
     </div>
 
 </div>

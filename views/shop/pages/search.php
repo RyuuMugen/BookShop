@@ -2,7 +2,7 @@
     <div class="container2 text-center">
         <div class="h2 mb-5">Kết quả tìm kiếm</div>
         <div class="row" id="newsu">
-            <div class="col-12 over">
+            <div class="col-12 row">
                 <?php
             if ($data["search"] == NULL) { ?>
                 <h5>Không có kết quả tìm kiếm</h5>

@@ -384,10 +384,14 @@ border-bottom: 1px black solid;
 }
 
 .product span{
-    width: 20%;
+    width: 30%;
     margin: 0 auto;
+    padding: 10px;
     transition: all 1s;
     color: rgb(0, 0, 0);
+    display: flex !important; 
+    align-items: center !important;
+    justify-content: center !important;
     
 }
 .product{

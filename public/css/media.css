@@ -33,12 +33,16 @@
     .nav-item  {
         font-size: 12px !important; 
     }
+    .ba  {
+        font-size: 12px !important; 
+        height: 48px !important;
+    }
     .res{
         width: 56px !important;
         height: 48px !important;
     }
     .resi{
-        width: 70px !important;
+        width: 63px !important;
         height: 48px !important;
     }
     .res2{

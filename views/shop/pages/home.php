@@ -11,7 +11,7 @@ require("public/function/function.php");
                 <div class="col-lg-2 col-md-6 col-sm-6 col-6 mt-3 ">
                     <a href="<?= URL ?>index.php/home/category?category=<?= $value["id"] ?>&page=1" class="menu-link">
                         <div class="card2 product p-2" style="width: 200px;">
-                            <div class="newimg" style='width: 200px; height: 300px;'>
+                            <div class="newimg" style='width: 100%; height: 300px;'>
                                 <img class='proo card-img-top' style='width: 100%; height: 100%;'
                                     src='<?= URL ?>public/img/illustration/<?= $value["illustration"] ?>'
                                     alt='<?= $value["illustration"] ?>'>

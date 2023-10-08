@@ -52,7 +52,7 @@
                         <form id="searchForm" action="<?= URL ?>index.php/home/search?value=value&page=1" method="post"
                             class="form-inline">
                             <input id="searchInput" type="text" name="search" class="form-control resi"
-                                style="height: 48px;">
+                                style="height: 48px; width: 140px;">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-light btn-lg btn-outline-light res"
                                     style="height: 48px;">
@@ -71,7 +71,7 @@
 
                     <a href="<?= URL ?>index.php/home/cartview" class="mr-2">
                         <button type="button" class="btn btn-primary btn-lg btn-outline-primary res"><i
-                                class="fas fa-shopping-cart icn"></i></button>
+                                class="fas fa-shopping-cart icn "></i></button>
 
                     </a>
                     <li class="nav-item dropdown cartli">
@@ -109,10 +109,10 @@
 
                 ?>
                 <a href="<?= URL ?>index.php/home/login" class="mr-2">
-                    <button type="button" class="btn btn-primary btn-lg btn-outline-primary">Đăng nhập</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-outline-primary ba">Đăng nhập</button>
                 </a>
                 <a href="<?= URL ?>index.php/home/register" class="mr-2">
-                    <button type="button" class="btn btn-primary btn-lg btn-outline-primary">Đăng ký</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-outline-primary ba">Đăng ký</button>
                 </a>
                 <?php
                             }

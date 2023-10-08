@@ -451,6 +451,7 @@ class Home extends Controller
 			'cur_page' => $page
 		);
 		$this->p->init($config);
+		$data["value"] = $search;
 		$data["search"] = $this->model->searchcount($search,$config['per_page'], $page);
 		$data["category"] = $this->model->getCategory();
 		$data["banner"] = $this->model->getBanner();

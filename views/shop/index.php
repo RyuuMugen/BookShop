@@ -4,6 +4,7 @@
 <head>
     <title>BookStore</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo URL; ?>public/backend/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/style-1.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/style-user.css">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/banner.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/menu.css">
     <link rel="stylesheet" href="<?php echo URL; ?>/public/css/detail.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>/public/css/media.css">
     <link rel="shortcut icon" type="image/png" href="<?php echo URL; ?>public/img/book/BS2.ico"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

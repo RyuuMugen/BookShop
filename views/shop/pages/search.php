@@ -1,6 +1,6 @@
 <div class="contentbody">
     <div class="container2 text-center">
-        <div class="h2 mb-5">Kết quả tìm kiếm</div>
+        <div class="h2 mb-5">Kết quả tìm kiếm cho: <?php echo $data["value"] ?></div>
         <div class="row" id="newsu">
             <div class="col-12 row">
                 <?php

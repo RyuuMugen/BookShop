@@ -1,0 +1,105 @@
+
+ 
+@media only screen and (min-width: 992px) and (max-width: 1422px)  {
+    .view {
+        overflow-y: scroll;
+        display: flex !important;
+    }
+    .col-lg-2{
+        flex: 0 0 250px !important;
+        max-width: 250px !important;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px)  {
+    .collapse:not(.show)  {
+       display: none !important;
+    }
+    
+  }
+  .navbar-nav .dropdown-menu{
+    position: absolute !important;
+  }
+  @media only screen and (max-width: 991px)  {
+    .navbar-nav{
+        flex-direction: row !important;
+    }
+    .menuitem{
+        padding-left: 20px !important;
+    }
+  }
+
+  @media only screen and (min-width: 992px) and (max-width: 1246px)  {
+    .nav-item  {
+        font-size: 12px !important; 
+    }
+    .res{
+        width: 56px !important;
+        height: 48px !important;
+    }
+    .resi{
+        width: 70px !important;
+        height: 48px !important;
+    }
+    .res2{
+        width: 56px !important;
+        height: 48px !important;
+        display: flex !important; 
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .uname{
+        display: none;
+    }
+    .ui{
+        width: 32px !important;
+        height: 32px !important;
+    }
+  }
+
+  @media only screen and (min-width: 1247px) and (max-width: 1392px)  {
+    .nav-item  {
+        font-size: 12px !important; 
+    }
+    .uname{
+        font-size: 12px !important; 
+    }
+    .ui{
+        width: 32px !important;
+        height: 32px !important;
+    }
+  }
+
+  @media only screen and (min-width: 992px) and (max-width: 1000px)  {
+    .nav-item  {
+        font-size: 12px !important; 
+    }
+    .res{
+        width: 46px !important;
+        height: 38px !important;
+        display: flex !important; 
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .resi{
+        width: 60px !important;
+        height: 38px !important;
+    }
+    .res2{
+        width: 46px !important;
+        height: 38px !important;
+        display: flex !important; 
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .uname{
+        display: none;
+    }
+    .ui{
+        width: 32px !important;
+        height: 32px !important;
+    }
+    .icn  {
+        font-size: 12px !important; 
+    }
+  }

@@ -33,10 +33,10 @@
 			$html .= "<li class='page-item'><a aria-label='Previous' class='page-link {$class}' href='".($this->cur_page == 1 ? '#' : $this->base_url . ($this->cur_page - 1))."'><span aria-hidden='true'>&laquo;</span></a></li>";
 			for ( $i = $start ; $i <= $end; $i++ ) {
 				$class = ( $this->cur_page == $i ) ? "active" : "";
-				$html .= "<li><a class = '{$class}' href='{$this->base_url}{$i}'>{$i}</a></li>";
+				$html .= "<li class='page-item'><a class = 'page-link {$class}' href='{$this->base_url}{$i}'>{$i}</a></li>";
 			}
 			$class = ( $this->cur_page == $end ) ? "disabled" : "";
-			$html .= "<li><a aria-label='Next' class='{$class}' href='".($this->cur_page == $end ? '#' : $this->base_url . ($this->cur_page + 1))."'><span aria-hidden='true'>&raquo;</span></a></li>";	
+			$html .= "<li class='page-item'><a aria-label='Next' class='page-link {$class}' href='".($this->cur_page == $end ? '#' : $this->base_url . ($this->cur_page + 1))."'><span aria-hidden='true'>&raquo;</span></a></li>";	
 			$html .= "</ul>";
 			$html .= "</nav>";
 			return $html;

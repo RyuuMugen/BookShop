@@ -1,4 +1,3 @@
-
 <?php
 class Admin_Model extends Model
 {
@@ -43,6 +42,18 @@ class Admin_Model extends Model
 		$this->editRecord('category', $cate, $id);
 
 	
+	}
+	public function deleteUser($id)
+	{
+		$sql = "DELETE FROM comment WHERE user_id = $id;";
+		$sql2 = "DELETE FROM order_details WHERE order_id IN (SELECT id FROM orders WHERE customer_id = $id);";
+		$sql3 = "DELETE FROM orders WHERE customer_id = $id;";
+		$sql4 = "DELETE FROM users WHERE id = $id;";
+		
+		$this->setQuery($sql);
+		$this->setQuery($sql2);
+		$this->setQuery($sql3);
+		$this->setQuery($sql4);
 	}
 	public function deleteOrder($id)
 		{
@@ -216,6 +227,35 @@ class Admin_Model extends Model
 			$u->doUpload($file, 'bookinfo');
 		}
 		$this->editRecord('book_info', $pro, $id);
+	}
+	function getSearch($value,$type)
+	{	
+		if ($type === "category_name") {
+			$types = "category." . $type;
+		} else {
+			$types = "products." . $type;
+		}
+		$sql = "SELECT products.*, category.category_name
+				FROM products
+				INNER JOIN category ON products.category_id = category.id
+				WHERE $types LIKE '%$value%' AND products.trash=0";
+		$result = $this->getAll($sql);
+		return $result;
+	}
+	function getdataSearch($value,$type, $limit, $page)
+	{
+		if ($type === "category_name") {
+			$types = "category." . $type;
+		} else {
+			$types = "products." . $type;
+		}
+		$sql = "SELECT products.*, category.category_name
+				FROM products
+				INNER JOIN category ON products.category_id = category.id
+				WHERE $types LIKE '%$value%' AND products.trash=0 
+				LIMIT ".($page-1)*$limit. ",".$limit;
+		$result = $this->getAll($sql);
+		return $result;
 	}
 	public function bannerEdit($id)
 	{

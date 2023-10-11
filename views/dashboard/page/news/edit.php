@@ -15,10 +15,10 @@ $r = $data['edit'];
     <textarea class="form-control" name="content" id="editor" cols="30" rows="30"><?= $r['content'] ?></textarea>
   </div>
   <div class="form-group">
-    <label>Avatar</label>
+    <label>Illustration</label>
     <img style="width: 50px;" src="<?= URL ?>/public/img/news/<?= $r['avatar'] ?>" alt="">
     <input type="file" name="avatar" class="form-control-file" accept=".jpg, .png, .jpeg">
-    </>
+    
     <div class="form-group">
       <label>Status</label>
       <select class="form-control" name="status">

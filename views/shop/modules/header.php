@@ -129,11 +129,9 @@
 <script>
 document.getElementById("searchForm").addEventListener("submit", function(event) {
     event.preventDefault();
-
     var searchValue = document.getElementById("searchInput").value;
     var formAction = "<?= URL ?>index.php/home/search?value=" + searchValue + "&page=1";
     document.getElementById("searchForm").action = formAction;
     this.submit();
 });
-
 </script>

@@ -12,7 +12,7 @@
     </select>
   </div>
   <div class="form-group">
-    <label>Avatar</label>
+    <label>Illustration</label>
     <input type="file" name="illustration" class="form-control-file" accept=".jpg, .png, .jpeg">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

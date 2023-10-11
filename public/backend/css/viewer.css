@@ -2555,6 +2555,9 @@ dialog :link {
   display: none;
 }
 
+.away{
+  display: block;
+}
 @media all and (max-width: 900px) {
   #toolbarViewerMiddle {
     display: table;

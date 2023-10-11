@@ -15,7 +15,7 @@ $r = $data['edit'];
     <input type="date" value="<?= $r['date_end'] ?>" name="enddate" class="form-control">
   </div>
   <div class="form-group">
-    <label>Avatar</label>
+    <label>Banner</label>
     <img style="width: 200px; padding-bottom: 20px;" src="<?= URL ?>/public/img/banner/<?= $r['image'] ?>" alt="">
     <input type="file" name="avatar" class="form-control-file" accept=".jpg, .png, .jpeg">
   </div>

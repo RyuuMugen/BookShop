@@ -1,5 +1,5 @@
 <table class="table table-bordered table-hover">
-	<tr>
+<thead class="table-dark">
 		<th>id</th>
 		<th>Email</th>
 		<th>Name</th>
@@ -7,9 +7,9 @@
 		<th>Address</th>
 		<th>Status</th>
 		<th>Delete</th>
-	</tr>
+		</thead>
 	<?php foreach ($data['user'] as $value) : ?>
-		<tr>
+		<tbody>
 			<td><?= $value['id'] ?></td>
 			<td><?= $value['email'] ?></td>
 			<td><?= $value['name'] ?></td>
@@ -33,7 +33,7 @@
 			<td>
 				<a onclick="actionChange('Xác nhận xóa , xóa rồi không thể khôi phục được','<?= URL ?>index.php/admin/deleteUsers/<?= $value['id'] ?>')"><img class="icon" style="width:50px;" src="<?= URL ?>public/backend/images/delete.png" /></a>
 			</td>
-		</tr>
+		</tbody>
 	<?php endforeach; ?>
 </table>
 <?= $data['paginator'] ?>

@@ -12,7 +12,7 @@
     <input type="date" name="enddate" class="form-control">
   </div>
   <div class="form-group">
-    <label>Avatar</label>
+    <label>Banner</label>
     <input type="file" name="avatar" class="form-control-file" accept=".jpg, .png, .jpeg">
   </div>
   <div class="form-group">

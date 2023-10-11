@@ -90,13 +90,14 @@ class Home extends Controller
 	public function postRegister()
 	{
 		$data['count'] = $this->model->isEmailExists($_POST['email']);
-		if ($data['count'] <1) {
-			$data['page'] = 'shop/pages/register';
+		if ($data['count'] == 1) {
+		    $data['page'] = 'shop/pages/register';
 			$data["thongbao"] = "TÀI KHOẢN ĐÃ TỒN TẠI";
 			$this->load->view("shop/index", $data);
 		} else {
 			$this->model->doRegister();
 			header('Location:../home/index');
+			
 		}
 	}
 	public function login()
@@ -445,9 +446,9 @@ class Home extends Controller
 		$n = count($data);
 		$_SESSION['pages'] = $page;
 		$config = array(
-			'base_url' => URL . "index.php/home/search/$search/",
+			'base_url' => URL . "index.php/home/search?value=$search&page=",
 			'total_rows' => $n,
-			'per_page' => 18,
+			'per_page' => 20,
 			'cur_page' => $page
 		);
 		$this->p->init($config);

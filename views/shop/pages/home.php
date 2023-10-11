@@ -11,8 +11,8 @@ require("public/function/function.php");
                 <div class="col-lg-2 col-md-6 col-sm-6 col-6 mt-3 ">
                     <a href="<?= URL ?>index.php/home/category?category=<?= $value["id"] ?>&page=1" class="menu-link">
                         <div class="card2 product p-2" style="width: 200px;">
-                            <div class="newimg" style='width: 100%; height: 300px;'>
-                                <img class='proo card-img-top' style='width: 100%; height: 100%;'
+                            <div class="newimg" >
+                                <img class='proo card-img-top' id="myImage<?= $index ?>"
                                     src='<?= URL ?>public/img/illustration/<?= $value["illustration"] ?>'
                                     alt='<?= $value["illustration"] ?>'>
                             </div>
@@ -39,7 +39,7 @@ require("public/function/function.php");
             <div class="col-lg-2 col-md-6 col-sm-6 col-6 mt-3">
                 <div class="card2 product p-2" style="width: auto;">
                     <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'>
-                        <img class='proo card-img-top' style='width: 100%; height: 400px;'
+                        <img class='proo card-img-top' id="myImage<?= $index ?>"
                             src='<?= URL ?>public/img/book/<?= $value["image"] ?>' alt='<?= $value["image"] ?>'>
                     </a>
                     <div class="card">
@@ -85,7 +85,7 @@ require("public/function/function.php");
             <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3 '>
                 <div class="card2 product p-2" style="width: auto;">
                     <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'>
-                        <img class='proo card-img-top' style='width: 100%; height: 400px;'
+                        <img class='proo card-img-top' id="myImage<?= $index ?>"
                             src='<?= URL ?>public/img/book/<?= $value["image"] ?>' alt='<?= $value["image"] ?>'>
                     </a>
                     <div class="card">
@@ -138,7 +138,7 @@ require("public/function/function.php");
             <div class='col-lg-2 col-md-6 col-sm-6 col-6 mt-3'>
                 <div class="card2 product p-2" style="width: auto;">
                     <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'>
-                        <img class='proo card-img-top' style='width: 100%; height: 400px;'
+                        <img class='proo card-img-top' id="myImage<?= $index ?>"
                             src='<?= URL ?>public/img/book/<?= $value["image"] ?>' alt='<?= $value["image"] ?>'>
                     </a>
                     <div class="card">
@@ -208,7 +208,6 @@ require("public/function/function.php");
 </div>
 <script>
 const mediaQuery = window.matchMedia("(min-width: 992px) and (max-width: 1422px)");
-
 function handleScreenSizeChange(event) {
     if (event.matches) {
         const elements = document.querySelectorAll('.col-12.row.view');
@@ -220,7 +219,8 @@ function handleScreenSizeChange(event) {
     }
 }
 handleScreenSizeChange(mediaQuery);
-
-
 mediaQuery.addEventListener("change", handleScreenSizeChange);
+
+
+
 </script>

@@ -153,7 +153,11 @@ class admin extends Controller
 	}
 	function deleteUsers($id)
 	{
-		$this->model->deleteTempRecord('users', $id);
+		if ($id == 1) {
+			echo '<script>alert("Không thể xóa người dùng có ID là 1.");</script>';
+		} else {
+			$this->model->deleteUser($id);
+		}
 		header('Location:' . URL . 'index.php/admin/usersList?page=1');
 	}
 	function deleteNews($id)
@@ -415,7 +419,6 @@ class admin extends Controller
 		$this->p->init($config);
 		$data = array();
 		$data['allCate'] = $this->model->getRecordByTrash('category', 0);
-
 		$data['trash'] =  $this->model->getRecordByTrash('products', 1);
 		$data['product'] = $this->model->getData('products', $config['per_page'], $page);
 		$data['paginator'] = $this->p->createLinks();
@@ -423,7 +426,27 @@ class admin extends Controller
 
 		$this->load->view("dashboard/index", $data);
 	}
-	
+	function productSearch(){
+		$page =$_GET['page'];
+		$value =$_GET['value'];
+		$type =$_GET['type'];
+		$cat = $this->model->getSearch($value,$type);
+		$n = count($cat);
+		$config = array(
+			'base_url' => URL . "index.php/admin/productSearch?value=$value&type=$type&page=",
+			'total_rows' => $n,
+			'per_page' => 5,
+			'cur_page' => $page
+		);
+		$this->p->init($config);
+		$data = array();
+		$data['allCate'] = $this->model->getRecordByTrash('category', 0);
+		$data['trash'] =  $this->model->getRecordByTrash('products', 1);
+		$data['product'] = $this->model->getdataSearch($value,$type, $config['per_page'], $page);
+		$data['paginator'] = $this->p->createLinks();
+		$data['page'] = "dashboard/page/product/list";
+		$this->load->view("dashboard/index", $data);
+	}
 	function bannerList()
 	{
 		$page =$_GET['page'];

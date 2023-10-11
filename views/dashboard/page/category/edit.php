@@ -7,7 +7,7 @@ $r = $data['edit'];
     <input type="text" name="category_name" value="<?= $r['category_name'] ?>" class="form-control" placeholder="">
   </div>
   <div class="form-group">
-    <label>Avatar</label>
+    <label>Illustration</label>
     <img style="width: 200px; padding-bottom: 20px;" src="<?= URL ?>/public/img/illustration/<?= $r['illustration'] ?>" alt="">
     <input type="file" name="illustration" class="form-control-file" accept=".jpg, .png, .jpeg">
   </div>

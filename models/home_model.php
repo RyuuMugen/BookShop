@@ -5,13 +5,13 @@ class Home_Model extends Model{
 
 	}
 	public function getNewProducts(){
-		$sql = "SELECT * FROM products WHERE status=0 AND trash=0 ORDER BY created_at DESC LIMIT 6";
+		$sql = "SELECT * FROM products WHERE status=0 AND trash=0 ORDER BY created_at DESC LIMIT 5";
 		$result = $this->getAll($sql);
 		return $result;
 		
 	}
 	public function getSaleProducts(){
-		$sql = "SELECT * FROM products Where sale=1 and status=0 AND trash=0 ORDER BY created_at DESC LIMIT 12";
+		$sql = "SELECT * FROM products Where sale=1 and status=0 AND trash=0 ORDER BY created_at DESC LIMIT 10";
 		$result = $this->getAll($sql);
 		return $result;
 	}
@@ -149,7 +149,7 @@ class Home_Model extends Model{
 				)
 				AND p.trash = 0
   				AND p.status = 0
-				LIMIT 12;
+				LIMIT 10;
 				";
 		$result = $this->getAll($sql);
 		return $result;

@@ -12,9 +12,9 @@
     <textarea class="form-control" name="content" id="editor" cols="30" rows="30"></textarea>
   </div>
   <div class="form-group">
-    <label>Avatar</label>
+    <label>Illustration</label>
     <input type="file" name="avatar" class="form-control-file" accept=".jpg, .png, .jpeg">
-    </>
+
     <div class="form-group">
       <label>Status</label>
       <select class="form-control" name="status">

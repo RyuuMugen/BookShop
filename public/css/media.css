@@ -6,8 +6,16 @@
         display: flex !important;
     }
     .col-lg-2{
-        flex: 0 0 250px !important;
-        max-width: 250px !important;
+        flex: 0 0 25% !important;
+        max-width: 25% !important;
+    }
+  }
+  
+@media only screen and (min-width: 1423px)  {
+    
+    .col-lg-2{
+        flex: 0 0 20% !important;
+        max-width: 20% !important;
     }
   }
 

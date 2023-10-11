@@ -11,7 +11,7 @@
             <div class='col-lg-3 col-md-6 col-sm-6 col-6 mt-3'>
                 <div class="card2 product p-2" style="width: auto;">
                     <a href='<?= URL ?>index.php/home/details?id=<?= $value["id"] ?>&page=1'>
-                        <img class='proo card-img-top' style='width: 100%; height: 400px;'
+                        <img class='proo card-img-top' id="myImage<?= $index ?>"
                             src='<?= URL ?>public/img/book/<?= $value["image"] ?>' alt='<?= $value["image"] ?>'>
                     </a>
                     <div class="card">

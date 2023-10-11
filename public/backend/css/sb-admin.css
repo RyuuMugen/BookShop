@@ -6,10 +6,7 @@
 
 /* Global Styles */
 
-body {
-    margin-top: 100px;
-    background-color: #222;
-}
+
 .limit_text{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -17,17 +14,16 @@ body {
     -webkit-line-clamp: 4; /* number of lines to show */
     -webkit-box-orient: vertical;
  }
-
-@media(min-width:768px) {
-    body {
-        margin-top: 50px;
-    }
+.light{
+    color: rgb(204, 204, 204) !important;
 }
 
 #wrapper {
     padding-left: 0;
 }
-
+.clear{
+    padding: 10px !important;
+}
 #page-wrapper {
     width: 100%;
     padding: 0;
